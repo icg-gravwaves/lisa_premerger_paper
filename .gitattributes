@@ -1,0 +1,8 @@
+PSD_Files/model_T_TDI1_optimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
+PSD_Files/model_T_TDI1_pessimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
+PSD_Files/model_XYZ_TDI1_optimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
+PSD_Files/model_AE_TDI1_optimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
+PSD_Files/model_AE_TDI1_pessimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
+PSD_Files/model_AE_TDI1_SMOOTH_CUT_optimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
+PSD_Files/model_AE_TDI1_SMOOTH_optimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
+PSD_Files/model_AE_TDI1_SMOOTH_pessimistic.txt.gz filter=lfs diff=lfs merge=lfs -text
