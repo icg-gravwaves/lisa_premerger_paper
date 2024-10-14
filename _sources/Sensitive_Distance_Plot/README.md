@@ -12,7 +12,7 @@ We interpolate the frequency for the required time-before-merger and then use th
 ## Sky averaged observable distance
 As the observable distance varies over the sky in a way, we perform this calculation at many points (our plots in the paper use 200) over the sky and average these.
 
-To keep this averaging consistent for the different PSDs, and if we use parallelization, we use the same random seed for every mass and time point where this is calculated
+To keep this averaging consistent for the different PSDs, and if we use parallelization, we use the same random seed for every mass and time point where this is calculated. As a result the sky points will remain consistent.
 
 ## How to recreate the figure
 As the first part of generating this figure, the `sensitive_time_distance.sh` script supplied was run on the [SCIAMA supercomputer](https://sciama.icg.port.ac.uk/). This was slightly modified for use with the Slurm workload manager. From this the files `sensitive_time_distance_cutoff.hdf` `sensitive_time_distance_optimistic.hdf` and `sensitive_time_distance_pessimistic.hdf` are produced.
