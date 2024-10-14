@@ -1,0 +1,27 @@
+title: Premerger observation and characterization of super-massive black hole binaries
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/icg-gravwaves/lisa_premerger_paper/Sensitive_Distance_Plot
+  # Online location of your book
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: false
+  use_repository_button: false
+
+sphinx:
+  config:
+    nb_execution_timeout: 5000
