@@ -15,11 +15,9 @@ from pycbc.types import MultiDetOptionAction
 from pycbc.psd.lisa_pre_merger import generate_pre_merger_psds
 from pycbc.waveform.pre_merger_waveform import (
     pre_process_data_lisa_pre_merger,
-    generate_waveform_lisa_pre_merger,
 )
 from utils import (
     get_snr_from_series,
-    get_snr_series,
     get_optimal_snr,
     get_snr_point,
     plot_best_waveform
