@@ -17,7 +17,7 @@ The shared settings are defined in `base_data.ini`.
 
 Run `python generate_data.py --help` to see configuration options.
 
-> :warning: Different versions of `numpy` may provide different states to the random number generator [as detailed here](https://numpy.org/neps/nep-0019-rng-policy.html), even with the same seed. As a result, you may see slightly different results if generating your own files.
+> ⚠️ Different versions of `numpy` may provide different states to the random number generator [as detailed here](https://numpy.org/neps/nep-0019-rng-policy.html), even with the same seed. As a result, you may see slightly different results if generating your own files.
 
 **Example usage**
 

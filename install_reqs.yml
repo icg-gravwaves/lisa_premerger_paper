@@ -1,0 +1,20 @@
+name: env_lisa_premerger
+channels:
+ - default
+ - conda-forge
+dependencies:
+ - python=3.10
+ - pip
+ - gcc_linux-64
+ - gxx_linux-64
+ - gsl
+ - lapack=3.6.1
+ - numpy
+ - scipy
+ - Cython
+ - pycbc
+ - matplotlib
+ - pip:
+   - git+https://github.com/mikekatz04/BBHx.git@4fff509
+   - git+https://github.com/gwastro/BBHX-waveform-model.git
+
