@@ -1,4 +1,0 @@
-format: jb-book
-root: README
-chapters:
-        - file: plot_sensitive_distance
