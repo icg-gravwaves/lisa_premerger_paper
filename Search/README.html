@@ -366,12 +366,31 @@ document.write(`
 <h1>Searching for pre-merger signals<a class="headerlink" href="#searching-for-pre-merger-signals" title="Link to this heading">#</a></h1>
 <section id="generating-a-template-bank">
 <h2>Generating a template bank<a class="headerlink" href="#generating-a-template-bank" title="Link to this heading">#</a></h2>
+<p>In <a class="reference internal" href="#./Template_Banks"><span class="xref myst">Template_Banks</span></a>, we provide the details on how template banks were generated, as well as the template banks themselves.</p>
 </section>
 <section id="searching-for-injected-signals">
 <h2>Searching for injected signals<a class="headerlink" href="#searching-for-injected-signals" title="Link to this heading">#</a></h2>
+<p>To search for the signals, we remove data from the end of the file, and then pre-condition the data according to the zero-phase whitening kernel.
+Then for each template we:</p>
+<ol class="arabic simple">
+<li><p>calculate the SNR series by matched filtering the template with the data</p></li>
+<li><p>find the maximum with a search window of the end of the data in one channel</p></li>
+<li><p>find the maximum within a small coincidence window in the other channel and combine these to get a combined SNR</p></li>
+<li><p>repeat steps 2 and 3 above with the channels swapped, and use whichever combined SNR is highest.</p></li>
+</ol>
+<p>The template with the highest combined SNR over the bank is then considered <em>the</em> SNR of the signal.</p>
+<p>Command line arguments are possible for testing, particularly</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--data-file-zero-noise</span></code>, which will subtract zero-noise file and calculate SNR from that - this will not affect the bank filtering</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--plot-best-waveform</span></code> will plot the best-fitting waveform in the frequency and time domains, as well as the SNR time series for the best-fitting waveform</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--reduce-bank-factor</span></code> will skip indices in the loop over waveforms which are not an integer multiple of this number. This is useful to run the search quickly</p></li>
+</ul>
+<p>An example using these options is supplied as <a class="reference download internal" download="" href="../_downloads/bb095677af50a1025949125504ab5820/signal_runs_test.sh"><span class="xref download myst">signal_runs_test.sh</span></a></p>
 </section>
 <section id="assessing-significance">
 <h2>Assessing significance<a class="headerlink" href="#assessing-significance" title="Link to this heading">#</a></h2>
+<p>In order to assess significance, we run the search described above repeatedly over Gaussian noise and obtain a distribution, which we interpolate/extrapolate to get an estimate of the false alarm rate of the signal.</p>
+<p>For this, we run <a class="reference download internal" download="" href="../_downloads/842197833e4d5ad9de49239927a3a3e2/nosignal_runs.py"><span class="xref download myst">nosignal_runs.py</span></a>, which repeatedly generates Gaussian data, conditions it and calculates the maximum SNR during a</p>
 </section>
 </section>
 
