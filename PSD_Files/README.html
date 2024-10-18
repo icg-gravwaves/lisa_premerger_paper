@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Data for Search and Parameter Estimation &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+    <title>Generating the PSD files used in our analyses &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
   
   
   
@@ -57,11 +57,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Data/README';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'PSD_Files/README';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Searching for pre-merger signals" href="../Search/README.html" />
-    <link rel="prev" title="Observable Distance Plot" href="../Sensitive_Distance_Plot/README.html" />
+    <link rel="next" title="Observable Distance Plot" href="../Sensitive_Distance_Plot/README.html" />
+    <link rel="prev" title="Premerger observation and characterization of super-massive black hole binaries" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,9 +176,9 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../PSD_Files/README.html">Generating the PSD files used in our analyses</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Generating the PSD files used in our analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data for Search and Parameter Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Data/README.html">Data for Search and Parameter Estimation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Search/README.html">Searching for pre-merger signals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Search/Template_Banks/README.html">Template banks generation</a></li>
 </ul>
@@ -233,7 +235,7 @@
       
       
       
-      <li><a href="../_sources/Data/README.md" target="_blank"
+      <li><a href="../_sources/PSD_Files/README.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -304,9 +306,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -317,19 +317,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Data for Search and Parameter Estimation</h1>
+    <h1>Generating the PSD files used in our analyses</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-data">Generating data</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -339,27 +331,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="data-for-search-and-parameter-estimation">
-<h1>Data for Search and Parameter Estimation<a class="headerlink" href="#data-for-search-and-parameter-estimation" title="Link to this heading">#</a></h1>
-<p>We supply the data here which was used for search and parameter estimation analyses.</p>
-<p>Data is generated using <code class="docutils literal notranslate"><span class="pre">generate_data.py</span></code> with different arguments.</p>
-<section id="generating-data">
-<h2>Generating data<a class="headerlink" href="#generating-data" title="Link to this heading">#</a></h2>
-<p>For convenience, the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in this directory contains rules to generate the three sets of data used in the paper:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">optimistic</span></code>: optimistic PSD</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pessimistic</span></code>: pessimistic PSD</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cut</span></code>: optimistic PSD with a cut at <code class="docutils literal notranslate"><span class="pre">1e-4</span></code></p></li>
-</ul>
-<p>In all three cases, zero noise data is also generated.</p>
-<p>The shared settings are defined in <code class="docutils literal notranslate"><span class="pre">base_data.ini</span></code>.</p>
-<p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">generate_data.py</span> <span class="pre">--help</span></code> to see configuration options.</p>
-<blockquote>
-<div><p>⚠️ Different versions of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> may provide different states to the random number generator <a class="reference external" href="https://numpy.org/neps/nep-0019-rng-policy.html">as detailed here</a>, even with the same seed. As a result, you may see slightly different results if generating your own files.</p>
-</div></blockquote>
-<p><strong>Example usage</strong></p>
-<p>Run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">optimistic</span></code> and data will generated in <code class="docutils literal notranslate"><span class="pre">data_optimistic_psd</span></code>, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">generate_data</span></code> or just <code class="docutils literal notranslate"><span class="pre">make</span></code> to generate all the data.</p>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="generating-the-psd-files-used-in-our-analyses">
+<h1>Generating the PSD files used in our analyses<a class="headerlink" href="#generating-the-psd-files-used-in-our-analyses" title="Link to this heading">#</a></h1>
+<p>In order to demonstrate the different performance of the search under different assumptions about the low-frequency performance of the detector, we perform our analyses on three different PSD models.</p>
+<p>These PSDs have optimistic, pessimistic, and no performance below <span class="math notranslate nohighlight">\(10^{-4}\)</span> Hz respectively</p>
+<p>We show here how the PSDs for these models are generated.</p>
+<p>In <a class="reference internal" href="PSD_filter_images.html"><span class="std std-doc">the python notebook</span></a>, we plot the PSDs, and show the conditioning we need to apply to turn them into the zero-phase whitening kernel.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -375,7 +352,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./Data"
+            path: "./PSD_Files"
         },
         predefinedOutput: true
     }
@@ -393,20 +370,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Sensitive_Distance_Plot/README.html"
+       href="../README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Observable Distance Plot</p>
+        <p class="prev-next-title">Premerger observation and characterization of super-massive black hole binaries</p>
       </div>
     </a>
     <a class="right-next"
-       href="../Search/README.html"
+       href="../Sensitive_Distance_Plot/README.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Searching for pre-merger signals</p>
+        <p class="prev-next-title">Observable Distance Plot</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -416,21 +393,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-data">Generating data</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

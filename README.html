@@ -57,10 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'README';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Observable Distance Plot" href="Sensitive_Distance_Plot/README.html" />
+    <link rel="next" title="Generating the PSD files used in our analyses" href="PSD_Files/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,7 +177,11 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="PSD_Files/README.html">Generating the PSD files used in our analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Sensitive_Distance_Plot/README.html">Observable Distance Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data/README.html">Data for Search and Parameter Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Search/README.html">Searching for pre-merger signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Search/Template_Banks/README.html">Template banks generation</a></li>
 </ul>
 
     </div>
@@ -331,7 +337,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-supplied-files-with-injections">Generating supplied files with injections</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-smbhb-signals-pre-merger">Searching for SMBHB signals pre-merger</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-template-bank">Generating the template bank</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-searches-on-generated-noise-without-injections">Running searches on generated noise without injections</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-parameter-estimation-on-injections">Running parameter estimation on injections</a></li>
 </ul>
@@ -381,15 +386,11 @@ document.write(`
 <section id="generating-supplied-files-with-injections">
 <h2>Generating supplied files with injections<a class="headerlink" href="#generating-supplied-files-with-injections" title="Link to this heading">#</a></h2>
 <p>The search and parameter estimation are run on the same files to ensure consistency.
-In order to generate these files, we use the process detailed in <a class="reference internal" href="#./Data"><span class="xref myst">Data</span></a>.</p>
+In order to generate these files, we use the process detailed in <a class="reference internal" href="Data/README.html"><span class="std std-doc">Data</span></a>.</p>
 </section>
 <section id="searching-for-smbhb-signals-pre-merger">
 <h2>Searching for SMBHB signals pre-merger<a class="headerlink" href="#searching-for-smbhb-signals-pre-merger" title="Link to this heading">#</a></h2>
-<p>In <a class="reference internal" href="#./Search"><span class="xref myst">Search</span></a></p>
-<section id="generating-the-template-bank">
-<h3>Generating the template bank<a class="headerlink" href="#generating-the-template-bank" title="Link to this heading">#</a></h3>
-<p>The bank generation is detailed in <a class="reference internal" href="#.Search/Template_Banks"><span class="xref myst">Template Banks</span></a></p>
-</section>
+<p>In <a class="reference internal" href="Search/README.html"><span class="std std-doc">Search</span></a>, we how we perform a template bank search on the injected data files, and how we assess significance.</p>
 <section id="running-searches-on-generated-noise-without-injections">
 <h3>Running searches on generated noise without injections<a class="headerlink" href="#running-searches-on-generated-noise-without-injections" title="Link to this heading">#</a></h3>
 </section>
@@ -432,11 +433,11 @@ In order to generate these files, we use the process detailed in <a class="refer
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="Sensitive_Distance_Plot/README.html"
+       href="PSD_Files/README.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Observable Distance Plot</p>
+        <p class="prev-next-title">Generating the PSD files used in our analyses</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -463,7 +464,6 @@ In order to generate these files, we use the process detailed in <a class="refer
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-supplied-files-with-injections">Generating supplied files with injections</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-smbhb-signals-pre-merger">Searching for SMBHB signals pre-merger</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-template-bank">Generating the template bank</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-searches-on-generated-noise-without-injections">Running searches on generated noise without injections</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-parameter-estimation-on-injections">Running parameter estimation on injections</a></li>
 </ul>
