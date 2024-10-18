@@ -7,13 +7,45 @@ As always python, software dependencies will change in the coming years, and thi
 FIXME: sort a docker image somewhere (zenodo?) once code is finalised
 
 ## Reproducing our figures
-Figure 2 can be reproduced using the notebook at https://icg-gravwaves.github.io/lisa_premerger_paper/Sensitive_Distance_Plot/plot_sensitive_distance.html
+Figure 2 (a and b) can be reproduced using [this ipython notebook](./Sensitive_Distance_Plot/plot_sensitive_distance.html)
+
+Figures 1, 3, 4 and 5 can be reproduced using [this notebook](./PSD_files/PSD_filter_images.html)
+
+Figures 6, 7, 8, 9, 10, 11 .....
 
 ## Reproducing our analysis
+Here we discuss each of the parts of the analysis presented in the paper, and how each part can be reproduced.
+
+### Reproducing the analysis environment
+We plan to have a docker image, but we also provide instructions here so that if the user wants to use our work as a basis for development, that is possible
+
+We have provided a [yaml file](./install_reqs.yml), which can be used to create a conda environment for the analysis:
+
+```
+conda env create -f install_reqs.yml
+```
+
+Make sure you have activated the environment using `conda activate env_lisa_premerger`
+
+This will use the latest possible version of PyCBC, however we need some changes to to main code. So we will install a particular version of PyCBC. To get this, run
+
+```
+git clone git@github.com:icg-gravwaves/pycbc.git
+cd pycbc
+git branch lisa-pre-merger
+pip install .
+```
+## Generating supplied files with injections
+The search and parameter estimation are run on the same files to ensure consistency.
+In order to generate these files, we use the process detailed in [Data](./Data).
+
+## Searching for SMBHB signals pre-merger
+In [Search](./Search)
 
 ### Generating the template bank
+The bank generation is detailed in [Template Banks](.Search/Template_Banks)
 
-### Running searches on supplied files with injections
+
 
 ### Running searches on generated noise without injections
 
