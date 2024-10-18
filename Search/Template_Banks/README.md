@@ -16,4 +16,4 @@ We provide [the slurm batch script](./sbatch_generate_banks.sh) used to generate
 
 Note that the software environment will need to be set up within this batch script, but will depend on your environment setup and location
 
-This script can also easily be adapted to not use a scheduling manager
+This script can easily be adapted to *not* use a scheduling manager
