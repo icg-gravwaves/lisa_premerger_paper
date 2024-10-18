@@ -174,7 +174,11 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="README.html">Generating the PSD files used in our analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Data/README.html">Data for Search and Parameter Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Search/README.html">Searching for pre-merger signals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Search/Template_Banks/README.html">Template banks generation</a></li>
 </ul>
 
     </div>
@@ -344,6 +348,7 @@ document.write(`
   <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">copy</span>
@@ -354,7 +359,6 @@ document.write(`
 <span class="kn">import</span> <span class="nn">pycbc</span>
 <span class="kn">from</span> <span class="nn">pycbc.types</span> <span class="kn">import</span> <span class="n">load_frequencyseries</span>
 <span class="kn">from</span> <span class="nn">pycbc</span> <span class="kn">import</span> <span class="n">psd</span>
-<span class="kn">import</span> <span class="nn">pycbc</span>
 <span class="kn">import</span> <span class="nn">pycbc.psd</span>
 <span class="kn">import</span> <span class="nn">pycbc.waveform</span>
 <span class="kn">import</span> <span class="nn">pycbc.filter</span>
@@ -398,24 +402,45 @@ No CuPy or GPU interpolation available.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># PSD files are stored GZIPPEd, so need to GunZIP</span>
-<span class="o">!</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_pessimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_T_TDI1_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_T_TDI1_pessimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_CUT_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_pessimistic.txt.gz
+<span class="c1"># the `yes n` part of this commands skips if the file has already</span>
+<span class="c1"># been unzipped in this directory</span>
+<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_optimistic.txt.gz
+<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_pessimistic.txt.gz
+<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_T_TDI1_optimistic.txt.gz
+<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_T_TDI1_pessimistic.txt.gz
+<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_CUT_optimistic.txt.gz
+<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_optimistic.txt.gz
+<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_pessimistic.txt.gz
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_optimistic.txt already exists; do you wish to overwrite (y or n)? 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_optimistic.txt already exists;	not overwritten
+yes: standard output: Broken pipe
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>^C
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_pessimistic.txt already exists;	not overwritten
+yes: standard output: Broken pipe
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_pessimistic.txt already exists; do you wish to overwrite (y or n)? 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_T_TDI1_optimistic.txt already exists;	not overwritten
+yes: standard output: Broken pipe
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_T_TDI1_pessimistic.txt already exists;	not overwritten
+yes: standard output: Broken pipe
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_SMOOTH_CUT_optimistic.txt already exists;	not overwritten
+yes: standard output: Broken pipe
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_SMOOTH_optimistic.txt already exists;	not overwritten
+yes: standard output: Broken pipe
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_SMOOTH_pessimistic.txt already exists;	not overwritten
+yes: standard output: Broken pipe
 </pre></div>
 </div>
 </div>
@@ -424,7 +449,7 @@ No CuPy or GPU interpolation available.
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the PSD models into memory:</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">load_frequencyseries</span><span class="p">(</span><span class="s1">&#39;model_AE_TDI1_optimistic.txt&#39;</span><span class="p">)</span>
-<span class="c1"># We dont actually need the </span>
+<span class="c1"># We don&#39;t actually need the very highest frequencies here</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="mi">1000001</span><span class="p">]</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
 <span class="n">at</span> <span class="o">=</span> <span class="n">load_frequencyseries</span><span class="p">(</span><span class="s1">&#39;model_T_TDI1_optimistic.txt&#39;</span><span class="p">)</span>
@@ -509,7 +534,7 @@ No CuPy or GPU interpolation available.
   return np.asarray(x, float)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0e45719600&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1b7f107370&gt;
 </pre></div>
 </div>
 <img alt="../_images/6ee94b73663adb4261a9d536f5d895aaff5bf705ef71fd42d1de62d4ca5f5105.png" src="../_images/6ee94b73663adb4261a9d536f5d895aaff5bf705ef71fd42d1de62d4ca5f5105.png" />
@@ -601,7 +626,7 @@ No CuPy or GPU interpolation available.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f0e455a95d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1bd90b8820&gt;]
 </pre></div>
 </div>
 <img alt="../_images/274ad60c39cdb443c6f50fb80866b352d7769bae56ea0afac0096cadd27a26a1.png" src="../_images/274ad60c39cdb443c6f50fb80866b352d7769bae56ea0afac0096cadd27a26a1.png" />
@@ -611,6 +636,7 @@ No CuPy or GPU interpolation available.
 <section id="plot-for-figure-1b">
 <h1>Plot for Figure 1B<a class="headerlink" href="#plot-for-figure-1b" title="Link to this heading">#</a></h1>
 <p>Now need to create the strain plot. Do this by empirically computing the response function from A,E,T to h(t) and applying that to the A,E,T PSDs.</p>
+<p>We have commented out the following computation, and have instead provided the frequency response function as a file. This saves time when running this notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constructing the average response from h(t) -&gt; A,E,T,</span>
@@ -691,122 +717,97 @@ No CuPy or GPU interpolation available.
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outs4</span> <span class="o">=</span> <span class="n">get_response_function</span><span class="p">(</span><span class="mf">1E4</span><span class="p">)</span>
-<span class="n">outs6</span> <span class="o">=</span> <span class="n">get_response_function</span><span class="p">(</span><span class="mf">1E6</span><span class="p">)</span>
-<span class="n">outs8</span> <span class="o">=</span> <span class="n">get_response_function</span><span class="p">(</span><span class="mf">1E8</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|          | 0/1000 [00:00&lt;?, ?it/s]/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/BBHX_Phenom.py:265: RuntimeWarning: Input &#39;f_lower&#39; is lower than the value calculated from &#39;t_obs_start&#39;.
-  warn(err_msg, RuntimeWarning)
-/tmp/ipykernel_2990214/2915202738.py:64: RuntimeWarning: divide by zero encountered in divide
-  ratioa = 1./( abs(wf2p.data[:-1])/abs(wfa.data[:]) )
-/tmp/ipykernel_2990214/2915202738.py:64: RuntimeWarning: invalid value encountered in divide
-  ratioa = 1./( abs(wf2p.data[:-1])/abs(wfa.data[:]) )
-/tmp/ipykernel_2990214/2915202738.py:65: RuntimeWarning: divide by zero encountered in divide
-  ratioe = 1./( abs(wf2p.data[:-1])/abs(wfe.data[:]) )
-/tmp/ipykernel_2990214/2915202738.py:65: RuntimeWarning: invalid value encountered in divide
-  ratioe = 1./( abs(wf2p.data[:-1])/abs(wfe.data[:]) )
-/tmp/ipykernel_2990214/2915202738.py:66: RuntimeWarning: divide by zero encountered in divide
-  ratiot = 1./( abs(wf2p.data[:-1])/abs(wft.data[:]) )
-/tmp/ipykernel_2990214/2915202738.py:66: RuntimeWarning: invalid value encountered in divide
-  ratiot = 1./( abs(wf2p.data[:-1])/abs(wft.data[:]) )
-  0%|          | 1/1000 [00:00&lt;11:19,  1.47it/s]/tmp/ipykernel_2990214/2915202738.py:68: RuntimeWarning: divide by zero encountered in divide
-  ratioa[:] = (ratioa[:] * count + 1./( abs(wf2p.data[:-1])/abs(wfa.data[:])) ) / (count+1)
-/tmp/ipykernel_2990214/2915202738.py:68: RuntimeWarning: invalid value encountered in divide
-  ratioa[:] = (ratioa[:] * count + 1./( abs(wf2p.data[:-1])/abs(wfa.data[:])) ) / (count+1)
-/tmp/ipykernel_2990214/2915202738.py:69: RuntimeWarning: divide by zero encountered in divide
-  ratioe[:] = (ratioe[:] * count + 1./( abs(wf2p.data[:-1])/abs(wfe.data[:])) ) / (count+1)
-/tmp/ipykernel_2990214/2915202738.py:69: RuntimeWarning: invalid value encountered in divide
-  ratioe[:] = (ratioe[:] * count + 1./( abs(wf2p.data[:-1])/abs(wfe.data[:])) ) / (count+1)
-/tmp/ipykernel_2990214/2915202738.py:70: RuntimeWarning: divide by zero encountered in divide
-  ratiot[:] = (ratiot[:] * count + 1./( abs(wf2p.data[:-1])/abs(wft.data[:])) ) / (count+1)
-/tmp/ipykernel_2990214/2915202738.py:70: RuntimeWarning: invalid value encountered in divide
-  ratiot[:] = (ratiot[:] * count + 1./( abs(wf2p.data[:-1])/abs(wft.data[:])) ) / (count+1)
-100%|██████████| 1000/1000 [08:54&lt;00:00,  1.87it/s]
-100%|██████████| 1000/1000 [03:34&lt;00:00,  4.66it/s]
-100%|██████████| 1000/1000 [02:52&lt;00:00,  5.81it/s]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outs4 = get_response_function(1E4)</span>
+<span class="c1"># outs6 = get_response_function(1E6)</span>
+<span class="c1"># outs8 = get_response_function(1E8)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs4</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1000</span><span class="p">:],</span> <span class="n">outs4</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1000</span><span class="p">:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;A response correction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs4</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1000</span><span class="p">:],</span> <span class="n">outs4</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1000</span><span class="p">:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;E response correction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs4</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1000</span><span class="p">:],</span> <span class="n">outs4</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1000</span><span class="p">:],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T response correction&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plt.loglog(outs4[0][1000:], outs4[1][1000:], label=&#39;A response correction&#39;)</span>
+<span class="c1"># plt.loglog(outs4[0][1000:], outs4[2][1000:], label=&#39;E response correction&#39;)</span>
+<span class="c1"># plt.loglog(outs4[0][1000:], outs4[3][1000:], label=&#39;T response correction&#39;)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs6</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">],</span> <span class="n">outs6</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;A response correction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs6</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">],</span> <span class="n">outs6</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;E response correction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs6</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">],</span> <span class="n">outs6</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T response correction&#39;</span><span class="p">)</span>
+<span class="c1"># plt.loglog(outs6[0][55:900], outs6[1][55:900], label=&#39;A response correction&#39;)</span>
+<span class="c1"># plt.loglog(outs6[0][55:900], outs6[2][55:900], label=&#39;E response correction&#39;)</span>
+<span class="c1"># plt.loglog(outs6[0][55:900], outs6[3][55:900], label=&#39;T response correction&#39;)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs8</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">800</span><span class="p">],</span> <span class="n">outs8</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="mi">800</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;A response correction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs8</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">800</span><span class="p">],</span> <span class="n">outs8</span><span class="p">[</span><span class="mi">2</span><span class="p">][:</span><span class="mi">800</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;E response correction&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">outs8</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">800</span><span class="p">],</span> <span class="n">outs8</span><span class="p">[</span><span class="mi">3</span><span class="p">][:</span><span class="mi">800</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T response correction&#39;</span><span class="p">)</span>
+<span class="c1"># plt.loglog(outs8[0][:800], outs8[1][:800], label=&#39;A response correction&#39;)</span>
+<span class="c1"># plt.loglog(outs8[0][:800], outs8[2][:800], label=&#39;E response correction&#39;)</span>
+<span class="c1"># plt.loglog(outs8[0][:800], outs8[3][:800], label=&#39;T response correction&#39;)</span>
 
+<span class="c1"># plt.legend(loc=&#39;lower right&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># aa = np.zeros([len(outs4[0])-1000+845+800,2])</span>
+<span class="c1"># aa[:800,0] = outs8[0][:800]</span>
+<span class="c1"># aa[:800,1] = outs8[1][:800]</span>
+<span class="c1"># aa[800:800+845,0] = outs6[0][55:900]</span>
+<span class="c1"># aa[800:800+845,1] = outs6[1][55:900]</span>
+<span class="c1"># aa[800+845:,0] = outs4[0][1000:]</span>
+<span class="c1"># aa[800+845:,1] = outs4[1][1000:]</span>
+
+<span class="c1"># tt = np.zeros([len(outs4[0])-1000+845+800,2])</span>
+<span class="c1"># tt[:800,0] = outs8[0][:800]</span>
+<span class="c1"># tt[:800,1] = outs8[3][:800]</span>
+<span class="c1"># tt[800:800+845,0] = outs6[0][55:900]</span>
+<span class="c1"># tt[800:800+845,1] = outs6[3][55:900]</span>
+<span class="c1"># tt[800+845:,0] = outs4[0][1000:]</span>
+<span class="c1"># tt[800+845:,1] = outs4[3][1000:]</span>
+
+<span class="c1"># plt.loglog(aa[:,0], aa[:,1])</span>
+<span class="c1"># plt.loglog(tt[:,0], tt[:,1])</span>
+<span class="c1"># plt.legend(loc=&#39;lower right&#39;)</span>
+
+<span class="c1"># aainterp = interpolate.interp1d(aa[:,0], aa[:,1])</span>
+<span class="c1"># ttinterp = interpolate.interp1d(tt[:,0], tt[:,1])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the response functions to an external file</span>
+<span class="c1"># ainterp_array = aainterp(a.sample_frequencies[:-100])</span>
+<span class="c1"># np.savetxt(&#39;AE_response_function.txt&#39;, ainterp_array)</span>
+<span class="c1"># tinterp_array = ttinterp(at.sample_frequencies[:-100])</span>
+<span class="c1"># np.savetxt(&#39;T_response_function.txt&#39;, tinterp_array)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the response functions from the external file</span>
+<span class="n">ainterp_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">&#39;AE_response_function.txt&#39;</span><span class="p">)</span>
+<span class="n">tinterp_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">&#39;T_response_function.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">],</span> <span class="n">ainterp_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;A/E&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">],</span> <span class="n">tinterp_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Hz)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Response function (FIXME: UNITS)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f0e4545b520&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Response function (FIXME: UNITS)&#39;)
 </pre></div>
 </div>
-<img alt="../_images/80b11f16e4fb16ff54d9bbca27f806d23668a85598f9bb536f1844d6334eea06.png" src="../_images/80b11f16e4fb16ff54d9bbca27f806d23668a85598f9bb536f1844d6334eea06.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">outs4</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1000</span><span class="o">+</span><span class="mi">845</span><span class="o">+</span><span class="mi">800</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">aa</span><span class="p">[:</span><span class="mi">800</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs8</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">800</span><span class="p">]</span>
-<span class="n">aa</span><span class="p">[:</span><span class="mi">800</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs8</span><span class="p">[</span><span class="mi">1</span><span class="p">][:</span><span class="mi">800</span><span class="p">]</span>
-<span class="n">aa</span><span class="p">[</span><span class="mi">800</span><span class="p">:</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs6</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">]</span>
-<span class="n">aa</span><span class="p">[</span><span class="mi">800</span><span class="p">:</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs6</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">]</span>
-<span class="n">aa</span><span class="p">[</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs4</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1000</span><span class="p">:]</span>
-<span class="n">aa</span><span class="p">[</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs4</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1000</span><span class="p">:]</span>
-
-<span class="n">tt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">outs4</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1000</span><span class="o">+</span><span class="mi">845</span><span class="o">+</span><span class="mi">800</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">tt</span><span class="p">[:</span><span class="mi">800</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs8</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">800</span><span class="p">]</span>
-<span class="n">tt</span><span class="p">[:</span><span class="mi">800</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs8</span><span class="p">[</span><span class="mi">3</span><span class="p">][:</span><span class="mi">800</span><span class="p">]</span>
-<span class="n">tt</span><span class="p">[</span><span class="mi">800</span><span class="p">:</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs6</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">]</span>
-<span class="n">tt</span><span class="p">[</span><span class="mi">800</span><span class="p">:</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs6</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">55</span><span class="p">:</span><span class="mi">900</span><span class="p">]</span>
-<span class="n">tt</span><span class="p">[</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs4</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1000</span><span class="p">:]</span>
-<span class="n">tt</span><span class="p">[</span><span class="mi">800</span><span class="o">+</span><span class="mi">845</span><span class="p">:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">outs4</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1000</span><span class="p">:]</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">aa</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">aa</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">tt</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">tt</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
-
-<span class="n">aainterp</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">aa</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">aa</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">ttinterp</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">tt</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">tt</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
-</pre></div>
-</div>
-<img alt="../_images/89e1bedab5a8f4f61bb7e40a85b59d0926ab835b00d125cb75c44e7038a4cdfd.png" src="../_images/89e1bedab5a8f4f61bb7e40a85b59d0926ab835b00d125cb75c44e7038a4cdfd.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aainterp</span><span class="p">(</span><span class="mf">1E-3</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(0.00590514)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">35042</span><span class="p">),</span> <span class="n">a_peaks</span><span class="p">)</span>
-</pre></div>
-</div>
+<img alt="../_images/69832f5716a0d4162d8fd1d118b75b8bdcd4f6ed6986adae5be20eefe47c7c2b.png" src="../_images/69832f5716a0d4162d8fd1d118b75b8bdcd4f6ed6986adae5be20eefe47c7c2b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -815,32 +816,39 @@ No CuPy or GPU interpolation available.
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
-<span class="n">interp_array</span> <span class="o">=</span> <span class="n">aainterp</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">])</span>
+
+<span class="n">b_peaks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">35042</span><span class="p">),</span> <span class="n">a_peaks</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
     <span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">],</span> 
-    <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">interp_array</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">ainterp_array</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span>
 <span class="p">)</span>
-<span class="n">interp_array</span> <span class="o">=</span> <span class="n">ttinterp</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">])</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
     <span class="n">at</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">],</span> 
-    <span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span> <span class="o">*</span> <span class="n">at</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">interp_array</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span> <span class="o">*</span> <span class="n">at</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">tinterp_array</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span>
 <span class="p">)</span>
 
-<span class="n">interp_array</span> <span class="o">=</span> <span class="n">aainterp</span><span class="p">(</span><span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">])</span>
+<span class="c1"># The smoothed PSD is at different sample frequencies than the model,</span>
+<span class="c1"># so we interpolate the response function here</span>
+<span class="n">aainterp</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span>
+    <span class="n">at</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">],</span>
+    <span class="n">ainterp_array</span>
+<span class="p">)</span>
+<span class="n">smoothed_interp_array</span> <span class="o">=</span> <span class="n">aainterp</span><span class="p">(</span><span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
     <span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">],</span>
-    <span class="p">(</span><span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1c_smoothed2</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">interp_array</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1c_smoothed2</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">smoothed_interp_array</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
     <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">interp_array</span> <span class="o">=</span> <span class="n">aainterp</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">])</span>
+
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span>
     <span class="n">b</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">],</span> 
-    <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">interp_array</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">ainterp_array</span><span class="p">[</span><span class="n">b_peaks</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span><span class="p">,</span>
     <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
     <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -871,15 +879,19 @@ No CuPy or GPU interpolation available.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2990214/3783408094.py:8: RuntimeWarning: invalid value encountered in divide
-  (a.sample_frequencies[b_peaks] * a.data[b_peaks]/(interp_array[b_peaks]**2))**0.5,
-/tmp/ipykernel_2990214/3783408094.py:15: RuntimeWarning: invalid value encountered in divide
-  (at.sample_frequencies[b_peaks] * at.data[b_peaks]/(interp_array[b_peaks]**2))**0.5,
-/tmp/ipykernel_2990214/3783408094.py:30: RuntimeWarning: invalid value encountered in divide
-  (b.sample_frequencies[b_peaks] * b[b_peaks]/(interp_array[b_peaks]**2))**0.5,
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3859046/3555482724.py:9: RuntimeWarning: invalid value encountered in divide
+  (a.sample_frequencies[b_peaks] * a.data[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<img alt="../_images/7f85f4525d2b7963858ce6a0947111760ed787b31d90152db35f6b844bf94cd4.png" src="../_images/7f85f4525d2b7963858ce6a0947111760ed787b31d90152db35f6b844bf94cd4.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3859046/3555482724.py:16: RuntimeWarning: invalid value encountered in divide
+  (at.sample_frequencies[b_peaks] * at.data[b_peaks]/(tinterp_array[b_peaks]**2))**0.5,
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_3859046/3555482724.py:37: RuntimeWarning: invalid value encountered in divide
+  (b.sample_frequencies[b_peaks] * b[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
+</pre></div>
+</div>
+<img alt="../_images/cc00c0eee5f6d681d1f6637b591629066c613a923c2811b0a8c7ab80e4810d1f.png" src="../_images/cc00c0eee5f6d681d1f6637b591629066c613a923c2811b0a8c7ab80e4810d1f.png" />
 </div>
 </div>
 </section>
