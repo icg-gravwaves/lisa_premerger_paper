@@ -7,9 +7,9 @@ As always python, software dependencies will change in the coming years, and thi
 FIXME: sort a docker image somewhere (zenodo?) once code is finalised
 
 ## Reproducing our figures
-Figure 2 (a and b) can be reproduced using [this ipython notebook](./Sensitive_Distance_Plot/plot_sensitive_distance.html)
+Figure 2 (a and b) can be reproduced using [this ipython notebook](Sensitive_Distance_Plot/plot_sensitive_distance.html)
 
-Figures 1, 3, 4 and 5 can be reproduced using [this notebook](./PSD_files/PSD_filter_images.html)
+Figures 1, 3, 4 and 5 can be reproduced using [this notebook](PSD_files/PSD_filter_images.html)
 
 Figures 6, 7, 8, 9, 10, 11 .....
 
@@ -39,10 +39,10 @@ pip install .
 ```
 ## Generating supplied files with injections
 The search and parameter estimation are run on the same files to ensure consistency.
-In order to generate these files, we use the process detailed in [Data](./Data/README.md).
+In order to generate these files, we use the process detailed in [Data](Data/README.md).
 
 ## Searching for SMBHB signals pre-merger
-In [Search](./Search/README.md), we how we perform a template bank search on the injected data files, and how we assess significance.
+In [Search](Search/README.md), we how we perform a template bank search on the injected data files, and how we assess significance.
 
 ### Running searches on generated noise without injections
 
