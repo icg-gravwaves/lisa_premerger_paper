@@ -16,6 +16,8 @@ Figures 6, 7, 8, 9, 10, 11 .....
 ## Reproducing our analysis
 Here we discuss each of the parts of the analysis presented in the paper, and how each part can be reproduced.
 
+We provide (FIXME: not yet in all cases) scripts used to submit the jobs to a job scheduler. For our analysis, availability of resources was not uniform over time so this is sometimes provided as slurm scripts, and sometimes as condor submit files.
+
 ### Reproducing the analysis environment
 We plan to have a docker image, but we also provide instructions here so that if the user wants to use our work as a basis for development, that is possible
 
