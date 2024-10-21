@@ -1,7 +1,9 @@
 root: README
-entries:
+chapters:
 - file: PSD_Files/README.md
 - file: Sensitive_Distance_Plot/README
 - file: Data/README.md
 - file: Search/README.md
-- file: Search/Template_Banks/README.md
+  sections:
+  - file: Search/Template_Banks/README.md
+  - file: Search/Optimal_SNR/README.md

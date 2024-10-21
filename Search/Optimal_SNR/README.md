@@ -1,0 +1,3 @@
+## Optimal SNR calculation
+
+For teh optimal SNR calculation, we calculate ...
