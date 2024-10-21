@@ -7,9 +7,9 @@ As always python, software dependencies will change in the coming years, and thi
 FIXME: sort a docker image somewhere (zenodo?) once code is finalised
 
 ## Reproducing our figures
-Figure 2 (a and b) can be reproduced using [this ipython notebook](Sensitive_Distance_Plot/plot_sensitive_distance.html)
+Figure 2 (a and b) can be reproduced using [this ipython notebook](Sensitive_Distance_Plot/plot_sensitive_distance.ipynb)
 
-Figures 1, 3, 4 and 5 can be reproduced using [this notebook](PSD_files/PSD_filter_images.html)
+Figures 1, 3, 4 and 5 can be reproduced using [this notebook](PSD_files/PSD_filter_images.ipynb)
 
 Figures 6, 7, 8, 9, 10, 11 .....
 
