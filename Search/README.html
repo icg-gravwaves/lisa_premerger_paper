@@ -57,10 +57,12 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Search/README';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Template banks generation" href="Template_Banks/README.html" />
+    <link rel="next" title="Optimal SNR calculation" href="Optimal_SNR/README.html" />
     <link rel="prev" title="Data for Search and Parameter Estimation" href="../Data/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,8 +179,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../PSD_Files/README.html">Generating the PSD files used in our analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Data/README.html">Data for Search and Parameter Estimation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Searching for pre-merger signals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Template_Banks/README.html">Template banks generation</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Searching for pre-merger signals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Optimal_SNR/README.html">Optimal SNR calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Template_Banks/README.html">Template banks generation</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -386,6 +391,8 @@ Then for each template we:</p>
 <p>In order to assess significance, we run the search described above repeatedly over Gaussian noise and obtain a distribution, which we interpolate/extrapolate to get an estimate of the false alarm rate of the signal.</p>
 <p>For this, we run <a class="reference download internal" download="" href="../_downloads/842197833e4d5ad9de49239927a3a3e2/nosignal_runs.py"><span class="xref download myst">nosignal_runs.py</span></a>, which repeatedly generates Gaussian data, conditions it and calculates the maximum SNR during a</p>
 </section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -428,11 +435,11 @@ Then for each template we:</p>
       </div>
     </a>
     <a class="right-next"
-       href="Template_Banks/README.html"
+       href="Optimal_SNR/README.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Template banks generation</p>
+        <p class="prev-next-title">Optimal SNR calculation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
