@@ -179,8 +179,11 @@
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Generating the PSD files used in our analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Data/README.html">Data for Search and Parameter Estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Search/README.html">Searching for pre-merger signals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Search/Template_Banks/README.html">Template banks generation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Search/README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Search/Optimal_SNR/README.html">Optimal SNR calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Search/Template_Banks/README.html">Template banks generation</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -351,7 +354,7 @@ document.write(`
 <p>In order to demonstrate the different performance of the search under different assumptions about the low-frequency performance of the detector, we perform our analyses on three different PSD models.</p>
 <p>These PSDs have optimistic, pessimistic, and no performance below <span class="math notranslate nohighlight">\(10^{-4}\)</span> Hz respectively</p>
 <p>We show here how the PSDs for these models are generated.</p>
-<p>In <a class="reference internal" href="PSD_filter_images.html"><span class="std std-doc">the python notebook</span></a>, we plot the PSDs, and show the conditioning we need to apply to turn them into the zero-phase whitening kernel.</p>
+<p>In <a class="reference internal" href="PSD_filter_images.html"><span class="doc std std-doc">the python notebook</span></a>, we plot the PSDs, and show the conditioning we need to apply to turn them into the zero-phase whitening kernel.</p>
 </section>
 
     <script type="text/x-thebe-config">
