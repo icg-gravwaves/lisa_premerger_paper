@@ -15,9 +15,11 @@ from pycbc.types import MultiDetOptionAction
 from pycbc.psd.lisa_pre_merger import generate_pre_merger_psds
 from pycbc.waveform.pre_merger_waveform import (
     pre_process_data_lisa_pre_merger,
+    generate_waveform_lisa_pre_merger,
 )
 from utils import (
     get_snr_from_series,
+    get_snr_series,
     get_optimal_snr,
     get_snr_point,
     plot_best_waveform
@@ -117,6 +119,7 @@ filter_waveform = copy.deepcopy(waveform_params)
 filter_waveform.update({
     'approximant': 'BBHX_PhenomD',
     'mode_array':[(2,2)],
+    't_offset': 7365189.431698299,
 })
 
 lisa_a_zero_phase_kern_pycbc_fd = psds_for_whitening['LISA_A']
