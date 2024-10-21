@@ -1,7 +1,7 @@
 # Searching for pre-merger signals
 
 ## Generating a template bank
-In [Template_Banks](./Template_Banks), we provide the details on how template banks were generated, as well as the template banks themselves.
+In [Template Banks](Template_Banks), we provide the details on how template banks were generated, as well as the template banks themselves.
 
 ## Searching for injected signals
 To search for the signals, we remove data from the end of the file, and then pre-condition the data according to the zero-phase whitening kernel.
