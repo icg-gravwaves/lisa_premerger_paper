@@ -15,58 +15,42 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import numpy as np
-import json
+# Grab important data from the dictionary
 
-%matplotlib inline
-from matplotlib import pyplot as plt
+times_before = [0.5, 1, 4, 7, 14]
+snrs = {
+    'optimistic':{t: [] for t in times_before},
+    'pessimistic':{t: [] for t in times_before},
+    'cutoff':{t: [] for t in times_before},
+}
 
-from glob import glob
-plt.style.use('../../paper.mplstyle')
+fit_thresholds = {}
+alpha = {}
+sig_alpha = {}
+rate_above = {}
+psds = []
+
+for results in search_results_all:
+    psd = results['psd_type']
+    print(psd)
+    psds.append(psd)
+    for t in times_before:
+        snrs[psd][t] = results['nonoise'][str(t)]
+    fit_thresholds[psd] = results['fit_threshold']
+    alpha[psd] = results['alpha']
+    sig_alpha[psd] = results['alpha_err']
+    rate_above[psd] = results['rate_above']
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-File [0;32m~/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/style/core.py:137[0m, in [0;36muse[0;34m(style)[0m
-[1;32m    136[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 137[0m     style [38;5;241m=[39m [43m_rc_params_in_file[49m[43m([49m[43mstyle[49m[43m)[49m
-[1;32m    138[0m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err:
+[0;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[7], line 17[0m
+[1;32m     14[0m psds [38;5;241m=[39m []
+[1;32m     16[0m [38;5;28;01mfor[39;00m results [38;5;129;01min[39;00m search_results_all:
+[0;32m---> 17[0m     psd [38;5;241m=[39m [43mresults[49m[43m[[49m[38;5;124;43m'[39;49m[38;5;124;43mpsd_type[39;49m[38;5;124;43m'[39;49m[43m][49m
+[1;32m     18[0m     [38;5;28mprint[39m(psd)
+[1;32m     19[0m     psds[38;5;241m.[39mappend(psd)
 
-File [0;32m~/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/__init__.py:866[0m, in [0;36m_rc_params_in_file[0;34m(fname, transform, fail_on_error)[0m
-[1;32m    865[0m rc_temp [38;5;241m=[39m {}
-[0;32m--> 866[0m [38;5;28;01mwith[39;00m _open_file_or_url(fname) [38;5;28;01mas[39;00m fd:
-[1;32m    867[0m     [38;5;28;01mtry[39;00m:
-
-File [0;32m~/miniconda3/envs/env_lisa_ew/lib/python3.10/contextlib.py:135[0m, in [0;36m_GeneratorContextManager.__enter__[0;34m(self)[0m
-[1;32m    134[0m [38;5;28;01mtry[39;00m:
-[0;32m--> 135[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mnext[39;49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mgen[49m[43m)[49m
-[1;32m    136[0m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m:
-
-File [0;32m~/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/__init__.py:843[0m, in [0;36m_open_file_or_url[0;34m(fname)[0m
-[1;32m    842[0m fname [38;5;241m=[39m os[38;5;241m.[39mpath[38;5;241m.[39mexpanduser(fname)
-[0;32m--> 843[0m [38;5;28;01mwith[39;00m [38;5;28;43mopen[39;49m[43m([49m[43mfname[49m[43m,[49m[43m [49m[43mencoding[49m[38;5;241;43m=[39;49m[38;5;124;43m'[39;49m[38;5;124;43mutf-8[39;49m[38;5;124;43m'[39;49m[43m)[49m [38;5;28;01mas[39;00m f:
-[1;32m    844[0m     [38;5;28;01myield[39;00m f
-
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '../../paper.mplstyle'
-
-The above exception was the direct cause of the following exception:
-
-[0;31mOSError[0m                                   Traceback (most recent call last)
-Cell [0;32mIn[1], line 8[0m
-[1;32m      5[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m [38;5;28;01mimport[39;00m pyplot [38;5;28;01mas[39;00m plt
-[1;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mglob[39;00m [38;5;28;01mimport[39;00m glob
-[0;32m----> 8[0m [43mplt[49m[38;5;241;43m.[39;49m[43mstyle[49m[38;5;241;43m.[39;49m[43muse[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43m../../paper.mplstyle[39;49m[38;5;124;43m'[39;49m[43m)[49m
-
-File [0;32m~/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/style/core.py:139[0m, in [0;36muse[0;34m(style)[0m
-[1;32m    137[0m         style [38;5;241m=[39m _rc_params_in_file(style)
-[1;32m    138[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err:
-[0;32m--> 139[0m         [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m(
-[1;32m    140[0m             [38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00mstyle[38;5;132;01m!r}[39;00m[38;5;124m is not a valid package style, path of style [39m[38;5;124m"[39m
-[1;32m    141[0m             [38;5;124mf[39m[38;5;124m"[39m[38;5;124mfile, URL of style file, or library style name (library [39m[38;5;124m"[39m
-[1;32m    142[0m             [38;5;124mf[39m[38;5;124m"[39m[38;5;124mstyles are listed in `style.available`)[39m[38;5;124m"[39m) [38;5;28;01mfrom[39;00m [38;5;21;01merr[39;00m
-[1;32m    143[0m filtered [38;5;241m=[39m {}
-[1;32m    144[0m [38;5;28;01mfor[39;00m k [38;5;129;01min[39;00m style:  [38;5;66;03m# don't trigger RcParams.__getitem__('backend')[39;00m
-
-[0;31mOSError[0m: '../../paper.mplstyle' is not a valid package style, path of style file, URL of style file, or library style name (library styles are listed in `style.available`)
+[0;31mTypeError[0m: string indices must be integers
 

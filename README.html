@@ -193,7 +193,10 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="Search/README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Search/Optimal_SNR/README.html">Optimal SNR calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Search/Template_Banks/README.html">Template banks generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Search/plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Search/plot_search_results.html">Plotting search results for mock signals</a></li>
+
+
+
 </ul>
 </details></li>
 </ul>
@@ -390,12 +393,14 @@ document.write(`
 <h2>Reproducing our figures<a class="headerlink" href="#reproducing-our-figures" title="Link to this heading">#</a></h2>
 <p>Figure 2 (a and b) can be reproduced using <a class="reference internal" href="Sensitive_Distance_Plot/plot_sensitive_distance.html"><span class="std std-doc">this ipython notebook</span></a></p>
 <p>Figures 1, 3, 4 and 5 can be reproduced using <a class="reference internal" href="PSD_Files/PSD_filter_images.html"><span class="std std-doc">this notebook</span></a></p>
-<p>Figures 6, 7, 8, 9, 10, 11 …..</p>
+<p>Figures 6 and 7 can be made using <a class="reference internal" href="Search/plot_search_results.html"><span class="std std-doc">this notebook</span></a></p>
+<p>Figures 8, 9, 10, 11 …..</p>
 </section>
 <section id="reproducing-our-analysis">
 <h2>Reproducing our analysis<a class="headerlink" href="#reproducing-our-analysis" title="Link to this heading">#</a></h2>
 <p>Here we discuss each of the parts of the analysis presented in the paper, and how each part can be reproduced.</p>
-<p>We provide (FIXME: not yet in all cases) scripts used to submit the jobs to a job scheduler. For our analysis, availability of resources was not uniform over time so this is sometimes provided as slurm scripts, and sometimes as condor submit files.</p>
+<p>We provide (FIXME: not yet in all cases) commands used to submit the jobs.</p>
+<p>Our analysis was mainly performed using a combination of the <a class="reference internal" href="#"><span class="xref myst">SCIAMA supercomputer</span></a> at the University of Portsmouth, and the .</p>
 <section id="reproducing-the-analysis-environment">
 <h3>Reproducing the analysis environment<a class="headerlink" href="#reproducing-the-analysis-environment" title="Link to this heading">#</a></h3>
 <p>We plan to have a docker image, but we also provide instructions here so that if the user wants to use our work as a basis for development, that is possible</p>
