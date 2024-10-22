@@ -13,6 +13,8 @@ Then for each template we:
 
 The template with the highest combined SNR over the bank is then considered *the* SNR of the signal.
 
+This is done in [signal_runs.py](signal_runs.py).
+
 Command line arguments are possible for testing, particularly 
 - `--data-file-zero-noise`, which will subtract zero-noise file and calculate SNR from that - this will not affect the bank filtering
 - `--plot-best-waveform` will plot the best-fitting waveform in the frequency and time domains, as well as the SNR time series for the best-fitting waveform
@@ -78,7 +80,7 @@ python ./nosignal_runs.py \
     Template_Banks/lisa_ew_${time_before}_day_${label}.hdf \
 ```
 
-Similarly to signal_runs.py, it is possible to supply testing options `--reduce-bank-factor` and `--plot-best-waveform`.
+Similarly to `signal_runs.py`, it is possible to supply testing options `--reduce-bank-factor` and `--plot-best-waveform`.
 
 For the paper, we used `--repeats 200` - this code then takes a long time, so using a job scheduler is recommended.
 

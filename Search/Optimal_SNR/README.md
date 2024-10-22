@@ -11,7 +11,33 @@ $$
 Where $\tilde{h}(f)$ is the signal, $S_n(f)$ is the single-sided noise density, and $f_{min}$ is the start frequency we consider. For the optimistic and pessimistic PSDs, we use $f_{min}=10^{-6}$ Hz, and for the cutoff PSD we use $f_{min}=10^{-4}$ Hz.
 
 ## Calculation process
-We provide the code [optimal_snr.py](optimal_snr.py) to perform the calculation, and call this using [optimal_snr.sh](optimal_snr.sh). The results are stored as text files (not given), and these are collated into search results files using the collect_bank_results [python code](../collect_bank_search_results.py) and [shell scipt](../collect_bank_search_results.sh) to produce json files for each PSD (e.g. [search_run_cutoff.json](../search_run_cutoff.json))
+We provide the code [optimal_snr.py](optimal_snr.py) to perform the calculation, the command to run this is.
+```
+for psd in CUT_optimistic optimistic pessimistic ; do
+  for injection_number in {0..4} ; do
+
+  if [ $psd == CUT_optimistic ]  ; then
+    f_lower_search=1e-4
+  else
+    f_lower_search=1e-6
+  fi
+
+  python optimal_snr.py \
+      --injections-file \
+      ../../Injections/injections.json \
+    --injection-number $injection_number \
+    --psd-files \
+      ../../PSD_Files/model_AE_TDI1_SMOOTH_${psd}.txt \
+    --days-before-merger 0.5 1 4 7 14 \
+    --f-lower-search \
+      $f_lower_search \
+    --label $psd
+
+  done
+done
+```
+
+To store results, we redirect stdout to text files (not given in this repo) called `output/optimal_snr_${psd}_${injection_number}.out`, and these are collated into search results files using the collect_bank_results [python code](../collect_bank_search_results.py) and to produce json files for each PSD (e.g. [search_run_cutoff.json](../search_run_cutoff.json))
 
 ## Plotting
-To plot the optimal SNR (as well as the data file analysis results), [this notebook](plot_optimal_snr.ipynb) shows how the plot for Figure 6 of the paper is made.
+To plot the optimal SNR (as well as other analysis results), [this notebook](../plot_search_results.ipynb) shows how the plot for Figure 6 of the paper is made.
