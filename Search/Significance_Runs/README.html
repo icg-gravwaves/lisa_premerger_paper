@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+    <title>Assessing significance &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Search/Significance_Runs/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Plotting optimal SNR as a function of time-before-merger for mock signals" href="../plot_search_results.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="../Signal_Runs/README.html" />
+    <link rel="next" title="Plotting search results for mock signals" href="../plot_search_results.html" />
+    <link rel="prev" title="Searching for injected signals" href="../Signal_Runs/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -173,7 +173,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
 </ul>
@@ -187,10 +187,15 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Data/README.html">Data for Search and Parameter Estimation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Optimal_SNR/README.html">Optimal SNR calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Template_Banks/README.html">Template banks generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Signal_Runs/README.html">Searching for injected signals</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Assessing significance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting search results for mock signals</a></li>
+
+
+
 </ul>
 </details></li>
 </ul>
@@ -333,9 +338,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -346,19 +349,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Assessing significance</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -368,7 +363,35 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="assessing-significance">
+<h1>Assessing significance<a class="headerlink" href="#assessing-significance" title="Link to this heading">#</a></h1>
+<p>In order to assess significance, we run the search described above repeatedly over Gaussian noise and obtain a distribution, which we interpolate/extrapolate to get an estimate of the false alarm rate of the signal.</p>
+<p>For this, we run <a class="reference download internal" download="" href="../../_downloads/f2ab2a459afb838ac216adb9b12f9845/nosignal_runs.py"><span class="xref download myst">nosignal_runs.py</span></a>, which repeatedly generates Gaussian data, conditions it and calculates the maximum SNR from a template bank analysis as described above.</p>
+<p>An example of running this is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>injection_number=4
+time_before=7
+label=pessimistic
+f_lower=1e-6
+
+python ./nosignal_runs.py \
+  --injections-file \
+    ../Injections/injections.json \
+  --days-before-merger \
+    $time_before \
+  --psd-file \
+    ../PSD_Files/model_AE_TDI1_SMOOTH_${label}.txt \
+  --label ${label} \
+  --f-lower ${f_lower} \
+  --repeats 15 \
+  --bank-file \
+    Template_Banks/lisa_ew_${time_before}_day_${label}.hdf \
+</pre></div>
+</div>
+<p>Similarly to <code class="docutils literal notranslate"><span class="pre">signal_runs.py</span></code>, it is possible to supply testing options <code class="docutils literal notranslate"><span class="pre">--reduce-bank-factor</span></code> and <code class="docutils literal notranslate"><span class="pre">--plot-best-waveform</span></code>.</p>
+<p>For the paper, we used <code class="docutils literal notranslate"><span class="pre">--repeats</span> <span class="pre">200</span></code> - this code then takes a long time, so using a job scheduler is recommended.</p>
+<p>Again, the stdout should be redirected to a text file, we recommend <code class="docutils literal notranslate"><span class="pre">output/nosignal_run_${label}_${time_before}_${injection_number}.out</span></code></p>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -405,7 +428,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Searching for injected signals</p>
       </div>
     </a>
     <a class="right-next"
@@ -413,7 +436,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Plotting optimal SNR as a function of time-before-merger for mock signals</p>
+        <p class="prev-next-title">Plotting search results for mock signals</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -423,21 +446,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
