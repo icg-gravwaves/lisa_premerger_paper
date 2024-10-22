@@ -18,9 +18,9 @@ Figures 8, 9, 10, 11 .....
 ## Reproducing our analysis
 Here we discuss each of the parts of the analysis presented in the paper, and how each part can be reproduced.
 
-We provide (FIXME: not yet in all cases) commands used to submit the jobs.
+We provide (FIXME: not yet in all cases) a subset of the commands used to submit the jobs.
 
-Our analysis was mainly performed using a combination of the [SCIAMA supercomputer]() at the University of Portsmouth, and the .
+Our analysis was mainly performed using a combination of the [SCIAMA supercomputer](https://sciama.icg.port.ac.uk/) at the University of Portsmouth, and the [HAWK supercomputer](https://ligo.gravity.cf.ac.uk/guide/) at the University of Cardiff.
 
 ### Reproducing the analysis environment
 We plan to have a docker image, but we also provide instructions here so that if the user wants to use our work as a basis for development, that is possible
