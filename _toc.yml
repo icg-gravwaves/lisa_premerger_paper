@@ -14,5 +14,5 @@ chapters:
 - file: Search/README.md
   sections:
   - file: Search/Optimal_SNR/README.md
-  - file: Search/Optimal_SNR/plot_optimal_snr.ipynb
   - file: Search/Template_Banks/README.md
+  - file: Search/plot_search_results.ipynb
