@@ -600,9 +600,7 @@ import lal
 <span class="n">rate_above</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">psds</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">for</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">search_results_all</span><span class="p">:</span>
-    <span class="n">psd</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;psd_type&#39;</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">psd</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">psd</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">search_results_all</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">psds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">psd</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">times_before</span><span class="p">:</span>
         <span class="n">snrs</span><span class="p">[</span><span class="n">psd</span><span class="p">][</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;nonoise&#39;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
@@ -610,20 +608,6 @@ import lal
     <span class="n">alpha</span><span class="p">[</span><span class="n">psd</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">]</span>
     <span class="n">sig_alpha</span><span class="p">[</span><span class="n">psd</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;alpha_err&#39;</span><span class="p">]</span>
     <span class="n">rate_above</span><span class="p">[</span><span class="n">psd</span><span class="p">]</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;rate_above&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">17</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">psds</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">for</span> <span class="n">results</span> <span class="ow">in</span> <span class="n">search_results_all</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">psd</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s1">&#39;psd_type&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span>     <span class="nb">print</span><span class="p">(</span><span class="n">psd</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">19</span>     <span class="n">psds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">psd</span><span class="p">)</span>
-
-<span class="ne">TypeError</span>: string indices must be integers
 </pre></div>
 </div>
 </div>
@@ -731,6 +715,7 @@ import lal
         <span class="n">col_labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s1"> days&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">semilogy</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">psd</span><span class="o">.</span><span class="n">title</span><span class="p">())</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;SNR&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Rate of louder triggers (day$^{-1}$)&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">1e-2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">1e2</span><span class="p">)</span>
@@ -751,6 +736,11 @@ import lal
     <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">leg1</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/212c9cbbb44953548e2100fb4db2fcece2311138848ad305dc7127dd709ee93e.png" src="../_images/212c9cbbb44953548e2100fb4db2fcece2311138848ad305dc7127dd709ee93e.png" />
+<img alt="../_images/2690a1a9de90b6e21fa7ae262048dd4681e4cbc42dd71158c9fbd17e1b9aa911.png" src="../_images/2690a1a9de90b6e21fa7ae262048dd4681e4cbc42dd71158c9fbd17e1b9aa911.png" />
+<img alt="../_images/4bf38ab3584d4cbb0b887cf0d2d447b5321451516b83ac9cc6889f221a6939cb.png" src="../_images/4bf38ab3584d4cbb0b887cf0d2d447b5321451516b83ac9cc6889f221a6939cb.png" />
 </div>
 </div>
 </section>
