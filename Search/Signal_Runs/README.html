@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Template banks generation &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+    <title>&lt;no title&gt; &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Search/Template_Banks/README';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Search/Signal_Runs/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="../Signal_Runs/README.html" />
-    <link rel="prev" title="Optimal SNR calculation" href="../Optimal_SNR/README.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../Significance_Runs/README.html" />
+    <link rel="prev" title="Template banks generation" href="../Template_Banks/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,7 +173,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
+        <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
 </ul>
@@ -189,9 +187,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Data/README.html">Data for Search and Parameter Estimation</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Optimal_SNR/README.html">Optimal SNR calculation</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Template banks generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Template_Banks/README.html">Template banks generation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
 </ul>
 </details></li>
@@ -264,7 +262,7 @@
       
       
       
-      <li><a href="../../_sources/Search/Template_Banks/README.md" target="_blank"
+      <li><a href="../../_sources/Search/Signal_Runs/README.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -348,7 +346,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Template banks generation</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -357,10 +355,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-pycbc-brute-bank">Modifying <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-template-banks">Generating the template banks</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
+
             </nav>
         </div>
     </div>
@@ -371,51 +368,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="template-banks-generation">
-<h1>Template banks generation<a class="headerlink" href="#template-banks-generation" title="Link to this heading">#</a></h1>
-<p>For generating the banks, we use a stochastic placement algorithm.</p>
-<section id="modifying-pycbc-brute-bank">
-<h2>Modifying <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code><a class="headerlink" href="#modifying-pycbc-brute-bank" title="Link to this heading">#</a></h2>
-<p>The stochastic placement code is in <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code>; as this code is designed for ground-based detectors with a single detector or averaged PSD, we use <a class="reference download internal" download="" href="../../_downloads/c94a49b588e50f0dfdd722784b11dc72/pycbc_brute_bank"><span class="xref download myst">a modified version</span></a> in order to use multiple channels.</p>
-<p>The primary modification to this code is that we calculate the match as the sum of squares of matches in each of the A and E channels, weighted by the sensitive distance of the waveforms in each channel.</p>
-<div class="math notranslate nohighlight">
-\[
-m  = \sqrt{\frac{m_A^2 \sigma_A^2 + m_E^2 \sigma_E^2}{\sigma_A^2 + \sigma_E^2}}
-\]</div>
-</section>
-<section id="generating-the-template-banks">
-<h2>Generating the template banks<a class="headerlink" href="#generating-the-template-banks" title="Link to this heading">#</a></h2>
-<p>To generate the banks, we use the following command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for time_before in 0.5 1 4 7 14 ; do
-  for type in optimistic pessimistic CUT_optimistic ; do
-
-    echo &quot;$time_before days before merger, $type psd&quot;
-    ./pycbc_brute_bank \
-      --verbose \
-      --minimal-match 0.97 \
-      --tolerance .05 \
-      --buffer-length 2592000 \
-      --sample-rate .2 \
-      --approximant BBHX_PhenomD \
-      --tau0-threshold 100000 \
-      --tau0-crawl 20000000 \
-      --tau0-start 0 \
-      --tau0-end  20000000 \
-      --tau0-cutoff-frequency 0.0001 \
-      --input-config config.ini \
-      --seed 1 \
-      --output-file lisa_ew_${time_before}_day_${type}.hdf \
-      --time-before `echo &quot;60 * 60 * 24 * $time_before&quot; | bc` \
-      --psd-file ../../PSD_Files/model_AE_TDI1_SMOOTH_${type}.txt.gz \
-      --low-frequency-cutoff .000001
-    done
-done
-</pre></div>
-</div>
-<p>We split this using a scheduler, but the script runs relatively quickly, so this is not necessarily needed.</p>
-</section>
-</section>
-
+  
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -429,7 +382,7 @@ done
         },
         kernelOptions: {
             name: "python3",
-            path: "./Search/Template_Banks"
+            path: "./Search/Signal_Runs"
         },
         predefinedOutput: true
     }
@@ -447,16 +400,16 @@ done
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Optimal_SNR/README.html"
+       href="../Template_Banks/README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Optimal SNR calculation</p>
+        <p class="prev-next-title">Template banks generation</p>
       </div>
     </a>
     <a class="right-next"
-       href="../Signal_Runs/README.html"
+       href="../Significance_Runs/README.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -479,10 +432,9 @@ done
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modifying-pycbc-brute-bank">Modifying <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-the-template-banks">Generating the template banks</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
+
   </nav></div>
 
 </div></div>

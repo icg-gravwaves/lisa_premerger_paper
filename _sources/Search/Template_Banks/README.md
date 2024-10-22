@@ -40,7 +40,6 @@ for time_before in 0.5 1 4 7 14 ; do
       --low-frequency-cutoff .000001
     done
 done
-
 ```
 
 We split this using a scheduler, but the script runs relatively quickly, so this is not necessarily needed.
