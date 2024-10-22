@@ -8,7 +8,7 @@ Then for each template we:
 
 The template with the highest combined SNR over the bank is then considered *the* SNR of the signal.
 
-This is done in [signal_runs.py](signal_runs.py).
+This is done in [data_runs.py](data_runs.py).
 
 Command line arguments are possible for testing, particularly 
 - `--data-file-zero-noise`, which will subtract zero-noise file and calculate SNR from that - this will not affect the bank filtering
