@@ -15,4 +15,6 @@ chapters:
   sections:
   - file: Search/Optimal_SNR/README.md
   - file: Search/Template_Banks/README.md
+  - file: Search/Signal_Runs/README.md
+  - file: Search/Significance_Runs/README.md
   - file: Search/plot_search_results.ipynb
