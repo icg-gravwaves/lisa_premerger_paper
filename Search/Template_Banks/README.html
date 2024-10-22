@@ -62,7 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Search/Template_Banks/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Searching for pre-merger signals" href="../README.html" />
+    <link rel="next" title="Plotting optimal SNR as a function of time-before-merger for mock signals" href="../plot_search_results.html" />
+    <link rel="prev" title="Optimal SNR calculation" href="../Optimal_SNR/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,11 +176,25 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../PSD_Files/README.html">Generating the PSD files used in our analyses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure plotting</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Injections/README.html">Injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../Injections/make_injections.html">Script to make the injections json file</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Data/README.html">Data for Search and Parameter Estimation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Template banks generation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Optimal_SNR/README.html">Optimal SNR calculation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Template banks generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -370,9 +385,35 @@ m  = \sqrt{\frac{m_A^2 \sigma_A^2 + m_E^2 \sigma_E^2}{\sigma_A^2 + \sigma_E^2}}
 </section>
 <section id="generating-the-template-banks">
 <h2>Generating the template banks<a class="headerlink" href="#generating-the-template-banks" title="Link to this heading">#</a></h2>
-<p>We provide <a class="reference internal" href="#./sbatch_generate_banks.sh"><span class="xref myst">the slurm batch script</span></a> used to generate the banks using <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code>.</p>
-<p>Note that the software environment will need to be set up within this batch script, but will depend on your environment setup and location</p>
-<p>This script can easily be adapted to <em>not</em> use a scheduling manager</p>
+<p>To generate the banks, we use the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for time_before in 0.5 1 4 7 14 ; do
+  for type in optimistic pessimistic CUT_optimistic ; do
+
+    echo &quot;$time_before days before merger, $type psd&quot;
+    ./pycbc_brute_bank \
+      --verbose \
+      --minimal-match 0.97 \
+      --tolerance .05 \
+      --buffer-length 2592000 \
+      --sample-rate .2 \
+      --approximant BBHX_PhenomD \
+      --tau0-threshold 100000 \
+      --tau0-crawl 20000000 \
+      --tau0-start 0 \
+      --tau0-end  20000000 \
+      --tau0-cutoff-frequency 0.0001 \
+      --input-config config.ini \
+      --seed 1 \
+      --output-file lisa_ew_${time_before}_day_${type}.hdf \
+      --time-before `echo &quot;60 * 60 * 24 * $time_before&quot; | bc` \
+      --psd-file ../../PSD_Files/model_AE_TDI1_SMOOTH_${type}.txt.gz \
+      --low-frequency-cutoff .000001
+    done
+done
+
+</pre></div>
+</div>
+<p>We split this using a scheduler, but the script runs relatively quickly, so this is not necessarily needed.</p>
 </section>
 </section>
 
@@ -407,13 +448,22 @@ m  = \sqrt{\frac{m_A^2 \sigma_A^2 + m_E^2 \sigma_E^2}{\sigma_A^2 + \sigma_E^2}}
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../README.html"
+       href="../Optimal_SNR/README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Searching for pre-merger signals</p>
+        <p class="prev-next-title">Optimal SNR calculation</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../plot_search_results.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Plotting optimal SNR as a function of time-before-merger for mock signals</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>

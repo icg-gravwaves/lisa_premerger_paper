@@ -15,7 +15,25 @@ As the observable distance varies over the sky in a way, we perform this calcula
 To keep this averaging consistent for the different PSDs, and if we use parallelization, we use the same random seed for every mass and time point where this is calculated. As a result the sky points will remain consistent.
 
 ## How to recreate the figure
-As the first part of generating this figure, the `sensitive_time_distance.sh` script supplied was run on the [SCIAMA supercomputer](https://sciama.icg.port.ac.uk/). This was slightly modified for use with the Slurm workload manager. From this the files `sensitive_time_distance_cutoff.hdf` `sensitive_time_distance_optimistic.hdf` and `sensitive_time_distance_pessimistic.hdf` are produced, which we supply as part of this data release.
+As the first part of generating this figure, the `sensitive_time_distance.sh` script supplied was run on the [SCIAMA supercomputer](https://sciama.icg.port.ac.uk/).
+
+To run this, we use
+
+```
+python ./sensitive_time_distance.py \
+  --mass-range 1e5 5e9 \
+  --log-mass-spacing \
+  --n-mass-points 100 \
+  --n-sky-points 200 \
+  --times 0 3600 43200 86400 345600 604800 1209600 \
+  --psd-file \
+    ../PSD_Files/model_AE_TDI1_SMOOTH_optimistic.txt.gz \
+  --output-file sensitive_distance_optimistic.hdf
+```
+for each of the optimistic, pessimistic and cutoff PSDs.
+We do not recommend running these directly on the command line, as they can take many hours.
+
+From this the files `sensitive_time_distance_cutoff.hdf` `sensitive_time_distance_optimistic.hdf` and `sensitive_time_distance_pessimistic.hdf` are produced, which we supply as part of this data release.
 
 To plot these, we can use the [`plot_sensitive_distance.ipynb` notebook](./plot_sensitive_distance.ipynb).
 

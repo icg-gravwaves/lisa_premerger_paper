@@ -177,27 +177,22 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../PSD_Files/PSD_filter_images.html">This data was then used to create the smoothed files</a></li>
-
-
-
-
-
+<li class="toctree-l2"><a class="reference internal" href="../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure plotting</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Injections/README.html">Here we make the injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Injections/README.html">Injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Injections/make_injections.html">Script to make the injections json file</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../Data/README.html">Data for Search and Parameter Estimation</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Searching for pre-merger signals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Optimal_SNR/README.html">Optimal SNR calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Optimal_SNR/plot_optimal_snr.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Template_Banks/README.html">Template banks generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
 </ul>
 </details></li>
 </ul>
@@ -366,6 +361,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-template-bank">Generating a template bank</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-injected-signals">Searching for injected signals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-significance">Assessing significance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collecting-results">Collecting results</a></li>
 </ul>
             </nav>
         </div>
@@ -394,18 +390,90 @@ Then for each template we:</p>
 <li><p>repeat steps 2 and 3 above with the channels swapped, and use whichever combined SNR is highest.</p></li>
 </ol>
 <p>The template with the highest combined SNR over the bank is then considered <em>the</em> SNR of the signal.</p>
+<p>This is done in <a class="reference internal" href="#signal_runs.py"><span class="xref myst">signal_runs.py</span></a>.</p>
 <p>Command line arguments are possible for testing, particularly</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--data-file-zero-noise</span></code>, which will subtract zero-noise file and calculate SNR from that - this will not affect the bank filtering</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--plot-best-waveform</span></code> will plot the best-fitting waveform in the frequency and time domains, as well as the SNR time series for the best-fitting waveform</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--reduce-bank-factor</span></code> will skip indices in the loop over waveforms which are not an integer multiple of this number. This is useful to run the search quickly</p></li>
 </ul>
-<p>An example using these options is supplied as <a class="reference download internal" download="" href="../_downloads/bb095677af50a1025949125504ab5820/signal_runs_test.sh"><span class="xref download myst">signal_runs_test.sh</span></a></p>
+<p>To run the data file analyses, the following command is used</p>
+<p>For saving results for later use, redirect the stdout to a text file. Suggested filename is <code class="docutils literal notranslate"><span class="pre">output/search_run_${psd}_${injection_number}_${time_before}.out</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>injection_number=2
+time_before=14
+psd=pessimistic
+data_dir=data_pessimistic_psd
+# f_lower should be 1e-4 for cutoff, 1e-6 for pessimistic or optimistic
+f_lower=1e-6
+
+data_file_dir=../Data/data_files/${data_dir}
+
+python ./data_runs.py \
+  --injections-file \
+    ../Injections/injections.json \
+  --injection-number \
+    $injection_number \
+  --days-before-merger \
+    $time_before \
+  --psd-file \
+    ../PSD_Files/model_AE_TDI1_SMOOTH_${psd}.txt \
+  --label ${psd} \
+  --f-lower ${f_lower} \
+  --bank-file \
+    ../Template_Banks/lisa_ew_${time_before}_day_${psd}.hdf \
+  --data-file \
+    $data_file_dir/signal_${injection_number}.hdf \
+  --data-file-zero-noise \
+    $data_file_dir/signal_zero_noise_${injection_number}.hdf
+</pre></div>
+</div>
 </section>
 <section id="assessing-significance">
 <h2>Assessing significance<a class="headerlink" href="#assessing-significance" title="Link to this heading">#</a></h2>
 <p>In order to assess significance, we run the search described above repeatedly over Gaussian noise and obtain a distribution, which we interpolate/extrapolate to get an estimate of the false alarm rate of the signal.</p>
-<p>For this, we run <a class="reference download internal" download="" href="../_downloads/842197833e4d5ad9de49239927a3a3e2/nosignal_runs.py"><span class="xref download myst">nosignal_runs.py</span></a>, which repeatedly generates Gaussian data, conditions it and calculates the maximum SNR during a</p>
+<p>For this, we run <a class="reference download internal" download="" href="../_downloads/842197833e4d5ad9de49239927a3a3e2/nosignal_runs.py"><span class="xref download myst">nosignal_runs.py</span></a>, which repeatedly generates Gaussian data, conditions it and calculates the maximum SNR from a template bank analysis as described above.</p>
+<p>An example of running this is given below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>injection_number=4
+time_before=7
+label=pessimistic
+f_lower=1e-6
+
+python ./nosignal_runs.py \
+  --injections-file \
+    ../Injections/injections.json \
+  --days-before-merger \
+    $time_before \
+  --psd-file \
+    ../PSD_Files/model_AE_TDI1_SMOOTH_${label}.txt \
+  --label ${label} \
+  --f-lower ${f_lower} \
+  --repeats 15 \
+  --bank-file \
+    Template_Banks/lisa_ew_${time_before}_day_${label}.hdf \
+</pre></div>
+</div>
+<p>Similarly to <code class="docutils literal notranslate"><span class="pre">signal_runs.py</span></code>, it is possible to supply testing options <code class="docutils literal notranslate"><span class="pre">--reduce-bank-factor</span></code> and <code class="docutils literal notranslate"><span class="pre">--plot-best-waveform</span></code>.</p>
+<p>For the paper, we used <code class="docutils literal notranslate"><span class="pre">--repeats</span> <span class="pre">200</span></code> - this code then takes a long time, so using a job scheduler is recommended.</p>
+<p>Again, the stdout should be redirected to a text file, we recommend <code class="docutils literal notranslate"><span class="pre">output/nosignal_run_${label}_${time_before}_${injection_number}.out</span></code></p>
+</section>
+<section id="collecting-results">
+<h2>Collecting results<a class="headerlink" href="#collecting-results" title="Link to this heading">#</a></h2>
+<p>To collect results in order to plot the results in Figure 6, run the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for psd_type in optimistic cutoff pessimistic ; do
+  python collect_bank_search_results.py \
+    --output-file \
+      search_run_${psd_type}.json \
+    --data-run-log-files \
+      output/search_run_${psd_type}_*.out \
+    --nosignal-run-log-files \
+      output/nosignal_run_${psd_type}_*.out \
+    --optimal-snr-files \
+      Optimal_SNR/output/optimal_snr_${psd_type}_*.out \
+
+done
+
+</pre></div>
+</div>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -478,6 +546,7 @@ Then for each template we:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-template-bank">Generating a template bank</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-injected-signals">Searching for injected signals</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessing-significance">Assessing significance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collecting-results">Collecting results</a></li>
 </ul>
   </nav></div>
 

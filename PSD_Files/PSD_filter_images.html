@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>This data was then used to create the smoothed files &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+    <title>Plotting PSDs &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
   
   
   
@@ -175,19 +175,14 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Generating the PSD files used in our analyses</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">This data was then used to create the smoothed files</a></li>
-
-
-
-
-
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Plotting PSDs</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure plotting</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Injections/README.html">Here we make the injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Injections/README.html">Injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Injections/make_injections.html">Script to make the injections json file</a></li>
 </ul>
 </details></li>
@@ -195,6 +190,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Search/README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Search/Optimal_SNR/README.html">Optimal SNR calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Search/Template_Banks/README.html">Template banks generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Search/plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
 </ul>
 </details></li>
 </ul>
@@ -350,7 +346,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>This data was then used to create the smoothed files</h1>
+    <h1>Plotting PSDs</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -360,14 +356,16 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">This data was then used to create the smoothed files</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1a">Plot for Figure 1A</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-psd-kernels">Creating the PSD kernels</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#now-want-the-zero-phase-filter-psds">Now want the zero-phase filter PSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-psd-files">Load PSD files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this-data-was-then-used-to-create-the-smoothed-files">This data was then used to create the smoothed files</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1a">Plot for Figure 1A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-psd-kernels">Creating the PSD kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-want-the-zero-phase-filter-psds">Now want the zero-phase filter PSDs</a></li>
+</ul>
             </nav>
         </div>
     </div>
@@ -378,7 +376,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="plotting-psds">
+<h1>Plotting PSDs<a class="headerlink" href="#plotting-psds" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -437,51 +437,22 @@ No CuPy or GPU interpolation available.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># PSD files are stored GZIPPEd, so need to GunZIP</span>
 <span class="c1"># the `yes n` part of this commands skips if the file has already</span>
 <span class="c1"># been unzipped in this directory</span>
-<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_pessimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_T_TDI1_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_T_TDI1_pessimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_CUT_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_optimistic.txt.gz
-<span class="o">!</span><span class="w"> </span>yes<span class="w"> </span>n<span class="w"> </span><span class="p">|</span><span class="w"> </span>gunzip<span class="w"> </span>-k<span class="w"> </span>model_AE_TDI1_SMOOTH_pessimistic.txt.gz
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_optimistic.txt already exists;	not overwritten
-yes: standard output: Broken pipe
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_pessimistic.txt already exists;	not overwritten
-yes: standard output: Broken pipe
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_T_TDI1_optimistic.txt already exists;	not overwritten
-yes: standard output: Broken pipe
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_T_TDI1_pessimistic.txt already exists;	not overwritten
-yes: standard output: Broken pipe
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_SMOOTH_CUT_optimistic.txt already exists;	not overwritten
-yes: standard output: Broken pipe
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_SMOOTH_optimistic.txt already exists;	not overwritten
-yes: standard output: Broken pipe
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>gzip: model_AE_TDI1_SMOOTH_pessimistic.txt already exists;	not overwritten
-yes: standard output: Broken pipe
+<span class="c1"># ! yes n | gunzip -k model_AE_TDI1_optimistic.txt.gz</span>
+<span class="c1"># ! yes n | gunzip -k model_AE_TDI1_pessimistic.txt.gz</span>
+<span class="c1"># ! yes n | gunzip -k model_T_TDI1_optimistic.txt.gz</span>
+<span class="c1"># ! yes n | gunzip -k model_T_TDI1_pessimistic.txt.gz</span>
+<span class="c1"># ! yes n | gunzip -k model_AE_TDI1_SMOOTH_CUT_optimistic.txt.gz</span>
+<span class="c1"># ! yes n | gunzip -k model_AE_TDI1_SMOOTH_optimistic.txt.gz</span>
+<span class="c1"># ! yes n | gunzip -k model_AE_TDI1_SMOOTH_pessimistic.txt.gz</span>
 </pre></div>
 </div>
 </div>
 </div>
+<section id="load-psd-files">
+<h2>Load PSD files<a class="headerlink" href="#load-psd-files" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the PSD models into memory:</span>
-<span class="n">a</span> <span class="o">=</span> <span class="n">load_frequencyseries</span><span class="p">(</span><span class="s1">&#39;model_AE_TDI1_optimistic.txt&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">load_frequencyseries</span><span class="p">(</span><span class="s1">&#39;model_AE_TDI1_optimistic.txt&#39;</span><span class="p">)</span>
 <span class="c1"># We don&#39;t actually need the very highest frequencies here</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="mi">1000001</span><span class="p">]</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
@@ -495,7 +466,7 @@ yes: standard output: Broken pipe
 <span class="n">bt</span> <span class="o">=</span> <span class="n">bt</span><span class="p">[:</span><span class="mi">1000001</span><span class="p">]</span>
 <span class="n">bt</span> <span class="o">=</span> <span class="n">bt</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
 
-<span class="c1"># These two exists in the Portsmouth repo. and were made manually based on stuff in the next cells.</span>
+<span class="c1"># These were made manually based on stuff in the next cells.</span>
 <span class="n">a1</span> <span class="o">=</span> <span class="n">psd</span><span class="o">.</span><span class="n">from_txt</span><span class="p">(</span>
     <span class="s1">&#39;model_AE_TDI1_SMOOTH_optimistic.txt&#39;</span><span class="p">,</span>
     <span class="mi">1000001</span><span class="p">,</span>
@@ -543,7 +514,7 @@ yes: standard output: Broken pipe
 </div>
 </div>
 <section id="this-data-was-then-used-to-create-the-smoothed-files">
-<h1>This data was then used to create the smoothed files<a class="headerlink" href="#this-data-was-then-used-to-create-the-smoothed-files" title="Link to this heading">#</a></h1>
+<h3>This data was then used to create the smoothed files<a class="headerlink" href="#this-data-was-then-used-to-create-the-smoothed-files" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -567,15 +538,16 @@ yes: standard output: Broken pipe
   return np.asarray(x, float)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fc7e1cdf1c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f51315b30d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/6ee94b73663adb4261a9d536f5d895aaff5bf705ef71fd42d1de62d4ca5f5105.png" src="../_images/6ee94b73663adb4261a9d536f5d895aaff5bf705ef71fd42d1de62d4ca5f5105.png" />
 </div>
 </div>
 </section>
+</section>
 <section id="want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">
-<h1>Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain<a class="headerlink" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain" title="Link to this heading">#</a></h1>
+<h2>Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain<a class="headerlink" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1c</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
@@ -621,7 +593,7 @@ yes: standard output: Broken pipe
 </div>
 </section>
 <section id="plot-for-figure-1a">
-<h1>Plot for Figure 1A<a class="headerlink" href="#plot-for-figure-1a" title="Link to this heading">#</a></h1>
+<h2>Plot for Figure 1A<a class="headerlink" href="#plot-for-figure-1a" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
@@ -659,7 +631,7 @@ yes: standard output: Broken pipe
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fc83d9c8a90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f51309a9780&gt;]
 </pre></div>
 </div>
 <img alt="../_images/274ad60c39cdb443c6f50fb80866b352d7769bae56ea0afac0096cadd27a26a1.png" src="../_images/274ad60c39cdb443c6f50fb80866b352d7769bae56ea0afac0096cadd27a26a1.png" />
@@ -667,7 +639,7 @@ yes: standard output: Broken pipe
 </div>
 </section>
 <section id="plot-for-figure-1b">
-<h1>Plot for Figure 1B<a class="headerlink" href="#plot-for-figure-1b" title="Link to this heading">#</a></h1>
+<h2>Plot for Figure 1B<a class="headerlink" href="#plot-for-figure-1b" title="Link to this heading">#</a></h2>
 <p>Now need to create the strain plot. Do this by empirically computing the response function from A,E,T to h(t) and applying that to the A,E,T PSDs.</p>
 <p>We have commented out the following computation, and have instead provided the frequency response function as a file. This saves time when running this notebook.</p>
 <div class="cell docutils container">
@@ -832,15 +804,15 @@ yes: standard output: Broken pipe
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frequency (Hz)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Response function (FIXME: UNITS)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Response function&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Response function (FIXME: UNITS)&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Response function&#39;)
 </pre></div>
 </div>
-<img alt="../_images/69832f5716a0d4162d8fd1d118b75b8bdcd4f6ed6986adae5be20eefe47c7c2b.png" src="../_images/69832f5716a0d4162d8fd1d118b75b8bdcd4f6ed6986adae5be20eefe47c7c2b.png" />
+<img alt="../_images/ca2c00e63af80e5f0f504fb2eda5a4d291e1c0bbff5109038e0ad8852210aff2.png" src="../_images/ca2c00e63af80e5f0f504fb2eda5a4d291e1c0bbff5109038e0ad8852210aff2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -912,15 +884,15 @@ yes: standard output: Broken pipe
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_871249/3555482724.py:9: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1477553/3555482724.py:9: RuntimeWarning: invalid value encountered in divide
   (a.sample_frequencies[b_peaks] * a.data[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_871249/3555482724.py:16: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1477553/3555482724.py:16: RuntimeWarning: invalid value encountered in divide
   (at.sample_frequencies[b_peaks] * at.data[b_peaks]/(tinterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_871249/3555482724.py:37: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1477553/3555482724.py:37: RuntimeWarning: invalid value encountered in divide
   (b.sample_frequencies[b_peaks] * b[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
@@ -929,7 +901,7 @@ yes: standard output: Broken pipe
 </div>
 </section>
 <section id="creating-the-psd-kernels">
-<h1>Creating the PSD kernels<a class="headerlink" href="#creating-the-psd-kernels" title="Link to this heading">#</a></h1>
+<h2>Creating the PSD kernels<a class="headerlink" href="#creating-the-psd-kernels" title="Link to this heading">#</a></h2>
 <p>Now we begin the process of computing the zero-latency PSDs and the various plots associated with that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1027,7 +999,7 @@ yes: standard output: Broken pipe
 </div>
 </section>
 <section id="now-want-the-zero-phase-filter-psds">
-<h1>Now want the zero-phase filter PSDs<a class="headerlink" href="#now-want-the-zero-phase-filter-psds" title="Link to this heading">#</a></h1>
+<h2>Now want the zero-phase filter PSDs<a class="headerlink" href="#now-want-the-zero-phase-filter-psds" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycbc.psd.lisa_pre_merger</span> <span class="kn">import</span> <span class="n">generate_pre_merger_psds</span>
@@ -1109,6 +1081,7 @@ yes: standard output: Broken pipe
 </div>
 </div>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1174,14 +1147,16 @@ yes: standard output: Broken pipe
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">This data was then used to create the smoothed files</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1a">Plot for Figure 1A</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-psd-kernels">Creating the PSD kernels</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#now-want-the-zero-phase-filter-psds">Now want the zero-phase filter PSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-psd-files">Load PSD files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this-data-was-then-used-to-create-the-smoothed-files">This data was then used to create the smoothed files</a></li>
 </ul>
-
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1a">Plot for Figure 1A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-psd-kernels">Creating the PSD kernels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-want-the-zero-phase-filter-psds">Now want the zero-phase filter PSDs</a></li>
+</ul>
   </nav></div>
 
 </div></div>

@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Search/Optimal_SNR/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Plotting optimal SNR as a function of time-before-merger for mock signals" href="plot_optimal_snr.html" />
+    <link rel="next" title="Template banks generation" href="../Template_Banks/README.html" />
     <link rel="prev" title="Searching for pre-merger signals" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,27 +177,22 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../PSD_Files/PSD_filter_images.html">This data was then used to create the smoothed files</a></li>
-
-
-
-
-
+<li class="toctree-l2"><a class="reference internal" href="../../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure plotting</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../Injections/README.html">Here we make the injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../Injections/README.html">Injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../Injections/make_injections.html">Script to make the injections json file</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Data/README.html">Data for Search and Parameter Estimation</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Optimal SNR calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_optimal_snr.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Template_Banks/README.html">Template banks generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
 </ul>
 </details></li>
 </ul>
@@ -387,11 +382,36 @@ document.write(`
 <p>Where <span class="math notranslate nohighlight">\(\tilde{h}(f)\)</span> is the signal, <span class="math notranslate nohighlight">\(S_n(f)\)</span> is the single-sided noise density, and <span class="math notranslate nohighlight">\(f_{min}\)</span> is the start frequency we consider. For the optimistic and pessimistic PSDs, we use <span class="math notranslate nohighlight">\(f_{min}=10^{-6}\)</span> Hz, and for the cutoff PSD we use <span class="math notranslate nohighlight">\(f_{min}=10^{-4}\)</span> Hz.</p>
 <section id="calculation-process">
 <h2>Calculation process<a class="headerlink" href="#calculation-process" title="Link to this heading">#</a></h2>
-<p>We provide the code <a class="reference download internal" download="" href="../../_downloads/294ccd99cf0483779a404c7ed6336f5d/optimal_snr.py"><span class="xref download myst">optimal_snr.py</span></a> to perform the calculation, and call this using <a class="reference download internal" download="" href="../../_downloads/32af9accf59fdcc744bc163e21129e7c/optimal_snr.sh"><span class="xref download myst">optimal_snr.sh</span></a>. The results are stored as text files (not given), and these are collated into search results files using the collect_bank_results <a class="reference download internal" download="" href="../../_downloads/4536a263e0d48be0bca34def1692c293/collect_bank_search_results.py"><span class="xref download myst">python code</span></a> and <a class="reference download internal" download="" href="../../_downloads/3653bce2a061ba3e33dfb23592869aea/collect_bank_search_results.sh"><span class="xref download myst">shell scipt</span></a> to produce json files for each PSD (e.g. <a class="reference download internal" download="" href="../../_downloads/2e02693fccb54d8efc0ebb6584a5d8df/search_run_cutoff.json"><span class="xref download myst">search_run_cutoff.json</span></a>)</p>
+<p>We provide the code <a class="reference download internal" download="" href="../../_downloads/294ccd99cf0483779a404c7ed6336f5d/optimal_snr.py"><span class="xref download myst">optimal_snr.py</span></a> to perform the calculation, the command to run this is.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>for psd in CUT_optimistic optimistic pessimistic ; do
+  for injection_number in {0..4} ; do
+
+  if [ $psd == CUT_optimistic ]  ; then
+    f_lower_search=1e-4
+  else
+    f_lower_search=1e-6
+  fi
+
+  python optimal_snr.py \
+      --injections-file \
+      ../../Injections/injections.json \
+    --injection-number $injection_number \
+    --psd-files \
+      ../../PSD_Files/model_AE_TDI1_SMOOTH_${psd}.txt \
+    --days-before-merger 0.5 1 4 7 14 \
+    --f-lower-search \
+      $f_lower_search \
+    --label $psd
+
+  done
+done
+</pre></div>
+</div>
+<p>To store results, we redirect stdout to text files (not given in this repo) called <code class="docutils literal notranslate"><span class="pre">output/optimal_snr_${psd}_${injection_number}.out</span></code>, and these are collated into search results files using the collect_bank_results <a class="reference download internal" download="" href="../../_downloads/4536a263e0d48be0bca34def1692c293/collect_bank_search_results.py"><span class="xref download myst">python code</span></a> and to produce json files for each PSD (e.g. <a class="reference download internal" download="" href="../../_downloads/2e02693fccb54d8efc0ebb6584a5d8df/search_run_cutoff.json"><span class="xref download myst">search_run_cutoff.json</span></a>)</p>
 </section>
 <section id="plotting">
 <h2>Plotting<a class="headerlink" href="#plotting" title="Link to this heading">#</a></h2>
-<p>To plot the optimal SNR (as well as the data file analysis results), <a class="reference internal" href="plot_optimal_snr.html"><span class="std std-doc">this notebook</span></a> shows how the plot for Figure 6 of the paper is made.</p>
+<p>To plot the optimal SNR (as well as other analysis results), <a class="reference internal" href="../plot_search_results.html"><span class="std std-doc">this notebook</span></a> shows how the plot for Figure 6 of the paper is made.</p>
 </section>
 </section>
 
@@ -435,11 +455,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="plot_optimal_snr.html"
+       href="../Template_Banks/README.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Plotting optimal SNR as a function of time-before-merger for mock signals</p>
+        <p class="prev-next-title">Template banks generation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
