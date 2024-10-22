@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+    <title>Searching for injected signals &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
   
   
   
@@ -173,7 +173,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
 </ul>
@@ -187,10 +187,14 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Data/README.html">Data for Search and Parameter Estimation</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Searching for pre-merger signals</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Optimal_SNR/README.html">Optimal SNR calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Template_Banks/README.html">Template banks generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting optimal SNR as a function of time-before-merger for mock signals</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Searching for injected signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting search results for mock signals</a></li>
+
+
+
 </ul>
 </details></li>
 </ul>
@@ -333,9 +337,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -346,19 +348,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Searching for injected signals</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -368,7 +362,55 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="searching-for-injected-signals">
+<h1>Searching for injected signals<a class="headerlink" href="#searching-for-injected-signals" title="Link to this heading">#</a></h1>
+<p>To search for the signals, we remove data from the end of the file, and then pre-condition the data according to the zero-phase whitening kernel.
+Then for each template we:</p>
+<ol class="arabic simple">
+<li><p>calculate the SNR series by matched filtering the template with the data</p></li>
+<li><p>find the maximum with a search window of the end of the data in one channel</p></li>
+<li><p>find the maximum within a small coincidence window in the other channel and combine these to get a combined SNR</p></li>
+<li><p>repeat steps 2 and 3 above with the channels swapped, and use whichever combined SNR is highest.</p></li>
+</ol>
+<p>The template with the highest combined SNR over the bank is then considered <em>the</em> SNR of the signal.</p>
+<p>This is done in <a class="reference internal" href="#signal_runs.py"><span class="xref myst">signal_runs.py</span></a>.</p>
+<p>Command line arguments are possible for testing, particularly</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--data-file-zero-noise</span></code>, which will subtract zero-noise file and calculate SNR from that - this will not affect the bank filtering</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--plot-best-waveform</span></code> will plot the best-fitting waveform in the frequency and time domains, as well as the SNR time series for the best-fitting waveform</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--reduce-bank-factor</span></code> will skip indices in the loop over waveforms which are not an integer multiple of this number. This is useful to run the search quickly</p></li>
+</ul>
+<p>To run the data file analyses, the following command is used</p>
+<p>For saving results for later use, redirect the stdout to a text file. Suggested filename is <code class="docutils literal notranslate"><span class="pre">output/search_run_${psd}_${injection_number}_${time_before}.out</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>injection_number=2
+time_before=14
+psd=pessimistic
+data_dir=data_pessimistic_psd
+# f_lower should be 1e-4 for cutoff, 1e-6 for pessimistic or optimistic
+f_lower=1e-6
+
+data_file_dir=../Data/data_files/${data_dir}
+
+python ./data_runs.py \
+  --injections-file \
+    ../Injections/injections.json \
+  --injection-number \
+    $injection_number \
+  --days-before-merger \
+    $time_before \
+  --psd-file \
+    ../PSD_Files/model_AE_TDI1_SMOOTH_${psd}.txt \
+  --label ${psd} \
+  --f-lower ${f_lower} \
+  --bank-file \
+    ../Template_Banks/lisa_ew_${time_before}_day_${psd}.hdf \
+  --data-file \
+    $data_file_dir/signal_${injection_number}.hdf \
+</pre></div>
+</div>
+<p>The stdout should be redirected to a text file, we recommend <code class="docutils literal notranslate"><span class="pre">output/signal_run_${psd}_${time_before}_${injection_number}.out</span></code></p>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -423,21 +465,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
