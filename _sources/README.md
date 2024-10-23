@@ -41,13 +41,5 @@ cd pycbc
 git branch lisa-pre-merger
 pip install .
 ```
-## Generating supplied files with injections
-The search and parameter estimation are run on the same files to ensure consistency.
-In order to generate these files, we use the process detailed in [Data](Data/README.md).
 
-## Searching for SMBHB signals pre-merger
-In [Search](Search/README.md), we how we perform a template bank search on the injected data files, and how we assess significance.
-
-### Running searches on generated noise without injections
-
-### Running parameter estimation on injections
+The following sections show the process we used to generate and analyse data for the analysis.
