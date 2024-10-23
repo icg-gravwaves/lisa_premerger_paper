@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+    <title>Generating sky maps &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
   
   
   
@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Parameter_Estimation/Making_Skymaps/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="../Running_Analyses/README.html" />
+    <link rel="prev" title="Running analyses" href="../Running_Analyses/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,7 +172,7 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
 </ul>
@@ -197,8 +197,10 @@
 
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../README.html">Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../README.html">Parameter Estimation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Config_Files/README.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Running_Analyses/README.html">Running analyses</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Generating sky maps</a></li>
 </ul>
 </details></li>
 </ul>
@@ -341,9 +343,7 @@ document.write(`
   </button>
 `);
 </script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -354,19 +354,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Generating sky maps</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -376,7 +368,26 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  
+  <section class="tex2jax_ignore mathjax_ignore" id="generating-sky-maps">
+<h1>Generating sky maps<a class="headerlink" href="#generating-sky-maps" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>📝 The sky maps are generated using a different environment that is specified in <code class="docutils literal notranslate"><span class="pre">skymap_env.yml</span></code>. Once installed, this can be activated using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">pycbc-pre-merger-skymap</span></code>. See the <a class="reference external" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file">conda documentation</a> for how to create a conda environment from a YAML file.</p>
+</div></blockquote>
+<p>Generating the sky maps requires the merged result files, for details see <a class="reference internal" href="#producing-merged-result-files"><span class="xref myst">this section</span></a>.
+Once these have been generated, the sky map files for a given injection and PSD are produced by running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>produce_skymaps.py<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--result-dir<span class="w"> </span>../Running_Analyses/results/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output-dir<span class="w"> </span>results/<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-injection-id<span class="w"> </span>&lt;id&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--psd<span class="w"> </span>&lt;psd&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--jobs<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--trials<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;id&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;psd&gt;</span></code> should be set accordingly.
+<code class="docutils literal notranslate"><span class="pre">&lt;psd&gt;</span></code> can be one of <code class="docutils literal notranslate"><span class="pre">{optimistic,</span> <span class="pre">pessimistic,</span> <span class="pre">cut}</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;id&gt;</span></code> can take any number in the range <code class="docutils literal notranslate"><span class="pre">{0..4}</span></code>.</p>
+</section>
+
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
@@ -413,7 +424,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Running analyses</p>
       </div>
     </a>
 </div>
@@ -422,21 +433,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
