@@ -2,21 +2,6 @@
 
 This directory contains an example parameter estimation configuration.
 
-## Configs
-
-General configs for the runs are stored in `configs`
-
-### Generating ini files for each analysis
-
-The ini files for each injection can be generated using the `Makefile` in configs.
-
-```bash
-make create_ini_files
-```
-
-> 📝 This will not overwrite existing files. You can run `make clean_ini_files` to remove the existing files.
-
-> ⚠️ This randomly sets the observing time such that the merger will be between 12 and 24 hours before the end of data. This is seeded but different numpy versions may result in different times. The final ini files will be uploaded to ensure the results can be reproduced.
 
 ## Running analyses
 
@@ -26,8 +11,8 @@ For example, we set environment variables:
 - INJ_ID to the injection we want
 - TIME_ID to the time we are considering (see the following table)
 - PSD to `cut`, `optimistic` or `pessimistic` depending on the PSD we want
-- CONFIG_PATH to point to the [configs subdirectory](configs) located in Parameter_Estimation in this repo.
-- OUTDIR to be the output directory for this specific analysis, we suggest `analyses/outdir_injection${INJ_ID}_time${TIME_ID}_${PSD}_psd`
+- CONFIG_PATH to point to the [configs subdirectory](Config_Files) located in this repo.
+- OUTDIR to be the output directory for this specific analysis, we suggest `outdir_injection${INJ_ID}_time${TIME_ID}_${PSD}_psd`
 
 | Time ID | Time before merger (days) |
 | --- | --- |
