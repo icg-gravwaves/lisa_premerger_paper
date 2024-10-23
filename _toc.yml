@@ -20,4 +20,6 @@ chapters:
   - file: Search/plot_search_results.ipynb
 - file: Parameter_Estimation/README.md
   sections:
-  - file: Parameter_Estimation/configs/README.md
+  - file: Parameter_Estimation/Config_Files/README.md
+  - file: Parameter_Estimation/Running_Analyses/README.md
+  - file: Parameter_Estimation/Making_Skymaps/README.md
