@@ -15,9 +15,8 @@ As the observable distance varies over the sky in a way, we perform this calcula
 To keep this averaging consistent for the different PSDs, and if we use parallelization, we use the same random seed for every mass and time point where this is calculated. As a result the sky points will remain consistent.
 
 ## How to recreate the figure
-As the first part of generating this figure, the `sensitive_time_distance.sh` script supplied was run on the [SCIAMA supercomputer](https://sciama.icg.port.ac.uk/).
 
-To run this, we use
+To run this, we use the command
 
 ```
 python ./sensitive_time_distance.py \
