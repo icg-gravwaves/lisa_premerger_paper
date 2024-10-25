@@ -1,6 +1,6 @@
 name: env_lisa_premerger
 channels:
- - default
+ - pytorch
  - conda-forge
 dependencies:
  - python=3.10
@@ -19,6 +19,9 @@ dependencies:
  - astropy
  - corner
  - ipykernel
+ - jupyter
+ - torch
+ - cpuonly
  - pip:
    - git+https://github.com/mikekatz04/BBHx.git@4fff509
    - git+https://github.com/gwastro/BBHX-waveform-model.git

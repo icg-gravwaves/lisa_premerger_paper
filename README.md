@@ -4,19 +4,6 @@ This is the data release for the paper "Premerger observation and characterizati
 
 FIXME: sort a docker image somewhere (zenodo?) once code is finalised
 
-## Data release overview
-This data release shows how to recreate analyses and figures used in the paper.
-
-To see different parts of this, see the table of contents or click through the arrows at the bottom of the page to read the data release in order.
-
-## Reproducing our figures
-Figure 2 (a and b) can be reproduced using the codes described [here](Sensitive_Distance_Plot/README.md) and then plotted in [this notebook](Sensitive_Distance_Plot/plot_sensitive_distance.ipynb)
-
-Figures 1, 3, 4 and 5 can be reproduced using [this notebook](PSD_Files/PSD_filter_images.ipynb)
-
-Figures 6 and 7 can be made using [this notebook](Search/plot_search_results.ipynb)
-
-Figures 8, 9, 10, 11 .....
 
 ## Reproducing our analysis
 In the data release, we discuss the different parts of the analysis and how they were performed
