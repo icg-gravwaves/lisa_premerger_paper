@@ -34,15 +34,18 @@ def merge_results(result_mapping, output_dir):
                 if psd not in f:
                     f.create_group(psd)
                 for time, path in psd_results.items():
-                    base_path = pathlib.Path(path.absolute())
-                    path = next(base_path.glob('outdir_inj*'))
-                    posterior = get_nessai_posterior(path)
+                    base_path = pathlib.Path(path).absolute()
+                    if not base_path.exists():
+                        continue
+                    print(base_path)
+                    #path = next(base_path.glob('outdir_inj*'))
+                    posterior = get_nessai_posterior(base_path)
                     if posterior.size == 0:
                         continue
                     f[psd].create_dataset(time, data=posterior)
 
 def validate_path(path):
-    path = pathlib.Path(path).absolute()
+    path = pathlib.Path(path)
     valid = path.exists()
     if path.is_dir():
         hdf_files = list(path.glob('**/*.hdf'))
@@ -61,7 +64,7 @@ def validate_inputs(result_mapping: dict):
                 valid = validate_path(path) 
                 all_valid &= valid
                 if not valid:
-                    print(f"Result does not exist for injection {inj}, psd {psd}, at time {time}")
+                    print(f"Result does not exist for {inj}, psd {psd}, at {time}")
     return all_valid
     
 
