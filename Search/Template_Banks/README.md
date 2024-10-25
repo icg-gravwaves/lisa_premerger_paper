@@ -1,4 +1,4 @@
-# Template banks generation
+# Generation of Template Banks
 
 For generating the banks, we use a stochastic placement algorithm.
 
@@ -43,3 +43,5 @@ done
 ```
 
 We split this using a scheduler, but the script runs relatively quickly, so this is not necessarily needed.
+
+These are also provided in [this folder](.) in the git repo

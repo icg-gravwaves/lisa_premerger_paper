@@ -1,0 +1,15 @@
+lisa_ew_0.5_day_pessimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_1_day_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_1_day_pessimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_4_day_CUT_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_4_day_pessimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_0.5_day_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_4_day_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_7_day_CUT_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_7_day_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_7_day_pessimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_0.5_day_CUT_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_14_day_CUT_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_14_day_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_14_day_pessimistic.hdf filter=lfs diff=lfs merge=lfs -text
+lisa_ew_1_day_CUT_optimistic.hdf filter=lfs diff=lfs merge=lfs -text
