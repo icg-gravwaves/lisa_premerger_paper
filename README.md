@@ -23,9 +23,9 @@ We provide (FIXME: not yet in all cases) a subset of the commands used to submit
 Our analysis was mainly performed using a combination of the [SCIAMA supercomputer](https://sciama.icg.port.ac.uk/) at the University of Portsmouth, and the [HAWK supercomputer](https://ligo.gravity.cf.ac.uk/guide/) at the University of Cardiff.
 
 ### Reproducing the analysis environment
-We plan to have a docker image, but we also provide instructions here so that if the user wants to use our work as a basis for development, that is possible
+We plan to have a docker image, but we also provide an environment file here so that if the user wants to use our work as a basis for development, that is possible.
 
-We have provided a [yaml file](install_reqs.yml), which can be used to create a conda environment for the analysis:
+The conda environment is defined in a [yaml file](install_reqs.yml), which can be used for the analysis:
 
 ```
 conda env create -f install_reqs.yml
@@ -33,13 +33,5 @@ conda env create -f install_reqs.yml
 
 Make sure you have activated the environment using `conda activate env_lisa_premerger`
 
-This will use the latest possible version of PyCBC, however we need some changes to to main code. So we will install a particular version of PyCBC. To get this, run
 
-```
-git clone git@github.com:icg-gravwaves/pycbc.git
-cd pycbc
-git branch lisa-pre-merger
-pip install .
-```
-
-The following sections show the process we used to generate and analyse data for the analysis.
+The following sections show the process we used to generate and analyse data for the Search and Parameter Estimation analyses.

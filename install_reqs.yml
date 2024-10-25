@@ -9,12 +9,18 @@ dependencies:
  - gxx_linux-64
  - gsl
  - lapack=3.6.1
- - numpy
+ - numpy<2
  - scipy
  - Cython
- - pycbc
  - matplotlib
+ - lalsuite
+ - ligo.skymap
+ - seaborn
+ - astropy
+ - corner
+ - ipykernel
  - pip:
    - git+https://github.com/mikekatz04/BBHx.git@4fff509
    - git+https://github.com/gwastro/BBHX-waveform-model.git
-
+   - git+https://github.com/icg-gravwaves/pycbc.git@lisa-pre-merger
+   - git+https://github.com/mj-will/nessai.git@pre-merger-mcmcflowproposal
