@@ -31,7 +31,7 @@ data_file_dir=../Data/data_files/${data_dir}
 
 python ./data_runs.py \
   --injections-file \
-    ../Injections/injections.json \
+    ../Data/injections.json \
   --injection-number \
     $injection_number \
   --days-before-merger \

@@ -13,7 +13,7 @@ f_lower=1e-6
 
 python ./nosignal_runs.py \
   --injections-file \
-    ../Injections/injections.json \
+    ../Data/injections.json \
   --days-before-merger \
     $time_before \
   --psd-file \

@@ -24,7 +24,7 @@ for psd in CUT_optimistic optimistic pessimistic ; do
 
   python optimal_snr.py \
       --injections-file \
-      ../../Injections/injections.json \
+      ../../Data/injections.json \
     --injection-number $injection_number \
     --psd-files \
       ../../PSD_Files/model_AE_TDI1_SMOOTH_${psd}.txt \

@@ -2,7 +2,7 @@
 # Unlikely to need changing
 CONFIG_PATH = .
 # Path to JSON file with the injection parameters
-INJECTION_FILE=../../Injections/injections.json
+INJECTION_FILE=../../Data/injections.json
 # Path for saving the ini files for each injection
 INJECTION_PATH=injections/
 # f_lower file

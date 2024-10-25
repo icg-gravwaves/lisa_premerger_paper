@@ -7,10 +7,9 @@ chapters:
 - file: Sensitive_Distance_Plot/README.md
   sections:
   - file: Sensitive_Distance_Plot/plot_sensitive_distance.ipynb
-- file: Injections/README.md
-  sections:
-  - file: Injections/make_injections.ipynb
 - file: Data/README.md
+  sections:
+  - file: Data/make_injections.ipynb
 - file: Search/README.md
   sections:
   - file: Search/Optimal_SNR/README.md
