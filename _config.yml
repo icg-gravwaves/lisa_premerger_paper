@@ -5,11 +5,11 @@ title: Premerger observation and characterization of super-massive black hole bi
 execute:
   execute_notebooks: force
   exclude_patterns:
-    - Parameter_Estimation/*.ipynb
+    - Parameter_Estimation/skymap_plots.ipynb
 
 # This means only stuff in the table of contents
 # note that if we have run the 'environment building' instructions, there will be
-# a bunch of pycbc stuff which we don't need to run
+# a bunch of pycbc repo stuff which we don't need to run
 only_build_toc_files: true
 
 # Define the name of the latex output file for PDF builds

@@ -32,3 +32,6 @@ done
 ```
 
 These inputs use the recommended filenames we have specified throughout the data release pages.
+
+## Plotting results
+We then plot the search results in [this notebook](./plot_search_results.ipynb)
