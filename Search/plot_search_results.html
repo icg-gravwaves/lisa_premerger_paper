@@ -181,13 +181,10 @@
 <li class="toctree-l2"><a class="reference internal" href="Signal_Runs/README.html">Searching for injected signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Significance_Runs/README.html">Assessing significance</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Plotting search results for mock signals</a></li>
-
-
-
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Parameter_Estimation/README.html">Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Config_Files/README.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Config_Files/README.html">Automatically combining configuration files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Running_Analyses/README.html">Running analyses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Making_Skymaps/README.html">Generating sky maps</a></li>
 </ul>
@@ -347,15 +344,13 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Plotting search results for mock signals</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-the-data-from-all-search-results">Load in the data from all search results</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#make-figure-6-snr-vs-time-before-merger">Make Figure 6 - SNR vs time-before-merger</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-figure-7-the-histogram-of-snr-values-for-gaussian-noise">Plot Figure 7 - the histogram of SNR values for Gaussian Noise</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-histogram">Generate the histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-the-data-from-all-search-results">Load in the data from all search results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-figure-6-snr-vs-time-before-merger">Make Figure 6 - SNR vs time-before-merger</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-figure-7-the-histogram-of-snr-values-for-gaussian-noise">Plot Figure 7 - the histogram of SNR values for Gaussian Noise</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-histogram">Generate the histogram</a></li>
 </ul>
 </li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -366,7 +361,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="plotting-search-results-for-mock-signals">
+  <section class="tex2jax_ignore mathjax_ignore" id="plotting-search-results-for-mock-signals">
 <h1>Plotting search results for mock signals<a class="headerlink" href="#plotting-search-results-for-mock-signals" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -411,9 +406,8 @@
 </div>
 </div>
 </div>
-</section>
 <section id="load-in-the-data-from-all-search-results">
-<h1>Load in the data from all search results<a class="headerlink" href="#load-in-the-data-from-all-search-results" title="Link to this heading">#</a></h1>
+<h2>Load in the data from all search results<a class="headerlink" href="#load-in-the-data-from-all-search-results" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">search_results_all</span> <span class="o">=</span> <span class="p">{}</span>
@@ -427,7 +421,7 @@
 </div>
 </section>
 <section id="make-figure-6-snr-vs-time-before-merger">
-<h1>Make Figure 6 - SNR vs time-before-merger<a class="headerlink" href="#make-figure-6-snr-vs-time-before-merger" title="Link to this heading">#</a></h1>
+<h2>Make Figure 6 - SNR vs time-before-merger<a class="headerlink" href="#make-figure-6-snr-vs-time-before-merger" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make the figure - 1.5 times the normal height so we can see detail</span>
@@ -532,9 +526,9 @@
 </div>
 </section>
 <section id="plot-figure-7-the-histogram-of-snr-values-for-gaussian-noise">
-<h1>Plot Figure 7 - the histogram of SNR values for Gaussian Noise<a class="headerlink" href="#plot-figure-7-the-histogram-of-snr-values-for-gaussian-noise" title="Link to this heading">#</a></h1>
+<h2>Plot Figure 7 - the histogram of SNR values for Gaussian Noise<a class="headerlink" href="#plot-figure-7-the-histogram-of-snr-values-for-gaussian-noise" title="Link to this heading">#</a></h2>
 <section id="generate-the-histogram">
-<h2>Generate the histogram<a class="headerlink" href="#generate-the-histogram" title="Link to this heading">#</a></h2>
+<h3>Generate the histogram<a class="headerlink" href="#generate-the-histogram" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extra imports needed for this plot</span>
@@ -735,6 +729,7 @@ import lal
 </div>
 </section>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -801,15 +796,13 @@ import lal
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Plotting search results for mock signals</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-the-data-from-all-search-results">Load in the data from all search results</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#make-figure-6-snr-vs-time-before-merger">Make Figure 6 - SNR vs time-before-merger</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-figure-7-the-histogram-of-snr-values-for-gaussian-noise">Plot Figure 7 - the histogram of SNR values for Gaussian Noise</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-histogram">Generate the histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-in-the-data-from-all-search-results">Load in the data from all search results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-figure-6-snr-vs-time-before-merger">Make Figure 6 - SNR vs time-before-merger</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-figure-7-the-histogram-of-snr-values-for-gaussian-noise">Plot Figure 7 - the histogram of SNR values for Gaussian Noise</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-the-histogram">Generate the histogram</a></li>
 </ul>
 </li>
 </ul>
-
   </nav></div>
 
 </div></div>

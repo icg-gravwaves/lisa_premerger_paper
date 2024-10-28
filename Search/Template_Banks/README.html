@@ -183,13 +183,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../Signal_Runs/README.html">Searching for injected signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Significance_Runs/README.html">Assessing significance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../plot_search_results.html">Plotting search results for mock signals</a></li>
-
-
-
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../Parameter_Estimation/README.html">Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../Parameter_Estimation/Config_Files/README.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Parameter_Estimation/Config_Files/README.html">Automatically combining configuration files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Parameter_Estimation/Running_Analyses/README.html">Running analyses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Parameter_Estimation/Making_Skymaps/README.html">Generating sky maps</a></li>
 </ul>
@@ -367,7 +364,7 @@
 <p>For generating the banks, we use a stochastic placement algorithm.</p>
 <section id="modifying-pycbc-brute-bank">
 <h2>Modifying <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code><a class="headerlink" href="#modifying-pycbc-brute-bank" title="Link to this heading">#</a></h2>
-<p>The stochastic placement code is in <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code>; as this code is designed for ground-based detectors with a single detector or averaged PSD, we use <a class="reference download internal" download="" href="../../_downloads/c94a49b588e50f0dfdd722784b11dc72/pycbc_brute_bank"><span class="xref download myst">a modified version</span></a> in order to use multiple channels.</p>
+<p>The stochastic placement code is in <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code>; as this code is designed for ground-based detectors with a single detector or averaged PSD, we use a modified version in order to use multiple channels.</p>
 <p>The primary modification to this code is that we calculate the match as the sum of squares of matches in each of the A and E channels, weighted by the sensitive distance of the waveforms in each channel.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -404,7 +401,7 @@ done
 </pre></div>
 </div>
 <p>We split / loop over this using a scheduler, but the script runs relatively quickly, so this is not necessarily needed.</p>
-<p>These are also provided in <a class="reference internal" href="#."><span class="xref myst">this folder</span></a> in the git repo</p>
+<p>The banks and modified <code class="docutils literal notranslate"><span class="pre">pycbc_brute_bank</span></code> are also provided in the folder <code class="docutils literal notranslate"><span class="pre">Search/Template_Banks</span></code> in the git repo.</p>
 </section>
 </section>
 

@@ -181,13 +181,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../Search/Signal_Runs/README.html">Searching for injected signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Search/Significance_Runs/README.html">Assessing significance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Search/plot_search_results.html">Plotting search results for mock signals</a></li>
-
-
-
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Parameter_Estimation/README.html">Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Config_Files/README.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Config_Files/README.html">Automatically combining configuration files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Running_Analyses/README.html">Running analyses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Making_Skymaps/README.html">Generating sky maps</a></li>
 </ul>
@@ -522,7 +519,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
   return np.asarray(x, float)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f683eeb21d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1d7a7720b0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/7dfea8f9a98fd14a24369ca3456445f6f34e23cf0c8ddd6c6363cbf8521e6944.png" src="../_images/7dfea8f9a98fd14a24369ca3456445f6f34e23cf0c8ddd6c6363cbf8521e6944.png" />
@@ -550,7 +547,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f683ee69270&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1d7a4a3bb0&gt;
 </pre></div>
 </div>
 <img alt="../_images/131e494e3fc98c0bba8f2731ff74e7522786c01aaf1b59e00cbdea6895f23733.png" src="../_images/131e494e3fc98c0bba8f2731ff74e7522786c01aaf1b59e00cbdea6895f23733.png" />
@@ -922,15 +919,15 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_723288/3359889947.py:9: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_851331/3359889947.py:9: RuntimeWarning: invalid value encountered in divide
   (a.sample_frequencies[b_peaks] * a.data[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_723288/3359889947.py:16: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_851331/3359889947.py:16: RuntimeWarning: invalid value encountered in divide
   (at.sample_frequencies[b_peaks] * at.data[b_peaks]/(tinterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_723288/3359889947.py:37: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_851331/3359889947.py:37: RuntimeWarning: invalid value encountered in divide
   (b.sample_frequencies[b_peaks] * b[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
