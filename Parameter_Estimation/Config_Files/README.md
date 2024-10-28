@@ -1,6 +1,6 @@
-# Configs
+# Automatically combining configuration files
 
-General configs for the runs are stored here, and then combined
+Static general configuration files for the runs are combined with injection/psd-specific files (all provided, e.g. [here](./injection0_priors.ini)) for each combination of signal and PSD.
 
 ## Generating ini files for each analysis
 
