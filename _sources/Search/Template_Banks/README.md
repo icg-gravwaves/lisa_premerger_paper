@@ -1,4 +1,4 @@
-# Template banks generation
+# Generation of Template Banks
 
 For generating the banks, we use a stochastic placement algorithm.
 
@@ -42,4 +42,6 @@ for time_before in 0.5 1 4 7 14 ; do
 done
 ```
 
-We split this using a scheduler, but the script runs relatively quickly, so this is not necessarily needed.
+We split / loop over this using a scheduler, but the script runs relatively quickly, so this is not necessarily needed.
+
+These are also provided in [this folder](.) in the git repo

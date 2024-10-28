@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Premerger observation and characterization of super-massive black hole binaries &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+    <title>Premerger Observation and Characterization of Super-Massive Black Hole Binaries &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
   
   
   
@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -52,7 +55,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -65,6 +68,7 @@
     <link rel="next" title="Generating the PSD files used in our analyses" href="PSD_Files/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -80,19 +84,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -108,8 +100,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -127,7 +119,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -157,22 +150,18 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Premerger observation and characterization of super-massive black hole binaries
+                    Premerger Observation and Characterization of Super-Massive Black Hole Binaries
                 </a>
             </li>
         </ul>
@@ -182,17 +171,16 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Sensitive_Distance_Plot/README.html">Observable Distance Plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="Injections/README.html">Injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Injections/make_injections.html">Script to make the injections json file</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="Data/README.html">Data for Search and Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Data/make_injections.html">Script to make the injections json file</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="Data/README.html">Data for Search and Parameter Estimation</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="Search/README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="Search/Optimal_SNR/README.html">Optimal SNR calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Search/Template_Banks/README.html">Template banks generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Search/Template_Banks/README.html">Generation of Template Banks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Search/Signal_Runs/README.html">Searching for injected signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Search/Significance_Runs/README.html">Assessing significance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Search/plot_search_results.html">Plotting search results for mock signals</a></li>
@@ -329,24 +317,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -360,7 +340,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Premerger observation and characterization of super-massive black hole binaries</h1>
+    <h1>Premerger Observation and Characterization of Super-Massive Black Hole Binaries</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -370,12 +350,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducing-our-figures">Reproducing our figures</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Premerger Observation and Characterization of Super-Massive Black Hole Binaries</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducing-our-analysis">Reproducing our analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducing-the-analysis-environment">Reproducing the analysis environment</a></li>
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-data-release">Overview of the Data Release</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-psds">Generating PSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observable-distance">Observable Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-injections-and-data-for-search-and-parameter-estimation">Generating Injections and Data for Search and Parameter Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-pre-merger-signals">Searching for Pre-merger Signals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation-of-pre-merger-signals">Parameter Estimation of Pre-merger signals</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -387,39 +378,69 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="premerger-observation-and-characterization-of-super-massive-black-hole-binaries">
-<h1>Premerger observation and characterization of super-massive black hole binaries<a class="headerlink" href="#premerger-observation-and-characterization-of-super-massive-black-hole-binaries" title="Link to this heading">#</a></h1>
+<h1>Premerger Observation and Characterization of Super-Massive Black Hole Binaries<a class="headerlink" href="#premerger-observation-and-characterization-of-super-massive-black-hole-binaries" title="Link to this heading">#</a></h1>
 <p>This is the data release for the paper “Premerger observation and characterization of super-massive black hole binaries”, which can be found <a class="reference external" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">here</a>. We release the data behind each of the figures and the code and configuration files that were used to produce each of them. We also demonstrate the steps needed to reproduce the search and parameter estimation using our code.</p>
-<p>As always python, software dependencies will change in the coming years, and this code may be incompatible with future releases of any dependency. This paper was generated using a fork of PyCBC at <a class="github reference external" href="https://github.com/icg-gravwaves/pycbc/tree/lisa-pre-merger">icg-gravwaves/pycbc</a>. This was forked from PyCBC at cd0e16a.</p>
 <p>FIXME: sort a docker image somewhere (zenodo?) once code is finalised</p>
-<section id="reproducing-our-figures">
-<h2>Reproducing our figures<a class="headerlink" href="#reproducing-our-figures" title="Link to this heading">#</a></h2>
-<p>Figure 2 (a and b) can be reproduced using <a class="reference internal" href="Sensitive_Distance_Plot/plot_sensitive_distance.html"><span class="std std-doc">this ipython notebook</span></a></p>
-<p>Figures 1, 3, 4 and 5 can be reproduced using <a class="reference internal" href="PSD_Files/PSD_filter_images.html"><span class="std std-doc">this notebook</span></a></p>
-<p>Figures 6 and 7 can be made using <a class="reference internal" href="Search/plot_search_results.html"><span class="std std-doc">this notebook</span></a></p>
-<p>Figures 8, 9, 10, 11 …..</p>
-</section>
 <section id="reproducing-our-analysis">
 <h2>Reproducing our analysis<a class="headerlink" href="#reproducing-our-analysis" title="Link to this heading">#</a></h2>
-<p>Here we discuss each of the parts of the analysis presented in the paper, and how each part can be reproduced.</p>
-<p>We provide (FIXME: not yet in all cases) a subset of the commands used to submit the jobs.</p>
+<p>In the data release, we discuss the different parts of the analysis and how they were performed</p>
+<p>We provide an outline of the commands used to submit the jobs.
+Exact commands are not given as these will depend on your computing setup.</p>
 <p>Our analysis was mainly performed using a combination of the <a class="reference external" href="https://sciama.icg.port.ac.uk/">SCIAMA supercomputer</a> at the University of Portsmouth, and the <a class="reference external" href="https://ligo.gravity.cf.ac.uk/guide/">HAWK supercomputer</a> at the University of Cardiff.</p>
 <section id="reproducing-the-analysis-environment">
 <h3>Reproducing the analysis environment<a class="headerlink" href="#reproducing-the-analysis-environment" title="Link to this heading">#</a></h3>
-<p>We plan to have a docker image, but we also provide instructions here so that if the user wants to use our work as a basis for development, that is possible</p>
-<p>We have provided a <a class="reference download internal" download="" href="_downloads/a2ab3cb8c94230f03450794212cf2b46/install_reqs.yml"><span class="xref download myst">yaml file</span></a>, which can be used to create a conda environment for the analysis:</p>
+<p>As always with python, software dependencies will change in the coming years, and this code may be incompatible with future releases of any dependency.</p>
+<p>This paper was generated using a fork of PyCBC at <a class="github reference external" href="https://github.com/icg-gravwaves/pycbc/tree/lisa-pre-merger">icg-gravwaves/pycbc</a>. This was forked from PyCBC at cd0e16a.</p>
+<p>We plan to have a docker image, but we also provide an environment file here so that if the user wants to use our work as a basis for development, that is possible.</p>
+<p>The conda environment is defined in a <a class="reference download internal" download="" href="_downloads/a2ab3cb8c94230f03450794212cf2b46/install_reqs.yml"><span class="xref download myst">yaml file</span></a>, which can be used for the analysis:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">install_reqs</span><span class="o">.</span><span class="n">yml</span>
 </pre></div>
 </div>
 <p>Make sure you have activated the environment using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">env_lisa_premerger</span></code></p>
-<p>This will use the latest possible version of PyCBC, however we need some changes to to main code. So we will install a particular version of PyCBC. To get this, run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">icg</span><span class="o">-</span><span class="n">gravwaves</span><span class="o">/</span><span class="n">pycbc</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">pycbc</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="n">lisa</span><span class="o">-</span><span class="n">pre</span><span class="o">-</span><span class="n">merger</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
-</pre></div>
-</div>
-<p>The following sections show the process we used to generate and analyse data for the analysis.</p>
 </section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="overview-of-the-data-release">
+<h1>Overview of the Data Release<a class="headerlink" href="#overview-of-the-data-release" title="Link to this heading">#</a></h1>
+<p>To navigate the data release, see the table of contents on the left hand side of all pages.</p>
+<section id="generating-psds">
+<h2>Generating PSDs<a class="headerlink" href="#generating-psds" title="Link to this heading">#</a></h2>
+<p>The section <a class="reference internal" href="PSD_Files/README.html"><span class="std std-doc">Generating PSDs</span></a>, we show how the various PSDs are defined and generated in our analysis.</p>
+<p>This corresponds to Sections IIA and IIIB of the paper.</p>
+<p>Figures 1, 3 4 and 5 are generated as in <a class="reference internal" href="PSD_Files/PSD_filter_images.html"><span class="std std-doc">the given notebook</span></a>.</p>
+</section>
+<section id="observable-distance">
+<h2>Observable Distance<a class="headerlink" href="#observable-distance" title="Link to this heading">#</a></h2>
+<p>The next <a class="reference internal" href="Sensitive_Distance_Plot/README.html"><span class="std std-doc">section</span></a>, corresponds to Section IIB of the paper, and <a class="reference internal" href="Sensitive_Distance_Plot/plot_sensitive_distance.html"><span class="std std-doc">the notebook</span></a> generates the plots for Figure 2.</p>
+</section>
+<section id="generating-injections-and-data-for-search-and-parameter-estimation">
+<h2>Generating Injections and Data for Search and Parameter Estimation<a class="headerlink" href="#generating-injections-and-data-for-search-and-parameter-estimation" title="Link to this heading">#</a></h2>
+<p>In <a class="reference internal" href="Data/README.html"><span class="std std-doc">this section</span></a>, we supply the codes to <a class="reference internal" href="Data/make_injections.html"><span class="std std-doc">define injections</span></a>, and describe how to build the datasets which are utilised later in the Search (IV) and Parameter Estimation (V) sections of the paper</p>
+<p>This is described at the start of Section IV.</p>
+<p>The <a class="reference internal" href="#./Data/data_files/"><span class="xref myst">data files</span></a> we used are also provided in the git repo.</p>
+</section>
+<section id="searching-for-pre-merger-signals">
+<h2>Searching for Pre-merger Signals<a class="headerlink" href="#searching-for-pre-merger-signals" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="Search/README.html"><span class="std std-doc">Here</span></a>, we provide an overview of the analysis used to demonstrate ability to identify pre-merger signals in LISA, Section IV.</p>
+<p>The different parts of this are described in the various subsections, including:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Search/Optimal_SNR/README.html"><span class="std std-doc">Optimal SNR Calculation</span></a>, used to produce the lines on Figure 6.</p></li>
+<li><p><a class="reference internal" href="Search/Template_Banks/README.html"><span class="std std-doc">Template Bank Generation</span></a>, described in section IIIA.</p></li>
+<li><p><a class="reference internal" href="Search/Signal_Runs/README.html"><span class="std std-doc">The Search for Injected Signals</span></a>, used to produce the Points in Figure 6.</p></li>
+<li><p><a class="reference internal" href="Search/Significance_Runs/README.html"><span class="std std-doc">The Search on noise data only</span></a>, used to produce Figure 7 and the greyed-out region in Figure 6.</p></li>
+</ul>
+<p>We describe how the results are collected into a single json file for each PSD, which are supplied <a class="reference internal" href="#./Search/"><span class="xref myst">here</span></a>, and <a class="reference internal" href="Search/plot_search_results.html"><span class="std std-doc">a notebook</span></a> to plot Figures 6 and 7 from these.</p>
+</section>
+<section id="parameter-estimation-of-pre-merger-signals">
+<h2>Parameter Estimation of Pre-merger signals<a class="headerlink" href="#parameter-estimation-of-pre-merger-signals" title="Link to this heading">#</a></h2>
+<p>In <a class="reference internal" href="Parameter_Estimation/README.html"><span class="std std-doc">the final section</span></a>, we describe the parameter estimation describe in Section V of the paper</p>
+<p>We describe this in several subsections:</p>
+<ul class="simple">
+<li><p>The automated combination of <a class="reference internal" href="Parameter_Estimation/Config_Files/README.html"><span class="std std-doc">configuration files</span></a></p></li>
+<li><p><a class="reference internal" href="Parameter_Estimation/Running_Analyses/README.html"><span class="std std-doc">Running the parameter estimation</span></a> stage, including combining results</p></li>
+<li><p>In order to generate skymap-related plots in <span class="xref myst">Figure 10</span>, we must convert the PE results into skymaps, detailed <a class="reference internal" href="Parameter_Estimation/Making_Skymaps/README.html"><span class="std std-doc">here</span></a></p></li>
+</ul>
+<p>The plots in Figures 8 and 9 are detailed in <span class="xref myst">this notebook</span>, and Figure 10 is in <span class="xref myst">this notebook</span>.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -471,7 +492,8 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -480,12 +502,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducing-our-figures">Reproducing our figures</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Premerger Observation and Characterization of Super-Massive Black Hole Binaries</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducing-our-analysis">Reproducing our analysis</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducing-the-analysis-environment">Reproducing the analysis environment</a></li>
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-data-release">Overview of the Data Release</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-psds">Generating PSDs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observable-distance">Observable Distance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-injections-and-data-for-search-and-parameter-estimation">Generating Injections and Data for Search and Parameter Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#searching-for-pre-merger-signals">Searching for Pre-merger Signals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation-of-pre-merger-signals">Parameter Estimation of Pre-merger signals</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
@@ -533,8 +566,8 @@ By The Jupyter Book community
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

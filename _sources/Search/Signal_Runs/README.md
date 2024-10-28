@@ -17,21 +17,21 @@ Command line arguments are possible for testing, particularly
 
 To run the data file analyses, the following command is used
 
-For saving results for later use, redirect the stdout to a text file. Suggested filename is `output/search_run_${psd}_${injection_number}_${time_before}.out`.
+For saving results for later use, redirect the stdout to a text file. Suggested filename is `output/search_run_${psd}_${injection_number}_${time_before}.out`. This is used in the collection of results described [previously](../README.md#collecting-results).
+
 
 ```
 injection_number=2
 time_before=14
 psd=pessimistic
 data_dir=data_pessimistic_psd
-# f_lower should be 1e-4 for cutoff, 1e-6 for pessimistic or optimistic
 f_lower=1e-6
 
 data_file_dir=../Data/data_files/${data_dir}
 
 python ./data_runs.py \
   --injections-file \
-    ../Injections/injections.json \
+    ../Data/injections.json \
   --injection-number \
     $injection_number \
   --days-before-merger \
@@ -47,3 +47,9 @@ python ./data_runs.py \
 ```
 
 The stdout should be redirected to a text file, we recommend `output/signal_run_${psd}_${time_before}_${injection_number}.out`
+
+We run this command for all iterations of `injection_number` from 0 to 4, `time_before` of {14, 7, 4, 1, 0.5}, and `psd` which takes the values `pessimistic`, `optimisic` and `CUT_optimistic`.
+
+`data_dir` takes the associated value of `psd` from `data_pessimistic_psd`, `data_pessimistic_psd` or `data_cut_psd`.
+
+`f_lower` should be 1e-4 for `cut`, or 1e-6 for `pessimistic` or `optimistic`

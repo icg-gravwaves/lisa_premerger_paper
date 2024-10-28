@@ -4,10 +4,10 @@
 In [Template Banks](Template_Banks/README.md), we provide the details on how template banks were generated, as well as the template banks themselves.
 
 ## Searching for injected signals
-In [Signal_Runs](Signal_Runs/README.md), we describe how to 
+In [Signal_Runs](Signal_Runs/README.md), we describe how to perform a template bank search on the files provided.
 
 ## Assessing significance
-In order to assess significance, we run the search described above repeatedly over Gaussian noise and obtain a distribution, which we interpolate/extrapolate to get an estimate of the false alarm rate of the signal.
+In order to assess significance, we run the template bank search repeatedly over Gaussian noise and obtain a distribution, which we interpolate/extrapolate to get an estimate of the false alarm rate of the signal.
 
 This is described in [Significance_Runs](Significance_Runs/README.md).
 
@@ -30,3 +30,8 @@ for psd_type in optimistic cutoff pessimistic ; do
 done
 
 ```
+
+These inputs use the recommended filenames we have specified throughout the data release pages.
+
+## Plotting results
+We then plot the search results in [this notebook](./plot_search_results.ipynb)

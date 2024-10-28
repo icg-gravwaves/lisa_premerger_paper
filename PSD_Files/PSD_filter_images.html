@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -52,7 +55,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Generating the PSD files used in our analyses" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,22 +147,18 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../README.html">
-                    Premerger observation and characterization of super-massive black hole binaries
+                    Premerger Observation and Characterization of Super-Massive Black Hole Binaries
                 </a>
             </li>
         </ul>
@@ -179,23 +168,28 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Injections/README.html">Injections</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../Injections/make_injections.html">Script to make the injections json file</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Data/README.html">Data for Search and Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Data/make_injections.html">Script to make the injections json file</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../Data/README.html">Data for Search and Parameter Estimation</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Search/README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Search/Optimal_SNR/README.html">Optimal SNR calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Search/Template_Banks/README.html">Template banks generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Search/Template_Banks/README.html">Generation of Template Banks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Search/Signal_Runs/README.html">Searching for injected signals</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Search/Significance_Runs/README.html">Assessing significance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Search/plot_search_results.html">Plotting search results for mock signals</a></li>
 
 
 
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Parameter_Estimation/README.html">Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Config_Files/README.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Running_Analyses/README.html">Running analyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Making_Skymaps/README.html">Generating sky maps</a></li>
 </ul>
 </details></li>
 </ul>
@@ -320,24 +314,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -362,12 +348,17 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-psd-files">Load PSD files</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this-data-was-then-used-to-create-the-smoothed-files">This data was then used to create the smoothed files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-peaks-of-the-original-psds-are-then-used-to-create-the-smoothed-files">The peaks of the original PSDs are then used to create the smoothed files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-can-then-create-figure-3b-the-plots-are-not-shown-in-the-paper-in-the-order-created-here">We can then create Figure 3b (the plots are not shown in the paper in the order created here)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-cut-psd">Creating the “cut” PSD</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1a">Plot for Figure 1A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-response-function">Plotting the response function.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-figure-1b">Making Figure 1b</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-psd-kernels">Creating the PSD kernels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-want-the-zero-phase-filter-psds">Now want the zero-phase filter PSDs</a></li>
 </ul>
@@ -404,7 +395,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:36: UserWarning: Wswiglal-redir-stdio:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:36: UserWarning: Wswiglal-redir-stdio:
 
 SWIGLAL standard output/error redirection is enabled in IPython.
 This may lead to performance penalties. To disable locally, use:
@@ -471,7 +462,7 @@ No CuPy or GPU interpolation available.
 <span class="n">bt</span> <span class="o">=</span> <span class="n">bt</span><span class="p">[:</span><span class="mi">1000001</span><span class="p">]</span>
 <span class="n">bt</span> <span class="o">=</span> <span class="n">bt</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
 
-<span class="c1"># These were made manually based on stuff in the next cells.</span>
+<span class="c1"># These &quot;SMOOTH&quot; PSDs were made manually based on stuff in the next cells.</span>
 <span class="n">a1</span> <span class="o">=</span> <span class="n">psd</span><span class="o">.</span><span class="n">from_txt</span><span class="p">(</span>
     <span class="s1">&#39;model_AE_TDI1_SMOOTH_optimistic.txt&#39;</span><span class="p">,</span>
     <span class="mi">1000001</span><span class="p">,</span>
@@ -497,29 +488,49 @@ No CuPy or GPU interpolation available.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: divide by zero encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: divide by zero encountered in divide
   return self._data.__rtruediv__(other)
-/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: invalid value encountered in divide
+/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: invalid value encountered in divide
   return self._data.__rtruediv__(other)
 </pre></div>
 </div>
 </div>
 </div>
+<section id="the-peaks-of-the-original-psds-are-then-used-to-create-the-smoothed-files">
+<h3>The peaks of the original PSDs are then used to create the smoothed files<a class="headerlink" href="#the-peaks-of-the-original-psds-are-then-used-to-create-the-smoothed-files" title="Link to this heading">#</a></h3>
+<p>Here’s how we generated the smoothed PSD files, the files are saved to disk, and then in above (so don’t need to be remade every time). Noting that the high-frequency sensitivity is the same in all 3
+PSDs, so we only need to do the “smoothing” process once.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a_peaks</span> <span class="o">=</span> <span class="n">find_peaks</span><span class="p">(</span><span class="n">a</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">new_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">a_peaks</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">a_peaks</span><span class="p">])</span>
+<span class="n">psd_values</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">new_indices</span><span class="p">]</span> <span class="c1"># Similar for the other PSDs</span>
+<span class="n">psd_indices</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[</span><span class="n">new_indices</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">psd_indices</span><span class="p">,</span> <span class="n">psd_values</span><span class="p">)</span>
+<span class="c1"># Then these two are saved as a 2-column ASCII file to make the &quot;SMOOTH&quot; PSDs given above.</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:225: ComplexWarning: Casting complex values to real discards the imaginary part
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:225: ComplexWarning: Casting complex values to real discards the imaginary part
   arr = arr.astype(dtype)
 </pre></div>
 </div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/matplotlib/cbook.py:1762: ComplexWarning: Casting complex values to real discards the imaginary part
+  return math.isfinite(val)
+/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/matplotlib/cbook.py:1398: ComplexWarning: Casting complex values to real discards the imaginary part
+  return np.asarray(x, float)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f683eeb21d0&gt;]
+</pre></div>
+</div>
+<img alt="../_images/7dfea8f9a98fd14a24369ca3456445f6f34e23cf0c8ddd6c6363cbf8521e6944.png" src="../_images/7dfea8f9a98fd14a24369ca3456445f6f34e23cf0c8ddd6c6363cbf8521e6944.png" />
 </div>
 </div>
-<section id="this-data-was-then-used-to-create-the-smoothed-files">
-<h3>This data was then used to create the smoothed files<a class="headerlink" href="#this-data-was-then-used-to-create-the-smoothed-files" title="Link to this heading">#</a></h3>
+</section>
+<section id="we-can-then-create-figure-3b-the-plots-are-not-shown-in-the-paper-in-the-order-created-here">
+<h3>We can then create Figure 3b (the plots are not shown in the paper in the order created here)<a class="headerlink" href="#we-can-then-create-figure-3b-the-plots-are-not-shown-in-the-paper-in-the-order-created-here" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -531,39 +542,40 @@ No CuPy or GPU interpolation available.
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1E-44</span><span class="p">,</span><span class="mf">1E-36</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">1E-2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="c1">#plt.savefig(&#39;Figure3b.pdf&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/cbook.py:1699: ComplexWarning: Casting complex values to real discards the imaginary part
-  return math.isfinite(val)
-/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/cbook.py:1345: ComplexWarning: Casting complex values to real discards the imaginary part
-  return np.asarray(x, float)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f683ee69270&gt;
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7dc6abf430&gt;
-</pre></div>
-</div>
-<img alt="../_images/6ee94b73663adb4261a9d536f5d895aaff5bf705ef71fd42d1de62d4ca5f5105.png" src="../_images/6ee94b73663adb4261a9d536f5d895aaff5bf705ef71fd42d1de62d4ca5f5105.png" />
+<img alt="../_images/131e494e3fc98c0bba8f2731ff74e7522786c01aaf1b59e00cbdea6895f23733.png" src="../_images/131e494e3fc98c0bba8f2731ff74e7522786c01aaf1b59e00cbdea6895f23733.png" />
 </div>
 </div>
 </section>
 </section>
-<section id="want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">
-<h2>Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain<a class="headerlink" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain" title="Link to this heading">#</a></h2>
+<section id="creating-the-cut-psd">
+<h2>Creating the “cut” PSD<a class="headerlink" href="#creating-the-cut-psd" title="Link to this heading">#</a></h2>
+<p>Here we create the “cut” PSD, we use a sigmoid to bring the PSD from the “optimistic” one to a “large” value … In hindsight the “large” value may not have been large enough (or the sigmoid should be broader). This didn’t affect results, but can result in erroneous signal power below this point if one is not very careful. … This is more clearly seen when we create the zero-latency filter later on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1c</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
 <span class="n">a1c</span> <span class="o">=</span> <span class="n">a1c</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
 <span class="n">a1c_smoothed</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a1c</span><span class="p">)</span>
 <span class="n">a1c_smoothed2</span> <span class="o">=</span> <span class="n">pycbc</span><span class="o">.</span><span class="n">psd</span><span class="o">.</span><span class="n">estimate</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">a1c_smoothed</span><span class="p">,</span> <span class="mf">1E-8</span><span class="p">)</span>
+
+<span class="n">ac_smoothed2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">ac_smoothed2</span> <span class="o">=</span> <span class="n">ac_smoothed2</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">ac_smoothed2</span> <span class="o">=</span> <span class="n">pycbc</span><span class="o">.</span><span class="n">psd</span><span class="o">.</span><span class="n">estimate</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">ac_smoothed2</span><span class="p">,</span> <span class="mf">1E-8</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:864: ComplexWarning: Casting complex values to real discards the imaginary part
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:864: ComplexWarning: Casting complex values to real discards the imaginary part
   return self._data.astype(dtype)
 </pre></div>
 </div>
@@ -581,24 +593,35 @@ No CuPy or GPU interpolation available.
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">10001</span> <span class="o">-</span> <span class="n">num_smoothing_points</span><span class="p">:</span><span class="mi">10001</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
 <span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">data</span><span class="p">[:</span><span class="mi">10001</span> <span class="o">-</span> <span class="n">num_smoothing_points</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1E-36</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">ac_smoothed2</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">10001</span> <span class="o">-</span> <span class="n">num_smoothing_points</span><span class="p">:</span><span class="mi">10001</span><span class="p">])</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1E-36</span><span class="p">)</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="n">value</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">*</span><span class="mi">0</span> <span class="o">+</span> <span class="n">data</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">diff</span><span class="o">*</span><span class="n">sigmoid</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">ac_smoothed2</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">10001</span> <span class="o">-</span> <span class="n">num_smoothing_points</span><span class="p">:</span><span class="mi">10001</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+<span class="n">ac_smoothed2</span><span class="o">.</span><span class="n">data</span><span class="p">[:</span><span class="mi">10001</span> <span class="o">-</span> <span class="n">num_smoothing_points</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1E-36</span>
+<span class="c1"># We plot a1c_smoothed2 below to verify it is okay.</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we just plot the sigmoid that was used to make sure we didn&#39;t mess up.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sigmoid</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b9a00eb784e5c8b6eae97c0b9bfd8260be4f80e71781e57268ee4e54a937c25.png" src="../_images/5b9a00eb784e5c8b6eae97c0b9bfd8260be4f80e71781e57268ee4e54a937c25.png" />
+<img alt="../_images/d9e6a61901c72a31ddb64e303e8fee68e22b52e921a9d783ccdf7388635af3f7.png" src="../_images/d9e6a61901c72a31ddb64e303e8fee68e22b52e921a9d783ccdf7388635af3f7.png" />
 </div>
 </div>
 </section>
 <section id="plot-for-figure-1a">
 <h2>Plot for Figure 1A<a class="headerlink" href="#plot-for-figure-1a" title="Link to this heading">#</a></h2>
+<p>We now have the 3 PSDs, so plot.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
@@ -608,7 +631,7 @@ No CuPy or GPU interpolation available.
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">a1c_smoothed2</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">],</span> <span class="n">a1c_smoothed2</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">ac_smoothed2</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">],</span> <span class="n">ac_smoothed2</span><span class="p">[:</span><span class="mi">1000000</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">bt</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">,</span> <span class="n">bt</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
 
@@ -632,14 +655,14 @@ No CuPy or GPU interpolation available.
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mf">1E-44</span><span class="p">,</span><span class="mf">1E-36</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">1E-6</span><span class="p">,</span><span class="mf">2E-1</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">([</span><span class="mf">1E-4</span><span class="p">,</span><span class="mf">1E-4</span><span class="p">],</span> <span class="p">[</span><span class="mf">1E-44</span><span class="p">,</span><span class="mf">1E-36</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#plt.savefig(&#39;Figure1a.pdf&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7dc4e195a0&gt;]
-</pre></div>
-</div>
-<img alt="../_images/274ad60c39cdb443c6f50fb80866b352d7769bae56ea0afac0096cadd27a26a1.png" src="../_images/274ad60c39cdb443c6f50fb80866b352d7769bae56ea0afac0096cadd27a26a1.png" />
+<img alt="../_images/49a0c031aca035eac7ab4488cba05bed04d1778b0937f2beaf6815f4b176ca64.png" src="../_images/49a0c031aca035eac7ab4488cba05bed04d1778b0937f2beaf6815f4b176ca64.png" />
 </div>
 </div>
 </section>
@@ -725,6 +748,7 @@ No CuPy or GPU interpolation available.
 </div>
 </div>
 </div>
+<p>Comment out the 3 cells below if you want to generate the response function again. (It doesn’t take <em>that</em> long to run). This was done at different points in frequency space to acheive different resolution across the frequency band … Probably it would have made more sense to generate Phenom using a non-uniform frequency spacing, but this is what we did.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># outs4 = get_response_function(1E4)</span>
@@ -801,6 +825,9 @@ No CuPy or GPU interpolation available.
 </div>
 </div>
 </div>
+<section id="plotting-the-response-function">
+<h3>Plotting the response function.<a class="headerlink" href="#plotting-the-response-function" title="Link to this heading">#</a></h3>
+<p>This plot doesn’t appear in the paper, but does show the translation from A/E to what I would think of as a “normal” PSD (we than translate to characteristic strain to plot).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">[:</span><span class="o">-</span><span class="mi">100</span><span class="p">],</span> <span class="n">ainterp_array</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;A/E&#39;</span><span class="p">)</span>
@@ -817,9 +844,13 @@ No CuPy or GPU interpolation available.
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Response function&#39;)
 </pre></div>
 </div>
-<img alt="../_images/ca2c00e63af80e5f0f504fb2eda5a4d291e1c0bbff5109038e0ad8852210aff2.png" src="../_images/ca2c00e63af80e5f0f504fb2eda5a4d291e1c0bbff5109038e0ad8852210aff2.png" />
+<img alt="../_images/67732afdaa2ae91d2b965f0c3451b858f115b4718914dbf5ad7a3be89286976b.png" src="../_images/67732afdaa2ae91d2b965f0c3451b858f115b4718914dbf5ad7a3be89286976b.png" />
 </div>
 </div>
+</section>
+<section id="making-figure-1b">
+<h3>Making Figure 1b<a class="headerlink" href="#making-figure-1b" title="Link to this heading">#</a></h3>
+<p>Now we generate Figure 1b</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
@@ -885,32 +916,43 @@ No CuPy or GPU interpolation available.
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">1E-6</span><span class="p">,</span><span class="mf">2E-1</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">([</span><span class="mf">1E-4</span><span class="p">,</span><span class="mf">1E-4</span><span class="p">],</span> <span class="p">[</span><span class="mf">1E-44</span><span class="p">,</span><span class="mf">1E-26</span><span class="p">],</span> <span class="s1">&#39;k--&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#plt.savefig(&#39;Figure1b.pdf&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1630016/3555482724.py:9: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_723288/3359889947.py:9: RuntimeWarning: invalid value encountered in divide
   (a.sample_frequencies[b_peaks] * a.data[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1630016/3555482724.py:16: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_723288/3359889947.py:16: RuntimeWarning: invalid value encountered in divide
   (at.sample_frequencies[b_peaks] * at.data[b_peaks]/(tinterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1630016/3555482724.py:37: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_723288/3359889947.py:37: RuntimeWarning: invalid value encountered in divide
   (b.sample_frequencies[b_peaks] * b[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<img alt="../_images/cc00c0eee5f6d681d1f6637b591629066c613a923c2811b0a8c7ab80e4810d1f.png" src="../_images/cc00c0eee5f6d681d1f6637b591629066c613a923c2811b0a8c7ab80e4810d1f.png" />
+<img alt="../_images/9a76eebfecbc8779b56f6763b4e7ddbf0f9c1349b455727968148f052ab0301a.png" src="../_images/9a76eebfecbc8779b56f6763b4e7ddbf0f9c1349b455727968148f052ab0301a.png" />
 </div>
 </div>
+</section>
 </section>
 <section id="creating-the-psd-kernels">
 <h2>Creating the PSD kernels<a class="headerlink" href="#creating-the-psd-kernels" title="Link to this heading">#</a></h2>
 <p>Now we begin the process of computing the zero-latency PSDs and the various plots associated with that.</p>
+<p>First we just IFFT the various PSDs (roll to make plotting easier).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inva</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inv_cutpsd</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">ac_smoothed2</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">inv_cutpsd</span> <span class="o">=</span> <span class="n">inv_cutpsd</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+<span class="n">inv_cutpsdc</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">a1c_smoothed2</span><span class="o">**</span><span class="mf">0.5</span>
+<span class="n">inv_cutpsdc</span> <span class="o">=</span> <span class="n">inv_cutpsdc</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+
+<span class="n">inv_cutpsd</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">inv_cutpsdc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">inva</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">inva1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">invb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">invb1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
@@ -934,72 +976,110 @@ No CuPy or GPU interpolation available.
 <span class="n">b1t</span><span class="o">.</span><span class="n">_epoch</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">b1t</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="mi">100000</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">b1t</span><span class="o">.</span><span class="n">_epoch</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200000</span><span class="o">/</span><span class="mf">2.</span>
+
+<span class="n">inv_cutpsdt</span> <span class="o">=</span> <span class="n">inv_cutpsd</span><span class="o">.</span><span class="n">to_timeseries</span><span class="p">()</span>
+<span class="n">inv_cutpsdt</span><span class="o">.</span><span class="n">_epoch</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">inv_cutpsdt</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="mi">100000</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">inv_cutpsdt</span><span class="o">.</span><span class="n">_epoch</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200000</span><span class="o">/</span><span class="mf">2.</span>
+
+<span class="n">inv_cutpsdct</span> <span class="o">=</span> <span class="n">inv_cutpsdc</span><span class="o">.</span><span class="n">to_timeseries</span><span class="p">()</span>
+<span class="n">inv_cutpsdct</span><span class="o">.</span><span class="n">_epoch</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">inv_cutpsdct</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="mi">100000</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">inv_cutpsdct</span><span class="o">.</span><span class="n">_epoch</span> <span class="o">=</span> <span class="o">-</span><span class="mi">200000</span><span class="o">/</span><span class="mf">2.</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now we make Figure 3a - except first here’s the version we don’t show, because it’s a mess! (ie. we don’t apply an envelope, this is the “raw” version of Figure 3a … the colour scheme is different, but it helps to sort of distinguish the lines).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bt</span><span class="o">.</span><span class="n">sample_times</span><span class="p">,</span> <span class="n">bt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Pessimistic&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bt</span><span class="o">.</span><span class="n">sample_times</span><span class="p">,</span> <span class="n">bt</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Pessimistic&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_times</span><span class="p">,</span> <span class="n">at</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimistic&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inv_cutpsdt</span><span class="o">.</span><span class="n">sample_times</span><span class="p">,</span> <span class="n">inv_cutpsdt</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hard Cut&#39;</span><span class="p">)</span>
+
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5E19</span><span class="p">,</span><span class="mf">1E20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">86400</span><span class="p">,</span><span class="mi">86400</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD autocorrelation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Whitening filter&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fead109565ae4df262494a789496a5b7985d9b4826e5ff4326a654b16beaa157.png" src="../_images/fead109565ae4df262494a789496a5b7985d9b4826e5ff4326a654b16beaa157.png" />
+<img alt="../_images/7f020dd461d95d0c662ee947f085122958115d63e51141d8951beb7659e31606.png" src="../_images/7f020dd461d95d0c662ee947f085122958115d63e51141d8951beb7659e31606.png" />
 </div>
 </div>
+<p>This plot then is Figure 3A</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span>
-<span class="n">idxes</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">bt</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.3E20</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+
+
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="n">idxes</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1E20</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_times</span><span class="p">[</span><span class="n">idxes</span><span class="p">]</span><span class="o">/</span><span class="mf">86400.</span><span class="p">,</span> <span class="p">(</span><span class="n">at</span><span class="p">)[</span><span class="n">idxes</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimistic&#39;</span><span class="p">)</span>
+<span class="n">idxes</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">inv_cutpsdt</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1E20</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">inv_cutpsdt</span><span class="o">.</span><span class="n">sample_times</span><span class="p">[</span><span class="n">idxes</span><span class="p">]</span><span class="o">/</span><span class="mf">86400.</span><span class="p">,</span> <span class="p">(</span><span class="n">inv_cutpsdt</span><span class="p">)[</span><span class="n">idxes</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Hard Cut&#39;</span><span class="p">)</span>
+<span class="n">idxes</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">bt</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1E20</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bt</span><span class="o">.</span><span class="n">sample_times</span><span class="p">[</span><span class="n">idxes</span><span class="p">]</span><span class="o">/</span><span class="mf">86400.</span><span class="p">,</span> <span class="p">(</span><span class="n">bt</span><span class="p">)[</span><span class="n">idxes</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Pessimistic&#39;</span><span class="p">)</span>
-<span class="n">idxes</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.3E20</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_times</span><span class="p">[</span><span class="n">idxes</span><span class="p">]</span><span class="o">/</span><span class="mf">86400.</span><span class="p">,</span> <span class="p">(</span><span class="n">at</span><span class="p">)[</span><span class="n">idxes</span><span class="p">],</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimistic&#39;</span><span class="p">)</span>
+
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.1E20</span><span class="p">,</span><span class="mf">1.4E20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (days)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD autocorrelation (envelope)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Whitening filter (envelope)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1">#plt.savefig(&#39;Figure3a.pdf&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bcbc25ffbb42a24c556630ff21bf5905fa62c0409bd466ba6187e103c8dc2925.png" src="../_images/bcbc25ffbb42a24c556630ff21bf5905fa62c0409bd466ba6187e103c8dc2925.png" />
+<img alt="../_images/9812e0559ab599323691a821d5b392cc2a58440b2bcf56f793289d932499c5af.png" src="../_images/9812e0559ab599323691a821d5b392cc2a58440b2bcf56f793289d932499c5af.png" />
 </div>
 </div>
+<p>And this one is Figure 3C</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">a1t</span><span class="o">.</span><span class="n">sample_times</span><span class="o">/</span><span class="mi">86400</span><span class="p">,</span>
+    <span class="n">a1t</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smoothed Optimistic&#39;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">inv_cutpsdct</span><span class="o">.</span><span class="n">sample_times</span><span class="o">/</span><span class="mi">86400</span><span class="p">,</span>
+    <span class="n">inv_cutpsdct</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smoothed Hard Cut&#39;</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
     <span class="n">b1t</span><span class="o">.</span><span class="n">sample_times</span><span class="o">/</span><span class="mi">86400</span><span class="p">,</span>
     <span class="n">b1t</span><span class="p">,</span>
     <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smoothed Pessimistic&#39;</span>
 <span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">a1t</span><span class="o">.</span><span class="n">sample_times</span><span class="o">/</span><span class="mi">86400</span><span class="p">,</span>
-    <span class="n">a1t</span><span class="p">,</span>
-    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span>
-    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Smoothed Optimistic&#39;</span>
-<span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;asinh&#39;</span><span class="p">,</span> <span class="n">linear_width</span><span class="o">=</span><span class="mf">6E13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;asinh&#39;</span><span class="p">,</span> <span class="n">linear_width</span><span class="o">=</span><span class="mf">2E13</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5E19</span><span class="p">,</span><span class="mf">1E20</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (days)&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD autocorrelation&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Whitening filter&#39;</span><span class="p">)</span>
+<span class="n">major_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1E18</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E17</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E16</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E15</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1E14</span><span class="p">,</span> <span class="mf">1E15</span><span class="p">,</span>
+               <span class="mf">1E16</span><span class="p">,</span> <span class="mf">1E17</span><span class="p">,</span> <span class="mf">1E18</span><span class="p">,</span> <span class="mf">1E19</span><span class="p">,</span> <span class="mf">1E20</span><span class="p">]</span>
+<span class="n">major_tick_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;$-10^</span><span class="si">{18}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{17}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{16}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{15}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{14}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{14}</span><span class="s2">$&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;$10^</span><span class="si">{15}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{16}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{17}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{18}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{19}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{20}</span><span class="s2">$&quot;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">major_ticks</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">major_tick_labels</span><span class="p">)</span>  <span class="c1"># Adjust labels as needed</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">minorticks_off</span><span class="p">()</span>
+<span class="c1">#plt.yticks(minor_ticks, minor=True)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1">#plt.savefig(&#39;Figure3c.pdf&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0c3ca9cd5b759b3a94556a05dd442fe47e2bd0dd87ba1cc07127e7c1551a4220.png" src="../_images/0c3ca9cd5b759b3a94556a05dd442fe47e2bd0dd87ba1cc07127e7c1551a4220.png" />
+<img alt="../_images/221f97e298c79d371d9ab92fe2425494f2a410040130db2435e0449fca7b2e16.png" src="../_images/221f97e298c79d371d9ab92fe2425494f2a410040130db2435e0449fca7b2e16.png" />
 </div>
 </div>
 </section>
@@ -1020,8 +1100,8 @@ No CuPy or GPU interpolation available.
 
 <span class="n">psd_files</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s1">&#39;./model_AE_TDI1_SMOOTH_optimistic.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;Optimistic&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;./model_AE_TDI1_SMOOTH_CUT_optimistic.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;Hard Cut (Smoothed)&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s1">&#39;./model_AE_TDI1_SMOOTH_pessimistic.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;Pessimistic&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;./model_AE_TDI1_SMOOTH_CUT_optimistic.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;Hard Cut&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;./model_AE_TDI1_SMOOTH_pessimistic.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;Pessimistic&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">),</span>
 <span class="p">]</span>
 </pre></div>
 </div>
@@ -1030,34 +1110,40 @@ No CuPy or GPU interpolation available.
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psd_vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cycle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+<span class="n">ind_map</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
 
 <span class="k">for</span> <span class="n">psd_file</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">chh</span> <span class="ow">in</span> <span class="n">psd_files</span><span class="p">:</span>
     
-    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;Optimistic Smoothed LIMIT&#39;</span><span class="p">:</span>
-        <span class="n">f_lower</span> <span class="o">=</span> <span class="mf">1E-4</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">f_lower</span> <span class="o">=</span> <span class="kc">None</span>
-
     <span class="n">zero_phase_kern</span> <span class="o">=</span> \
         <span class="n">generate_pre_merger_psds</span><span class="p">(</span>
             <span class="n">psd_file</span><span class="p">,</span>
             <span class="n">duration</span><span class="o">=</span><span class="n">dlen</span><span class="p">,</span>
             <span class="n">sample_rate</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span>
-            <span class="n">kernel_length</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">86400</span><span class="o">*</span><span class="n">sample_rate</span><span class="p">),</span>
+            <span class="n">kernel_length</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="mi">86400</span><span class="o">*</span><span class="n">sample_rate</span><span class="p">)</span>
         <span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span>
         <span class="p">(</span><span class="n">zero_phase_kern</span><span class="p">[</span><span class="s1">&#39;TD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample_times</span> <span class="o">-</span> <span class="n">zero_phase_kern</span><span class="p">[</span><span class="s1">&#39;TD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample_times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">86400</span><span class="p">,</span>
         <span class="n">zero_phase_kern</span><span class="p">[</span><span class="s1">&#39;TD&#39;</span><span class="p">],</span>
-        <span class="n">label</span><span class="o">=</span><span class="n">name</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">cycle</span><span class="p">[</span><span class="n">ind_map</span><span class="p">[</span><span class="n">chh</span><span class="p">]]</span>
     <span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;asinh&#39;</span><span class="p">,</span> <span class="n">linear_width</span><span class="o">=</span><span class="mf">1E13</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.01</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (days)&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PSD autocorrelation&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Whitening filter&#39;</span><span class="p">)</span>
+    <span class="n">major_ticks</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1E18</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E17</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E16</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E15</span><span class="p">,</span> <span class="o">-</span><span class="mf">1E14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1E14</span><span class="p">,</span> <span class="mf">1E15</span><span class="p">,</span>
+               <span class="mf">1E16</span><span class="p">,</span> <span class="mf">1E17</span><span class="p">,</span> <span class="mf">1E18</span><span class="p">,</span> <span class="mf">1E19</span><span class="p">,</span> <span class="mf">1E20</span><span class="p">]</span>
+    <span class="n">major_tick_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;$-10^</span><span class="si">{18}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{17}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{16}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{15}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$-10^</span><span class="si">{14}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{14}</span><span class="s2">$&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;$10^</span><span class="si">{15}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{16}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{17}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{18}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{19}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="s2">&quot;$10^</span><span class="si">{20}</span><span class="s2">$&quot;</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">major_ticks</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">major_tick_labels</span><span class="p">)</span>  <span class="c1"># Adjust labels as needed</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">minorticks_off</span><span class="p">()</span>
+
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+    <span class="c1">#plt.savefig(f&#39;Figure4{chh}.pdf&#39;)</span>
     
     <span class="n">psd_vals</span><span class="o">.</span><span class="n">append</span><span class="p">((</span>
         <span class="n">zero_phase_kern</span><span class="p">[</span><span class="s1">&#39;FD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample_frequencies</span><span class="p">,</span>
@@ -1075,14 +1161,22 @@ No CuPy or GPU interpolation available.
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Power Spectral Density ($</span><span class="se">\\</span><span class="s1">mathrm</span><span class="si">{Hz}</span><span class="s1">^{-1}$)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">([</span><span class="mf">1E-4</span><span class="p">,</span><span class="mf">1E-4</span><span class="p">],</span> <span class="p">[</span><span class="mf">1E-43</span><span class="p">,</span><span class="mf">1E-36</span><span class="p">],</span> <span class="s1">&#39;c:&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1">#plt.savefig(&#39;Figure5.pdf&#39;)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c505fd7085b7f3028a51dd97159fb914010f703761001f496c96f824a4fd3655.png" src="../_images/c505fd7085b7f3028a51dd97159fb914010f703761001f496c96f824a4fd3655.png" />
-<img alt="../_images/6e6f302aef7aaeeba8474be9bd9287faaaeac5e731d98d25b330ab937459f05c.png" src="../_images/6e6f302aef7aaeeba8474be9bd9287faaaeac5e731d98d25b330ab937459f05c.png" />
-<img alt="../_images/b71932822675188a3ba575fd39063accdfea369478a27d374af9aa1c969c2b47.png" src="../_images/b71932822675188a3ba575fd39063accdfea369478a27d374af9aa1c969c2b47.png" />
-<img alt="../_images/41a8e7e35f9e2e6a943debf1d862e231b575478e74e05c7264acfb1b9406e1c5.png" src="../_images/41a8e7e35f9e2e6a943debf1d862e231b575478e74e05c7264acfb1b9406e1c5.png" />
+<img alt="../_images/f43444a52ac88bad0780f9d04be8874c5373d046aca72a115db28896a87f649e.png" src="../_images/f43444a52ac88bad0780f9d04be8874c5373d046aca72a115db28896a87f649e.png" />
+<img alt="../_images/72be77e0e1275b7f9763c22743c5af25bd7bf050efee85749379566f3364a793.png" src="../_images/72be77e0e1275b7f9763c22743c5af25bd7bf050efee85749379566f3364a793.png" />
+<img alt="../_images/872e1dc8a9b4a90ab35cc953836fa66a8a1ad399de4a02f2ddd2db6f1db0ac5e.png" src="../_images/872e1dc8a9b4a90ab35cc953836fa66a8a1ad399de4a02f2ddd2db6f1db0ac5e.png" />
+<img alt="../_images/d69637c5612f0db50b46cc323c2797ca18b5c8b0c64062388d779f7fe3582bc9.png" src="../_images/d69637c5612f0db50b46cc323c2797ca18b5c8b0c64062388d779f7fe3582bc9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -1143,7 +1237,8 @@ No CuPy or GPU interpolation available.
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1153,12 +1248,17 @@ No CuPy or GPU interpolation available.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-psd-files">Load PSD files</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#this-data-was-then-used-to-create-the-smoothed-files">This data was then used to create the smoothed files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-peaks-of-the-original-psds-are-then-used-to-create-the-smoothed-files">The peaks of the original PSDs are then used to create the smoothed files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-can-then-create-figure-3b-the-plots-are-not-shown-in-the-paper-in-the-order-created-here">We can then create Figure 3b (the plots are not shown in the paper in the order created here)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#want-to-high-pass-filter-the-cut-psd-to-avoid-sharp-effects-in-time-domain">Want to high-pass filter the “cut” PSD to avoid sharp effects in time-domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-cut-psd">Creating the “cut” PSD</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1a">Plot for Figure 1A</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-for-figure-1b">Plot for Figure 1B</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-the-response-function">Plotting the response function.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-figure-1b">Making Figure 1b</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-psd-kernels">Creating the PSD kernels</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#now-want-the-zero-phase-filter-psds">Now want the zero-phase filter PSDs</a></li>
 </ul>
@@ -1209,8 +1309,8 @@ By The Jupyter Book community
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>

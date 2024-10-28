@@ -1,0 +1,734 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Script to make the injections json file &#8212; Premerger observation and characterization of super-massive black hole binaries</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Data/make_injections';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Searching for pre-merger signals" href="../Search/README.html" />
+    <link rel="prev" title="Data for Search and Parameter Estimation" href="README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Premerger observation and characterization of super-massive black hole binaries</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    Premerger Observation and Characterization of Super-Massive Black Hole Binaries
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../PSD_Files/README.html">Generating the PSD files used in our analyses</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../PSD_Files/PSD_filter_images.html">Plotting PSDs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Sensitive_Distance_Plot/README.html">Observable Distance Plot</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Sensitive_Distance_Plot/plot_sensitive_distance.html">Sensitive time-distance figure</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Data for Search and Parameter Estimation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Script to make the injections json file</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Search/README.html">Searching for pre-merger signals</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Search/Optimal_SNR/README.html">Optimal SNR calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Search/Template_Banks/README.html">Generation of Template Banks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Search/Signal_Runs/README.html">Searching for injected signals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Search/Significance_Runs/README.html">Assessing significance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Search/plot_search_results.html">Plotting search results for mock signals</a></li>
+
+
+
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../Parameter_Estimation/README.html">Parameter Estimation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Config_Files/README.html">Configs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Running_Analyses/README.html">Running analyses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Making_Skymaps/README.html">Generating sky maps</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/icg-gravwaves/lisa_premerger_paper" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Data/make_injections.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Script to make the injections json file</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-common-variable-definitions">Imports / common variable definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-chosen-injection-parameters">Set up chosen injection parameters</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="script-to-make-the-injections-json-file">
+<h1>Script to make the injections json file<a class="headerlink" href="#script-to-make-the-injections-json-file" title="Link to this heading">#</a></h1>
+<p>Some parameters are set, some are randomly generated</p>
+<p>The distance is set by calculating how close it would be to have a full-band SNR of 2000</p>
+<p>Note that the randomly generated values we use have a set number of significant figures when they are saved, as does the distance; this means that the SNR out may not be exactly 2000</p>
+<section id="imports-common-variable-definitions">
+<h2>Imports / common variable definitions<a class="headerlink" href="#imports-common-variable-definitions" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="kn">import</span> <span class="nn">pycbc</span>
+<span class="kn">import</span> <span class="nn">pycbc.psd</span>
+<span class="kn">import</span> <span class="nn">pycbc.filter</span>
+<span class="kn">import</span> <span class="nn">pycbc.waveform</span>
+
+<span class="c1"># Common things needed for the waveform generation (when calculating SNR)</span>
+<span class="n">f_nyquist</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">t_length</span> <span class="o">=</span> <span class="mi">86400</span> <span class="o">*</span> <span class="mi">30</span>
+<span class="n">delta_f</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">t_length</span>
+<span class="n">delta_t</span> <span class="o">=</span> <span class="mf">0.25</span>
+
+<span class="n">channels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:36: UserWarning: Wswiglal-redir-stdio:
+
+SWIGLAL standard output/error redirection is enabled in IPython.
+This may lead to performance penalties. To disable locally, use:
+
+with lal.no_swig_redirect_standard_output_error():
+    ...
+
+To disable globally, use:
+
+lal.swig_redirect_standard_output_error(False)
+
+Note however that this will likely lead to error messages from
+LAL functions being either misdirected or lost when called from
+Jupyter notebooks.
+
+To suppress this warning, use:
+
+import warnings
+warnings.filterwarnings(&quot;ignore&quot;, &quot;Wswiglal-redir-stdio&quot;)
+import lal
+
+  import lal as _lal
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No CuPy
+No CuPy or GPU PhenomHM module.
+No CuPy or GPU response available.
+No CuPy or GPU interpolation available.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="set-up-chosen-injection-parameters">
+<h2>Set up chosen injection parameters<a class="headerlink" href="#set-up-chosen-injection-parameters" title="Link to this heading">#</a></h2>
+<p>These injection parameters have been chosen to make certain scientific points</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">injections</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1"># Set injection 0 parameters:</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;mass1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;mass2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;spin1z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;spin2z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Set injection 1 parameters:</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;mass1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2e6</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;mass2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">5e5</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;spin1z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;spin2z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Set injection 2 parameters:</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;mass1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e6</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;mass2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">7e5</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;spin1z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;spin2z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.3</span>
+
+<span class="c1"># Set injection 3 parameters:</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;mass1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.5e6</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;mass2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.5e6</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;spin1z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;spin2z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.9</span>
+
+<span class="c1"># Set injection 4 parameters:</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">&#39;mass1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e7</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">&#39;mass2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e7</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">&#39;spin1z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">&#39;spin2z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Add random times to end of data to represent up to hour wait time</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;additional_end_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1050</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;additional_end_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3400</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;additional_end_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;additional_end_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3100</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">&#39;additional_end_data&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1700</span>
+
+<span class="c1"># Include the distance - this is designed to give fullband SNR of 2000,</span>
+<span class="c1"># but will be slightly different due to config errors</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">27658.011507544677</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">17396.850629145487</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">12042.46921545863</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">102915.54392849082</span>
+<span class="n">injections</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">11259.17078067498</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">waveform_gen_common</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ifos&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;LISA_A&#39;</span><span class="p">,</span><span class="s1">&#39;LISA_E&#39;</span><span class="p">,</span><span class="s1">&#39;LISA_T&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;approximant&#39;</span><span class="p">:</span> <span class="s1">&#39;BBHX_PhenomHM&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;delta_f&#39;</span><span class="p">:</span> <span class="n">delta_f</span><span class="p">,</span>
+    <span class="s1">&#39;f_lower&#39;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span>
+    <span class="s1">&#39;t_obs_start&#39;</span><span class="p">:</span> <span class="n">t_length</span><span class="p">,</span>
+    <span class="s1">&#39;t_offset&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;f_final&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="s1">&#39;low_frequency_cutoff&#39;</span><span class="p">:</span> <span class="mf">0.000001</span><span class="p">,</span>
+    <span class="s1">&#39;tdi&#39;</span><span class="p">:</span> <span class="s1">&#39;1.5&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psd_file_fmat</span> <span class="o">=</span> <span class="s1">&#39;../PSD_Files/model_</span><span class="si">{channel}</span><span class="s1">_TDI1_optimistic.txt.gz&#39;</span>
+<span class="n">psds</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">channel</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">]:</span>
+        <span class="n">channel_long</span> <span class="o">=</span> <span class="s1">&#39;AE&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">channel_long</span> <span class="o">=</span> <span class="n">channel</span>
+    <span class="n">psds</span><span class="p">[</span><span class="n">channel</span><span class="p">]</span> <span class="o">=</span> <span class="n">pycbc</span><span class="o">.</span><span class="n">psd</span><span class="o">.</span><span class="n">from_txt</span><span class="p">(</span>
+        <span class="n">psd_file_fmat</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel_long</span><span class="p">),</span>
+        <span class="nb">int</span><span class="p">(</span><span class="n">f_nyquist</span><span class="o">/</span><span class="n">delta_f</span><span class="p">),</span>
+        <span class="n">delta_f</span><span class="p">,</span>
+        <span class="n">delta_f</span><span class="p">,</span>
+        <span class="n">is_asd_file</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_snr_at_merger</span><span class="p">(</span><span class="n">inj</span><span class="p">):</span>
+    <span class="c1"># Now we want to work out the SNR at merger - sigma is the SNR at 1Mpc</span>
+    <span class="n">wf</span> <span class="o">=</span> <span class="n">pycbc</span><span class="o">.</span><span class="n">waveform</span><span class="o">.</span><span class="n">get_fd_det_waveform</span><span class="p">(</span><span class="o">**</span><span class="n">inj</span><span class="p">)</span>
+    <span class="n">sigsq</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">:</span>
+        <span class="n">sigsq</span> <span class="o">+=</span> <span class="n">pycbc</span><span class="o">.</span><span class="n">filter</span><span class="o">.</span><span class="n">sigma</span><span class="p">(</span>
+            <span class="n">wf</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;LISA_</span><span class="si">{</span><span class="n">channel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">],</span>
+            <span class="n">psds</span><span class="p">[</span><span class="n">channel</span><span class="p">],</span>
+            <span class="n">low_frequency_cutoff</span><span class="o">=</span><span class="n">inj</span><span class="p">[</span><span class="s1">&#39;f_lower&#39;</span><span class="p">],</span>
+            <span class="n">high_frequency_cutoff</span><span class="o">=</span><span class="n">inj</span><span class="p">[</span><span class="s1">&#39;f_final&#39;</span><span class="p">],</span>
+        <span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">sigsq</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="c1"># For each injection, now randomly assign the external parameters:</span>
+
+    <span class="c1"># Make this the same when repeated: set the seed</span>
+    <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">1865</span><span class="p">)</span>
+
+    <span class="c1"># longitude - uniform in 0, 2pi</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;eclipticlongitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="c1"># latitude - uniform in sin latitude</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># round this to 2 significant figures:</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;eclipticlatitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lat</span>
+    <span class="c1"># inclination - uniform in cos iota</span>
+    <span class="n">iota</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;inclination&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">iota</span>
+    <span class="c1"># polarisation - uniform in 0-2pi</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;polarization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="c1"># phase - uniform in 0-2pi</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;coa_phase&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    <span class="c1"># Time of coalescence - uniform in the range</span>
+    <span class="c1"># 1829952018 (2038-01-01T00:00:00) to 1987718418 (2043-01-01T00:00:00)</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;tc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1829952018</span><span class="p">,</span> <span class="mi">1987718418</span><span class="p">)</span>
+
+    <span class="c1"># Now we want to work out the SNR at merger - sigma is the SNR at 1Mpc</span>
+    <span class="n">inj</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="c1"># Add in the required definitions for the waveform generator:</span>
+    <span class="n">inj</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">waveform_gen_common</span><span class="p">)</span>
+    
+    <span class="c1"># Check that this has worked, the nw sigma should be 2000:</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="n">get_snr_at_merger</span><span class="p">(</span><span class="n">inj</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Injection </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> full-signal SNR: </span><span class="si">{</span><span class="n">sig</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">injections</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;fullband_snr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sig</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/BBHX_Phenom.py:287: RuntimeWarning: Input &#39;f_lower&#39; is lower than the value calculated from &#39;t_obs_start&#39;.
+  warn(err_msg, RuntimeWarning)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection 0 full-signal SNR: 1975.470721
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/BBHX_Phenom.py:287: RuntimeWarning: Input &#39;f_lower&#39; is lower than the value calculated from &#39;t_obs_start&#39;.
+  warn(err_msg, RuntimeWarning)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection 1 full-signal SNR: 2124.626544
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection 2 full-signal SNR: 2049.617596
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection 3 full-signal SNR: 1990.494381
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Injection 4 full-signal SNR: 2396.265255
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;injections.json&#39;</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">inj_json</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">injections</span><span class="p">,</span> <span class="n">inj_json</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Data"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data for Search and Parameter Estimation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Search/README.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Searching for pre-merger signals</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-common-variable-definitions">Imports / common variable definitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-chosen-injection-parameters">Set up chosen injection parameters</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
