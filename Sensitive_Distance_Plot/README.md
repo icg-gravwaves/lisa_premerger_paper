@@ -35,5 +35,3 @@ We do not recommend running these directly on the command line, as they can take
 From this the files `sensitive_time_distance_cutoff.hdf` `sensitive_time_distance_optimistic.hdf` and `sensitive_time_distance_pessimistic.hdf` are produced, which we supply as part of this data release.
 
 To plot these, we can use the [`plot_sensitive_distance.ipynb` notebook](./plot_sensitive_distance.ipynb).
-
-> 📝 In the notebook, the boolean flag `source_frame_masses` is set, which can be utilised to generate Figure 2a or 2b.

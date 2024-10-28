@@ -1,7 +1,7 @@
 name: env_lisa_premerger
 channels:
- - pytorch
  - conda-forge
+ - pytorch
 dependencies:
  - python=3.10
  - pip
@@ -21,6 +21,7 @@ dependencies:
  - ipykernel
  - jupyter
  - torch
+ - jupyter-book
  - cpuonly
  - pip:
    - git+https://github.com/mikekatz04/BBHx.git@4fff509

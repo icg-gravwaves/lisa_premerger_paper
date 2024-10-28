@@ -1,5 +1,8 @@
 # Generating sky maps
 
+PAGE UNDER CONSTRUCTION
+
+
 > 📝 The sky maps are generated using a different environment that is specified in `skymap_env.yml`. Once installed, this can be activated using `conda activate pycbc-pre-merger-skymap`. See the [conda documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) for how to create a conda environment from a YAML file.
 
 Generating the sky maps requires the merged result files, for details see [this section](#producing-merged-result-files).

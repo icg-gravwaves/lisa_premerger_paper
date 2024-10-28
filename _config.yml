@@ -4,12 +4,13 @@ title: Premerger observation and characterization of super-massive black hole bi
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
-  # This means only stuff in the table of contents
-  # note that if we have run the 'environment building' instructions, there will be
-  # a bunch of pycbc tutorial notebooks which we don't need to run
-  only_build_toc_files: true
   exclude_patterns:
     - Parameter_Estimation/*.ipynb
+
+# This means only stuff in the table of contents
+# note that if we have run the 'environment building' instructions, there will be
+# a bunch of pycbc stuff which we don't need to run
+only_build_toc_files: true
 
 # Define the name of the latex output file for PDF builds
 latex:
