@@ -30,6 +30,9 @@ def generate_all_params(samples, return_array=False):
         pass
     if "comoving_volume" in samples:
         samples["distance"] = pycbc.cosmology.distance_from_comoving_volume(samples["comoving_volume"])
+        samples["redshift"] = pycbc.cosmology.redshift_from_comoving_volume(samples["comoving_volume"])
+    if "distance" in samples:
+        samples["redshift"] = pycbc.cosmology.redshift(samples["distance"])
     if "additional_end_data" in samples:
         samples["cutoff_deltat"] = -samples["additional_end_data"]
     if return_array:
@@ -80,8 +83,8 @@ psd_labels = {
 
 psd_colours = {
     "optimistic": "C0",
-    "pessimistic": "C1",
-    "cut": "C2",
+    "pessimistic": "C2",
+    "cut": "C1",
 }
 
 parameter_labels = {
