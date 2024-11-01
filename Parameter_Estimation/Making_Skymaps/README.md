@@ -10,7 +10,7 @@ Once these have been generated, the sky map files for a given injection and PSD 
 ```bash
 python produce_skymaps.py \
   --result-dir ../Running_Analyses/results/ \
-  --output-dir results/ \
+  --output-dir . \
   --injection-id <id> \
   --psd <psd> \
   --jobs 8 \
