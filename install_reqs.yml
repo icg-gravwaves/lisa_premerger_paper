@@ -22,6 +22,7 @@ dependencies:
  - jupyter
  - torch
  - jupyter-book
+ - ghp-import
  - cpuonly
  - pip:
    - git+https://github.com/mikekatz04/BBHx.git@4fff509
