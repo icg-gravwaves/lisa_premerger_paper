@@ -187,7 +187,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Config_Files/README.html">Automatically combining configuration files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Running_Analyses/README.html">Running analyses</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/Making_Skymaps/README.html">Generating sky maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/skymap_plots.html">Producing skymap-related plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Parameter_Estimation/skymap_plots.html">Notebook for producing skymap-related plots</a></li>
 </ul>
 </details></li>
 </ul>
@@ -481,7 +481,7 @@
 <span class="n">leg2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span>
     <span class="n">psd_lines</span><span class="p">,</span>
     <span class="n">psd_labels</span><span class="p">,</span>
-    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>
+    <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
     <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PSD model&#39;</span>
 <span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">leg1</span><span class="p">)</span>
@@ -509,12 +509,12 @@
     <span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=-</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time to merger (days)&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Signal to noise ratio&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
-<span class="c1">#plt.savefig(&quot;Figure6.pdf&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;Figure6.pdf&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -522,7 +522,7 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;cutoff&#39;, &#39;pessimistic&#39;, &#39;optimistic&#39;])
 </pre></div>
 </div>
-<img alt="../_images/cb001f5d3831dcbd33b169de22ca83e02ea029d0b74411b89f6507350ea1fa4e.png" src="../_images/cb001f5d3831dcbd33b169de22ca83e02ea029d0b74411b89f6507350ea1fa4e.png" />
+<img alt="../_images/b0fc9539452c3b8d53103c81fcce446eb74a884ba7c76252950fe4cc64059cb2.png" src="../_images/b0fc9539452c3b8d53103c81fcce446eb74a884ba7c76252950fe4cc64059cb2.png" />
 </div>
 </div>
 </section>
