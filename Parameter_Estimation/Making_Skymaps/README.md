@@ -19,3 +19,5 @@ python produce_skymaps.py \
 
 where `<id>` and `<psd>` should be set accordingly.
 `<psd>` can be one of `{optimistic, pessimistic, cut}` and `<id>` can take any number in the range `{0..4}`.
+
+In the next notebook, we see how the skymap plots are generated.

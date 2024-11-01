@@ -23,3 +23,4 @@ chapters:
   - file: Parameter_Estimation/Running_Analyses/README.md
   - file: Parameter_Estimation/mass_tc_plot.ipynb
   - file: Parameter_Estimation/Making_Skymaps/README.md
+  - file: Parameter_Estimation/skymap_plots.ipynb
