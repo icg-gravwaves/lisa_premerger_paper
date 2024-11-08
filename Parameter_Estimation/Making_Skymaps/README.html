@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Parameter_Estimation/Making_Skymaps/README';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Figure 10" href="../skymap_plots.html" />
+    <link rel="next" title="Making skymap-related plots" href="../skymap_plots.html" />
     <link rel="prev" title="Running analyses" href="../Running_Analyses/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -198,8 +198,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../Config_Files/README.html">Automatically combining configuration files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Running_Analyses/README.html">Running analyses</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Generating sky maps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../skymap_plots.html">Figure 10</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="../skymap_plots.html">Making skymap-related plots</a></li>
 </ul>
 </details></li>
 </ul>
@@ -369,12 +368,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="generating-sky-maps">
 <h1>Generating sky maps<a class="headerlink" href="#generating-sky-maps" title="Link to this heading">#</a></h1>
-<p>PAGE UNDER CONSTRUCTION</p>
-<blockquote>
-<div><p>📝 The sky maps are generated using a different environment that is specified in <code class="docutils literal notranslate"><span class="pre">skymap_env.yml</span></code>. Once installed, this can be activated using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">pycbc-pre-merger-skymap</span></code>.
-Generating the sky maps requires the merged result files, for details see <a class="reference internal" href="#producing-merged-result-files"><span class="xref myst">this section</span></a>.
+<p>Generating the sky maps requires the merged result files, for details see <a class="reference internal" href="../Running_Analyses/README.html"><span class="std std-doc">this section</span></a>.
 Once these have been generated, the sky map files for a given injection and PSD are produced by running the following command:</p>
-</div></blockquote>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>produce_skymaps.py<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--result-dir<span class="w"> </span>../Running_Analyses/results/<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--output-dir<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
@@ -386,6 +381,7 @@ Once these have been generated, the sky map files for a given injection and PSD 
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">&lt;id&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;psd&gt;</span></code> should be set accordingly.
 <code class="docutils literal notranslate"><span class="pre">&lt;psd&gt;</span></code> can be one of <code class="docutils literal notranslate"><span class="pre">{optimistic,</span> <span class="pre">pessimistic,</span> <span class="pre">cut}</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;id&gt;</span></code> can take any number in the range <code class="docutils literal notranslate"><span class="pre">{0..4}</span></code>.</p>
+<p>This will generate fits files (gzipped), which we have provided in the repo.</p>
 <p>In the next notebook, we see how the skymap plots are generated.</p>
 </section>
 
@@ -433,7 +429,7 @@ Once these have been generated, the sky map files for a given injection and PSD 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Figure 10</p>
+        <p class="prev-next-title">Making skymap-related plots</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
