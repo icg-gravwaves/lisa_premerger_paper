@@ -47,3 +47,5 @@ python merge_results.py --result-mapping results.yml --output-dir results/
 ```
 
 > ⚠️ The [results yaml](results.yml) provided is a guide, please update it to use your configurations.
+
+We have provided the merged files in the repo.
