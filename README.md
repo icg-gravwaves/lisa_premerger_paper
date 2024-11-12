@@ -1,6 +1,6 @@
 # Premerger Observation and Characterization of Super-Massive Black Hole Binaries
 
-This is the data release for the paper "Premerger observation and characterization of super-massive black hole binaries", which can be found [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ). We release the data behind each of the figures and the code and configuration files that were used to produce each of them. We also demonstrate the steps needed to reproduce the search and parameter estimation using our code.
+This is the data release for the paper "Premerger observation and characterization of super-massive black hole binaries", which can be found [here](https://arxiv.org/abs/2411.07020). We release the data behind each of the figures and the code and configuration files that were used to produce each of them. We also demonstrate the steps needed to reproduce the search and parameter estimation using our code.
 
 FIXME: sort a docker image somewhere (zenodo?) once code is finalised
 

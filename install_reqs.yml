@@ -20,7 +20,7 @@ dependencies:
  - corner
  - ipykernel
  - jupyter
- - torch
+ - pytorch
  - jupyter-book
  - ghp-import
  - cpuonly
