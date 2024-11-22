@@ -8,7 +8,7 @@ INJECTION_PATH=injections/
 # f_lower file
 FLOWER_FILE = ${CONFIG_PATH}/f_lower.json
 # Path to the data files
-DATAFILES_PATH = ../../Data_Files
+DATAFILES_PATH = ../../Data/data_files
 # Label for the data files
 # Set to signal_zero_noise to make zero noise ini files
 DATAFILES_LABEL = signal
