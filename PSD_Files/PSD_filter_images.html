@@ -16,30 +16,33 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -52,7 +55,7 @@
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
@@ -64,6 +67,7 @@
     <link rel="prev" title="Generating the PSD files used in our analyses" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -79,19 +83,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -107,8 +99,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -209,9 +198,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -323,24 +317,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -393,26 +379,26 @@ document.write(`
 <h1>Plotting PSDs<a class="headerlink" href="#plotting-psds" title="Link to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">interpolate</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">interpolate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;../paper.mplstyle&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">find_peaks</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.signal</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_peaks</span>
 
-<span class="kn">import</span> <span class="nn">pycbc</span>
-<span class="kn">from</span> <span class="nn">pycbc.types</span> <span class="kn">import</span> <span class="n">load_frequencyseries</span>
-<span class="kn">from</span> <span class="nn">pycbc</span> <span class="kn">import</span> <span class="n">psd</span>
-<span class="kn">import</span> <span class="nn">pycbc.psd</span>
-<span class="kn">import</span> <span class="nn">pycbc.waveform</span>
-<span class="kn">import</span> <span class="nn">pycbc.filter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pycbc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pycbc.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_frequencyseries</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pycbc</span><span class="w"> </span><span class="kn">import</span> <span class="n">psd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pycbc.psd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pycbc.waveform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pycbc.filter</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:36: UserWarning: Wswiglal-redir-stdio:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:36: UserWarning: Wswiglal-redir-stdio:
 
 SWIGLAL standard output/error redirection is enabled in IPython.
 This may lead to performance penalties. To disable locally, use:
@@ -505,9 +491,9 @@ No CuPy or GPU interpolation available.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: divide by zero encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: divide by zero encountered in divide
   return self._data.__rtruediv__(other)
-/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: invalid value encountered in divide
+/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:390: RuntimeWarning: invalid value encountered in divide
   return self._data.__rtruediv__(other)
 </pre></div>
 </div>
@@ -529,20 +515,20 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:225: ComplexWarning: Casting complex values to real discards the imaginary part
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:225: ComplexWarning: Casting complex values to real discards the imaginary part
   arr = arr.astype(dtype)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/cbook.py:1699: ComplexWarning: Casting complex values to real discards the imaginary part
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/matplotlib/cbook.py:1709: ComplexWarning: Casting complex values to real discards the imaginary part
   return math.isfinite(val)
-/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/matplotlib/cbook.py:1345: ComplexWarning: Casting complex values to real discards the imaginary part
+/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/matplotlib/cbook.py:1345: ComplexWarning: Casting complex values to real discards the imaginary part
   return np.asarray(x, float)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f25745c7640&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb8b0429660&gt;]
 </pre></div>
 </div>
-<img alt="../_images/cbf98b9caa518ea3408c58c08dbe6399391f5fde69d051df390208f8a71fef30.png" src="../_images/cbf98b9caa518ea3408c58c08dbe6399391f5fde69d051df390208f8a71fef30.png" />
+<img alt="../_images/199758c162544ff88f8416de6965b5a0e4e4b872d584eb896322cff188a7c031.png" src="../_images/199758c162544ff88f8416de6965b5a0e4e4b872d584eb896322cff188a7c031.png" />
 </div>
 </div>
 </section>
@@ -567,10 +553,10 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f2574359540&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb8b245b760&gt;
 </pre></div>
 </div>
-<img alt="../_images/3fe48a30e97347f1dfefdcd5d57ad54e33004e00446c8238142ca4f0e578d79b.png" src="../_images/3fe48a30e97347f1dfefdcd5d57ad54e33004e00446c8238142ca4f0e578d79b.png" />
+<img alt="../_images/9639dd8afd3dc9fc1599d49a19bd05553b9fae04d0042fb4a5a0e374212d7ffc.png" src="../_images/9639dd8afd3dc9fc1599d49a19bd05553b9fae04d0042fb4a5a0e374212d7ffc.png" />
 </div>
 </div>
 </section>
@@ -592,7 +578,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_ew/lib/python3.10/site-packages/pycbc/types/array.py:864: ComplexWarning: Casting complex values to real discards the imaginary part
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/gareth/miniconda3/envs/env_lisa_premerger/lib/python3.10/site-packages/pycbc/types/array.py:864: ComplexWarning: Casting complex values to real discards the imaginary part
   return self._data.astype(dtype)
 </pre></div>
 </div>
@@ -632,7 +618,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b9a00eb784e5c8b6eae97c0b9bfd8260be4f80e71781e57268ee4e54a937c25.png" src="../_images/5b9a00eb784e5c8b6eae97c0b9bfd8260be4f80e71781e57268ee4e54a937c25.png" />
+<img alt="../_images/fea4be23a6c4bc7d1072de961e6367f6c4cd349d50b3cc9fc1277432f87a94ae.png" src="../_images/fea4be23a6c4bc7d1072de961e6367f6c4cd349d50b3cc9fc1277432f87a94ae.png" />
 </div>
 </div>
 </section>
@@ -679,7 +665,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ef4dcd0ba61bb09b9f8b262e5fbe17a7d43a6e5a4eea5bea9c5d9507aa731ee0.png" src="../_images/ef4dcd0ba61bb09b9f8b262e5fbe17a7d43a6e5a4eea5bea9c5d9507aa731ee0.png" />
+<img alt="../_images/5d7a1450cc5e661bb0d2b07a89a3117876995d42d41a6fe1b476bf6bbde74275.png" src="../_images/5d7a1450cc5e661bb0d2b07a89a3117876995d42d41a6fe1b476bf6bbde74275.png" />
 </div>
 </div>
 </section>
@@ -691,7 +677,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constructing the average response from h(t) -&gt; A,E,T,</span>
 
-<span class="k">def</span> <span class="nf">get_response_function</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_response_function</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="mf">1E7</span><span class="p">:</span>
         <span class="n">delta_f</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="p">(</span><span class="mi">131072</span><span class="o">*</span><span class="mi">32</span><span class="p">)</span>
         <span class="n">freq</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">64.</span>
@@ -861,7 +847,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Response function&#39;)
 </pre></div>
 </div>
-<img alt="../_images/ca2c00e63af80e5f0f504fb2eda5a4d291e1c0bbff5109038e0ad8852210aff2.png" src="../_images/ca2c00e63af80e5f0f504fb2eda5a4d291e1c0bbff5109038e0ad8852210aff2.png" />
+<img alt="../_images/bf2f4ae03f60a68ec6f789baf90ef85df82c83e114417af1564ec39f118c896d.png" src="../_images/bf2f4ae03f60a68ec6f789baf90ef85df82c83e114417af1564ec39f118c896d.png" />
 </div>
 </div>
 </section>
@@ -939,19 +925,19 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_38009/3359889947.py:9: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1248520/3359889947.py:9: RuntimeWarning: invalid value encountered in divide
   (a.sample_frequencies[b_peaks] * a.data[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_38009/3359889947.py:16: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1248520/3359889947.py:16: RuntimeWarning: invalid value encountered in divide
   (at.sample_frequencies[b_peaks] * at.data[b_peaks]/(tinterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_38009/3359889947.py:37: RuntimeWarning: invalid value encountered in divide
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1248520/3359889947.py:37: RuntimeWarning: invalid value encountered in divide
   (b.sample_frequencies[b_peaks] * b[b_peaks]/(ainterp_array[b_peaks]**2))**0.5,
 </pre></div>
 </div>
-<img alt="../_images/cc00c0eee5f6d681d1f6637b591629066c613a923c2811b0a8c7ab80e4810d1f.png" src="../_images/cc00c0eee5f6d681d1f6637b591629066c613a923c2811b0a8c7ab80e4810d1f.png" />
+<img alt="../_images/402a8e8e429701e80e15cacc1f359c4bd52a50b3158f763f5d8d24ba74830cfc.png" src="../_images/402a8e8e429701e80e15cacc1f359c4bd52a50b3158f763f5d8d24ba74830cfc.png" />
 </div>
 </div>
 </section>
@@ -1025,7 +1011,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ddcba5f2ea2146bec3d5c7a917b6e5629ade94af1f25d11edf8f8acba06a85fe.png" src="../_images/ddcba5f2ea2146bec3d5c7a917b6e5629ade94af1f25d11edf8f8acba06a85fe.png" />
+<img alt="../_images/40fc021558580804a3b63fa7f6ccd633839c7706f79b75d15194ff93061b6d2a.png" src="../_images/40fc021558580804a3b63fa7f6ccd633839c7706f79b75d15194ff93061b6d2a.png" />
 </div>
 </div>
 <p>This plot then is Figure 3A</p>
@@ -1034,7 +1020,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cycle</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">by_key</span><span class="p">()[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
 
 
-<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
 <span class="n">idxes</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">at</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1E20</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">sample_times</span><span class="p">[</span><span class="n">idxes</span><span class="p">]</span><span class="o">/</span><span class="mf">86400.</span><span class="p">,</span> <span class="p">(</span><span class="n">at</span><span class="p">)[</span><span class="n">idxes</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimistic&#39;</span><span class="p">)</span>
 <span class="n">idxes</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">find_peaks</span><span class="p">(</span><span class="n">inv_cutpsdt</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.1E20</span><span class="p">,</span> <span class="n">distance</span><span class="o">=</span><span class="mi">1000</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -1054,7 +1040,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5cfbbe90be7029c6051a33fe49175de860f21dc0851efa4d6f4ce35961f5b61a.png" src="../_images/5cfbbe90be7029c6051a33fe49175de860f21dc0851efa4d6f4ce35961f5b61a.png" />
+<img alt="../_images/4af9400047edf1172ad6d274aa0e23e506c8d09e675f9b869123f1d373daba2e.png" src="../_images/4af9400047edf1172ad6d274aa0e23e506c8d09e675f9b869123f1d373daba2e.png" />
 </div>
 </div>
 <p>And this one is Figure 3C</p>
@@ -1096,7 +1082,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f83c14b6e6f20ecbb38c15c37f438ec1834ba3de2a3b1e0db608c8aa73fd2c10.png" src="../_images/f83c14b6e6f20ecbb38c15c37f438ec1834ba3de2a3b1e0db608c8aa73fd2c10.png" />
+<img alt="../_images/f5604476fe1b644f1304e1876c912cadb2f941edfa96161423c36a9ee08d7d3e.png" src="../_images/f5604476fe1b644f1304e1876c912cadb2f941edfa96161423c36a9ee08d7d3e.png" />
 </div>
 </div>
 </section>
@@ -1104,7 +1090,7 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 <h2>Now want the zero-phase filter PSDs<a class="headerlink" href="#now-want-the-zero-phase-filter-psds" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycbc.psd.lisa_pre_merger</span> <span class="kn">import</span> <span class="n">generate_pre_merger_psds</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycbc.psd.lisa_pre_merger</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_pre_merger_psds</span>
 </pre></div>
 </div>
 </div>
@@ -1183,10 +1169,10 @@ PSDs, so we only need to do the “smoothing” process once.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/57bd18540a3e63b869d8791b54c5d10c5f10b5baa0f632c43daad53f320b4737.png" src="../_images/57bd18540a3e63b869d8791b54c5d10c5f10b5baa0f632c43daad53f320b4737.png" />
-<img alt="../_images/fa095e643665f0f5f8621c1209eb82f457eee5a5006ac5097efac09947a36bf7.png" src="../_images/fa095e643665f0f5f8621c1209eb82f457eee5a5006ac5097efac09947a36bf7.png" />
-<img alt="../_images/e13216978a4f69aa3cf7d3f7d405100387bd2596893275da2b37f9e6ac90e47c.png" src="../_images/e13216978a4f69aa3cf7d3f7d405100387bd2596893275da2b37f9e6ac90e47c.png" />
-<img alt="../_images/14d962e75db6845717d2c08f89fcab4d84fdd689b7994b31da2e42d13375ad7b.png" src="../_images/14d962e75db6845717d2c08f89fcab4d84fdd689b7994b31da2e42d13375ad7b.png" />
+<img alt="../_images/9ccfd333d003d1d3a32293da8b22e311d08d349f150213b429140977ca514707.png" src="../_images/9ccfd333d003d1d3a32293da8b22e311d08d349f150213b429140977ca514707.png" />
+<img alt="../_images/188fec9e1f875841f2e892b8f05398be1aabd7c94454d477bb2cfed10fd48af7.png" src="../_images/188fec9e1f875841f2e892b8f05398be1aabd7c94454d477bb2cfed10fd48af7.png" />
+<img alt="../_images/6783e225b437c24fcf77e5647e60e224bcf7776388d2579ce3b0437162fa7c76.png" src="../_images/6783e225b437c24fcf77e5647e60e224bcf7776388d2579ce3b0437162fa7c76.png" />
+<img alt="../_images/f3a063c25452977d04c178dd9d5da0e6452e45e57a3a2d37fd33f5caa438bd07.png" src="../_images/f3a063c25452977d04c178dd9d5da0e6452e45e57a3a2d37fd33f5caa438bd07.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1254,7 +1240,8 @@ PSDs, so we only need to do the “smoothing” process once.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1325,8 +1312,8 @@ By The Jupyter Book community
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
