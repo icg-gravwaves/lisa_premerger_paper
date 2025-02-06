@@ -17,8 +17,9 @@ As always with python, software dependencies will change in the coming years, an
 
 This paper was generated using a fork of PyCBC at https://github.com/icg-gravwaves/pycbc/tree/lisa-pre-merger. This was forked from PyCBC at cd0e16a.
 
-We plan to have a docker image, but we also provide an environment file here so that if the user wants to use our work as a basis for development, that is possible.
+A docker image is available on [dockerhub](https://hub.docker.com/repository/docker/icggravwaves/lisa_premerger_paper)
 
+We also provide an environment file here so that if the user wants to use our work as a basis for development, that is possible.
 The conda environment is defined in a [yaml file](install_reqs.yml), which can be used for the analysis:
 
 ```
